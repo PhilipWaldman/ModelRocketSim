@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J570W
+02  Data date....: 04/18/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 18.875
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 547.9
+12  Load Wt. gms.: 886.1
+13  Burn time....: 2.089
+14  Favg Lbs.....: 128.432
+15  Favg Newtons.: 571.294
+16  TotImp Lbsecs: 235.191
+17  TotImp Ntsecs: 1046.181
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.08    247.034
+20  Time /Thrust.: 0.23    211.162
+20  Time /Thrust.: 0.38    185.235
+20  Time /Thrust.: 0.54    163.217
+20  Time /Thrust.: 0.69    143.662
+20  Time /Thrust.: 0.85    132.988
+20  Time /Thrust.: 1.00    122.565
+20  Time /Thrust.: 1.16    108.636
+20  Time /Thrust.: 1.31     85.575
+20  Time /Thrust.: 1.47     59.740
+20  Time /Thrust.: 1.62     38.270
+20  Time /Thrust.: 1.78     26.248
+20  Time /Thrust.: 1.93     12.763
+20  Time /Thrust.: 2.09      0.000
+61  Mass Fraction: 0.618
+62  Isp lb/s/lb..: 192.307
+63  Rating.......: 1046-J-571
+64  Pct Full.....: 63% J

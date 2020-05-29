@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: L355 (1685CC125LFX)
+02  Data date....: 01/19/01
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 4.375
+08  Case Len.....: 28.5
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 1619.5
+12  Load Wt. gms.: 3954.0
+13  Burn time....: 9.712
+14  Favg Lbs.....: 75.4798
+15  Favg Newtons.: 335.751
+16  TotImp Lbsecs: 641.893
+17  TotImp Ntsecs: 2855.281
+18  REM1.........: converted from TMT test stand data 2001 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.36    142.102
+20  Time /Thrust.: 1.08    117.295
+20  Time /Thrust.: 1.80    102.424
+20  Time /Thrust.: 2.52     90.820
+20  Time /Thrust.: 3.24     88.041
+20  Time /Thrust.: 3.96     83.008
+20  Time /Thrust.: 4.67     78.053
+20  Time /Thrust.: 5.39     73.893
+20  Time /Thrust.: 6.11     61.293
+20  Time /Thrust.: 6.83     28.137
+20  Time /Thrust.: 7.55     17.834
+20  Time /Thrust.: 8.27     10.878
+20  Time /Thrust.: 8.99      5.761
+20  Time /Thrust.: 9.71      0.000
+61  Mass Fraction: 0.410
+62  Isp lb/s/lb..: 177.564
+63  Rating.......: 2855-L-336
+64  Pct Full.....: 11% L

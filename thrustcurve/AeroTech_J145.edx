@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J145H
+02  Data date....: 10/23/99
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 27.9
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 410.8
+12  Load Wt. gms.: 1797.4
+13  Burn time....: 5.575
+14  Favg Lbs.....: 33.6793
+15  Favg Newtons.: 149.813
+16  TotImp Lbsecs: 187.762
+17  TotImp Ntsecs: 835.207
+18  REM1.........: converted from TMT test stand data 1999 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.22     61.191
+20  Time /Thrust.: 0.65     66.716
+20  Time /Thrust.: 1.09     57.231
+20  Time /Thrust.: 1.53     54.797
+20  Time /Thrust.: 1.97     51.498
+20  Time /Thrust.: 2.40     47.248
+20  Time /Thrust.: 2.84     42.613
+20  Time /Thrust.: 3.28     19.177
+20  Time /Thrust.: 3.72     11.918
+20  Time /Thrust.: 4.15      7.591
+20  Time /Thrust.: 4.59      4.768
+20  Time /Thrust.: 5.03      3.021
+20  Time /Thrust.: 5.47      2.167
+20  Time /Thrust.: 5.58      0.000
+61  Mass Fraction: 0.229
+62  Isp lb/s/lb..: 204.757
+63  Rating.......: 835-J-150
+64  Pct Full.....: 30% J

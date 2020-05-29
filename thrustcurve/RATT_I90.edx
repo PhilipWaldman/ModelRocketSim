@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I90LH
+02  Data date....: 06/03/00
+03  Manufacturer.: RATT Works
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.125
+08  Case Len.....: 36.25
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 285.4
+12  Load Wt. gms.: 684.5
+13  Burn time....: 6.298
+14  Favg Lbs.....: 17.8487
+15  Favg Newtons.: 79.395
+16  TotImp Lbsecs: 112.41
+17  TotImp Ntsecs: 500.024
+18  REM1.........: converted from TMT test stand data 2002 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.25     29.218
+20  Time /Thrust.: 0.74     26.781
+20  Time /Thrust.: 1.23     26.491
+20  Time /Thrust.: 1.73     25.666
+20  Time /Thrust.: 2.22     24.719
+20  Time /Thrust.: 2.71     23.717
+20  Time /Thrust.: 3.21     22.949
+20  Time /Thrust.: 3.70     16.486
+20  Time /Thrust.: 4.20     10.156
+20  Time /Thrust.: 4.69      7.230
+20  Time /Thrust.: 5.19      5.773
+20  Time /Thrust.: 5.68      4.944
+20  Time /Thrust.: 6.17      4.425
+20  Time /Thrust.: 6.30      0.000
+61  Mass Fraction: 0.417
+62  Isp lb/s/lb..: 176.467
+63  Rating.......: 500-I-79
+64  Pct Full.....: 56% I

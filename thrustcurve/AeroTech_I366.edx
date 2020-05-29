@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I366R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.50
+08  Case Len.....: 11.73
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 313.6
+12  Load Wt. gms.: 555.5
+13  Burn time....: 1.500
+14  Favg Lbs.....: 81.608
+15  Favg Newtons.: 363.010
+16  TotImp Lbsecs: 122.412
+17  TotImp Ntsecs: 544.516
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.06     90.130
+20  Time /Thrust.: 0.17    108.417
+20  Time /Thrust.: 0.29    105.925
+20  Time /Thrust.: 0.40    102.404
+20  Time /Thrust.: 0.52     98.767
+20  Time /Thrust.: 0.63     94.595
+20  Time /Thrust.: 0.75     89.726
+20  Time /Thrust.: 0.87     84.500
+20  Time /Thrust.: 0.98     78.197
+20  Time /Thrust.: 1.10     71.260
+20  Time /Thrust.: 1.21     63.210
+20  Time /Thrust.: 1.33     54.347
+20  Time /Thrust.: 1.45     14.642
+20  Time /Thrust.: 1.50      0.000
+61  Mass Fraction: 0.565
+62  Isp lb/s/lb..: 0
+63  Rating.......: 545-I-363
+64  Pct Full.....:

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I230
+02  Data date....: 07/25/98
+03  Manufacturer.: Ellis Mountain
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 13.031
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 282.7
+12  Load Wt. gms.: 620.9
+13  Burn time....: 3.112
+14  Favg Lbs.....: 51.6386
+15  Favg Newtons.: 229.700
+16  TotImp Lbsecs: 140.823
+17  TotImp Ntsecs: 626.412
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.11     68.538
+20  Time /Thrust.: 0.34     69.289
+20  Time /Thrust.: 0.57     67.300
+20  Time /Thrust.: 0.81     66.259
+20  Time /Thrust.: 1.04     65.268
+20  Time /Thrust.: 1.27     63.867
+20  Time /Thrust.: 1.50     61.971
+20  Time /Thrust.: 1.73     58.204
+20  Time /Thrust.: 1.96     47.298
+20  Time /Thrust.: 2.19     22.373
+20  Time /Thrust.: 2.42     13.393
+20  Time /Thrust.: 2.65      7.775
+20  Time /Thrust.: 2.88      0.778
+20  Time /Thrust.: 3.11      0.000
+61  Mass Fraction: 0.455
+62  Isp lb/s/lb..: 223.174
+63  Rating.......: 626-I-230
+64  Pct Full.....: 95% I

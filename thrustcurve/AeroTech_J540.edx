@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J540R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.13
+08  Case Len.....: 12.36
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 613.8
+12  Load Wt. gms.: 1084.2
+13  Burn time....: 2.250
+14  Favg Lbs.....: 115.813
+15  Favg Newtons.: 515.162
+16  TotImp Lbsecs: 260.580
+17  TotImp Ntsecs: 1159.117
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.09    127.173
+20  Time /Thrust.: 0.26    146.812
+20  Time /Thrust.: 0.43    149.503
+20  Time /Thrust.: 0.61    148.834
+20  Time /Thrust.: 0.78    145.920
+20  Time /Thrust.: 0.95    140.640
+20  Time /Thrust.: 1.13    132.482
+20  Time /Thrust.: 1.30    121.143
+20  Time /Thrust.: 1.47    110.789
+20  Time /Thrust.: 1.65    102.280
+20  Time /Thrust.: 1.82     94.287
+20  Time /Thrust.: 1.99     76.071
+20  Time /Thrust.: 2.17      5.330
+20  Time /Thrust.: 2.25      0.000
+61  Mass Fraction: 0.566
+62  Isp lb/s/lb..: 0
+63  Rating.......: 1159-J-515
+64  Pct Full.....:

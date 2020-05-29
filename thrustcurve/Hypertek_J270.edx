@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J270 (440CC125JFX)
+02  Data date....: 01/19/01
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 24.188
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 419.8
+12  Load Wt. gms.: 1296.1
+13  Burn time....: 3.366
+14  Favg Lbs.....: 61.091
+15  Favg Newtons.: 271.746
+16  TotImp Lbsecs: 180.091
+17  TotImp Ntsecs: 801.084
+18  REM1.........: converted from TMT test stand data 2001 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.12    105.005
+20  Time /Thrust.: 0.37    102.830
+20  Time /Thrust.: 0.62     91.326
+20  Time /Thrust.: 0.87     83.760
+20  Time /Thrust.: 1.12     77.624
+20  Time /Thrust.: 1.37     72.530
+20  Time /Thrust.: 1.62     67.041
+20  Time /Thrust.: 1.87     50.184
+20  Time /Thrust.: 2.12     29.563
+20  Time /Thrust.: 2.37     22.336
+20  Time /Thrust.: 2.62     13.675
+20  Time /Thrust.: 2.87      7.839
+20  Time /Thrust.: 3.12      4.285
+20  Time /Thrust.: 3.37      0.000
+61  Mass Fraction: 0.324
+62  Isp lb/s/lb..: 192.2
+63  Rating.......: 801-J-272
+64  Pct Full.....: 25% J

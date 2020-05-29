@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J460T
+02  Data date....: 07/18/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 9.063
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 413.5
+12  Load Wt. gms.: 801.0
+13  Burn time....: 2.197
+14  Favg Lbs.....: 101.277
+15  Favg Newtons.: 450.502
+16  TotImp Lbsecs: 194.958
+17  TotImp Ntsecs: 867.216
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.08    113.426
+20  Time /Thrust.: 0.24    117.187
+20  Time /Thrust.: 0.41    120.854
+20  Time /Thrust.: 0.57    122.598
+20  Time /Thrust.: 0.73    122.320
+20  Time /Thrust.: 0.89    119.879
+20  Time /Thrust.: 1.06    114.809
+20  Time /Thrust.: 1.22    107.132
+20  Time /Thrust.: 1.38     98.851
+20  Time /Thrust.: 1.54     91.203
+20  Time /Thrust.: 1.71     55.414
+20  Time /Thrust.: 1.87     15.775
+20  Time /Thrust.: 2.03      1.122
+20  Time /Thrust.: 2.20      0.000
+61  Mass Fraction: 0.516
+62  Isp lb/s/lb..: 211.223
+63  Rating.......: 867-J-451
+64  Pct Full.....: 35% J

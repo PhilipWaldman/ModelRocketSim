@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: N4800T
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.86
+08  Case Len.....: 47.01
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 9766.4
+12  Load Wt. gms.: 14784.0
+13  Burn time....: 5.103
+14  Favg Lbs.....: 860.230
+15  Favg Newtons.: 3826.492
+16  TotImp Lbsecs: 4389.325
+17  TotImp Ntsecs: 19524.683
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.19   1206.148
+20  Time /Thrust.: 0.58   1229.323
+20  Time /Thrust.: 0.98   1154.858
+20  Time /Thrust.: 1.37   1140.509
+20  Time /Thrust.: 1.76   1105.396
+20  Time /Thrust.: 2.15   1045.590
+20  Time /Thrust.: 2.55    989.476
+20  Time /Thrust.: 2.94    928.429
+20  Time /Thrust.: 3.34    876.362
+20  Time /Thrust.: 3.73    874.845
+20  Time /Thrust.: 4.12    496.296
+20  Time /Thrust.: 4.51     88.038
+20  Time /Thrust.: 4.91     41.462
+20  Time /Thrust.: 5.10      0.000
+61  Mass Fraction: 0.661
+62  Isp lb/s/lb..: 0
+63  Rating.......: 19525-N-3826
+64  Pct Full.....:

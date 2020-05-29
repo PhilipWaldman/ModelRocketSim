@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J317O (835CC172J)
+02  Data date....: 01/19/01
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.2
+08  Case Len.....: 21.75
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 704.3
+12  Load Wt. gms.: 1757.5
+13  Burn time....: 3.742
+14  Favg Lbs.....: 70.0924
+15  Favg Newtons.: 311.786
+16  TotImp Lbsecs: 229.699
+17  TotImp Ntsecs: 1021.752
+18  REM1.........: converted from TMT test stand data 2001 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.14    101.891
+20  Time /Thrust.: 0.41    102.450
+20  Time /Thrust.: 0.69     96.185
+20  Time /Thrust.: 0.97     91.198
+20  Time /Thrust.: 1.25     88.552
+20  Time /Thrust.: 1.52     83.487
+20  Time /Thrust.: 1.80     79.162
+20  Time /Thrust.: 2.08     72.985
+20  Time /Thrust.: 2.35     55.467
+20  Time /Thrust.: 2.63     32.186
+20  Time /Thrust.: 2.91     17.539
+20  Time /Thrust.: 3.19      9.000
+20  Time /Thrust.: 3.46      4.378
+20  Time /Thrust.: 3.74      0.000
+61  Mass Fraction: 0.401
+62  Isp lb/s/lb..: 146.119
+63  Rating.......: 1022-J-312
+64  Pct Full.....: 59% J

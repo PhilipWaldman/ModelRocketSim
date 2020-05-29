@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: K458W
+02  Data date....: 04/19/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 10.813
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 1427.8
+12  Load Wt. gms.: 3163.8
+13  Burn time....: 7.015
+14  Favg Lbs.....: 97.2498
+15  Favg Newtons.: 432.589
+16  TotImp Lbsecs: 597.479
+17  TotImp Ntsecs: 2657.718
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.26     77.961
+20  Time /Thrust.: 0.78    108.574
+20  Time /Thrust.: 1.30    126.719
+20  Time /Thrust.: 1.82    135.382
+20  Time /Thrust.: 2.34    139.178
+20  Time /Thrust.: 2.86    138.016
+20  Time /Thrust.: 3.38    123.027
+20  Time /Thrust.: 3.90    102.259
+20  Time /Thrust.: 4.42     77.935
+20  Time /Thrust.: 4.94     57.421
+20  Time /Thrust.: 5.46     42.140
+20  Time /Thrust.: 5.98     22.028
+20  Time /Thrust.: 6.49      1.134
+20  Time /Thrust.: 7.01      0.000
+61  Mass Fraction: 0.451
+62  Isp lb/s/lb..: 187.474
+63  Rating.......: 2658-K-433
+64  Pct Full.....: 3% L

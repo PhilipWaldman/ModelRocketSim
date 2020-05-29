@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: L200 (1685CC098L)
+02  Data date....: 01/19/01
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 4.375
+08  Case Len.....: 28.5
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 1594.0
+12  Load Wt. gms.: 3894.9
+13  Burn time....: 15.221
+14  Favg Lbs.....: 44.6398
+15  Favg Newtons.: 198.568
+16  TotImp Lbsecs: 594.918
+17  TotImp Ntsecs: 2646.326
+18  REM1.........: converted from TMT test stand data 2001 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.56     70.039
+20  Time /Thrust.: 1.69     61.810
+20  Time /Thrust.: 2.82     54.770
+20  Time /Thrust.: 3.94     55.528
+20  Time /Thrust.: 5.07     57.174
+20  Time /Thrust.: 6.20     54.374
+20  Time /Thrust.: 7.33     51.817
+20  Time /Thrust.: 8.45     49.159
+20  Time /Thrust.: 9.58     41.622
+20  Time /Thrust.: 10.71     16.200
+20  Time /Thrust.: 11.84     10.154
+20  Time /Thrust.: 12.96      5.800
+20  Time /Thrust.: 14.09      3.059
+20  Time /Thrust.: 15.22      0.000
+61  Mass Fraction: 0.409
+62  Isp lb/s/lb..: 167.206
+63  Rating.......: 2646-L-199
+64  Pct Full.....: 3% L

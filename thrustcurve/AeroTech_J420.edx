@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J420R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.50
+08  Case Len.....: 13.27
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 376.3
+12  Load Wt. gms.: 649.6
+13  Burn time....: 1.610
+14  Favg Lbs.....: 91.092
+15  Favg Newtons.: 405.197
+16  TotImp Lbsecs: 146.658
+17  TotImp Ntsecs: 652.367
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.06     69.185
+20  Time /Thrust.: 0.18    117.908
+20  Time /Thrust.: 0.31    119.348
+20  Time /Thrust.: 0.43    120.357
+20  Time /Thrust.: 0.55    119.131
+20  Time /Thrust.: 0.68    116.273
+20  Time /Thrust.: 0.80    112.264
+20  Time /Thrust.: 0.93    103.618
+20  Time /Thrust.: 1.05     93.241
+20  Time /Thrust.: 1.17     82.300
+20  Time /Thrust.: 1.30     73.141
+20  Time /Thrust.: 1.42     52.646
+20  Time /Thrust.: 1.54      7.103
+20  Time /Thrust.: 1.61      0.000
+61  Mass Fraction: 0.579
+62  Isp lb/s/lb..: 0
+63  Rating.......: 652-J-405
+64  Pct Full.....:

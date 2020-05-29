@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H165R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.14
+08  Case Len.....: 7.64
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 89.6
+12  Load Wt. gms.: 201.6
+13  Burn time....: 1.050
+14  Favg Lbs.....: 34.619
+15  Favg Newtons.: 153.993
+16  TotImp Lbsecs: 36.350
+17  TotImp Ntsecs: 161.693
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.04     23.843
+20  Time /Thrust.: 0.12     38.303
+20  Time /Thrust.: 0.20     40.562
+20  Time /Thrust.: 0.28     42.272
+20  Time /Thrust.: 0.36     42.593
+20  Time /Thrust.: 0.44     42.424
+20  Time /Thrust.: 0.52     41.968
+20  Time /Thrust.: 0.61     40.878
+20  Time /Thrust.: 0.69     38.625
+20  Time /Thrust.: 0.77     36.242
+20  Time /Thrust.: 0.85     34.718
+20  Time /Thrust.: 0.93     22.454
+20  Time /Thrust.: 1.01      2.636
+20  Time /Thrust.: 1.05      0.000
+61  Mass Fraction: 0.444
+62  Isp lb/s/lb..: 0
+63  Rating.......: 162-H-154
+64  Pct Full.....:

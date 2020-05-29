@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H128W
+02  Data date....: 07/27/97
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.125
+08  Case Len.....: 7.625
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 94.1
+12  Load Wt. gms.: 201.6
+13  Burn time....: 1.317
+14  Favg Lbs.....: 34.801
+15  Favg Newtons.: 154.803
+16  TotImp Lbsecs: 40.1661
+17  TotImp Ntsecs: 178.668
+18  REM1.........: converted from TMT test stand data 1997 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.05     30.745
+20  Time /Thrust.: 0.14     40.609
+20  Time /Thrust.: 0.24     41.210
+20  Time /Thrust.: 0.34     42.580
+20  Time /Thrust.: 0.44     41.962
+20  Time /Thrust.: 0.54     40.325
+20  Time /Thrust.: 0.63     38.552
+20  Time /Thrust.: 0.73     37.320
+20  Time /Thrust.: 0.83     35.515
+20  Time /Thrust.: 0.92     34.252
+20  Time /Thrust.: 1.02     23.516
+20  Time /Thrust.: 1.12      5.396
+20  Time /Thrust.: 1.22      0.620
+20  Time /Thrust.: 1.32      0.000
+61  Mass Fraction: 0.467
+62  Isp lb/s/lb..: 191.267
+63  Rating.......: 179-H-155
+64  Pct Full.....: 11% H

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J315R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.13
+08  Case Len.....: 9.57
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 421.1
+12  Load Wt. gms.: 851.2
+13  Burn time....: 2.590
+14  Favg Lbs.....: 66.232
+15  Favg Newtons.: 294.615
+16  TotImp Lbsecs: 171.540
+17  TotImp Ntsecs: 763.048
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.10     58.575
+20  Time /Thrust.: 0.30     80.500
+20  Time /Thrust.: 0.50     83.627
+20  Time /Thrust.: 0.70     84.162
+20  Time /Thrust.: 0.90     82.981
+20  Time /Thrust.: 1.10     80.670
+20  Time /Thrust.: 1.30     76.268
+20  Time /Thrust.: 1.50     70.316
+20  Time /Thrust.: 1.70     65.312
+20  Time /Thrust.: 1.90     61.156
+20  Time /Thrust.: 2.10     56.465
+20  Time /Thrust.: 2.30     46.275
+20  Time /Thrust.: 2.50      8.739
+20  Time /Thrust.: 2.59      0.000
+61  Mass Fraction: 0.495
+62  Isp lb/s/lb..: 0
+63  Rating.......: 763-J-295
+64  Pct Full.....:

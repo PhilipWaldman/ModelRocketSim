@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: M2500T
+02  Data date....: 11/21/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 29.57
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 4659.2
+12  Load Wt. gms.: 8064.0
+13  Burn time....: 4.341
+14  Favg Lbs.....: 570.957
+15  Favg Newtons.: 2539.742
+16  TotImp Lbsecs: 2170.82
+17  TotImp Ntsecs: 9656.285
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.16    609.910
+20  Time /Thrust.: 0.48    636.088
+20  Time /Thrust.: 0.80    640.440
+20  Time /Thrust.: 1.12    642.287
+20  Time /Thrust.: 1.44    642.208
+20  Time /Thrust.: 1.77    639.082
+20  Time /Thrust.: 2.09    630.328
+20  Time /Thrust.: 2.41    610.149
+20  Time /Thrust.: 2.73    583.441
+20  Time /Thrust.: 3.05    556.728
+20  Time /Thrust.: 3.38    459.202
+20  Time /Thrust.: 3.70    107.641
+20  Time /Thrust.: 4.02     12.939
+20  Time /Thrust.: 4.34      0.000
+61  Mass Fraction: 0.578
+62  Isp lb/s/lb..: 208.733
+63  Rating.......: 9656-M-2540
+64  Pct Full.....: 88% M

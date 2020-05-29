@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: L610 (1685CCRGLFX)
+02  Data date....: 01/20/01
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 4.375
+08  Case Len.....: 28.5
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 1577.0
+12  Load Wt. gms.: 3950.9
+13  Burn time....: 5.789
+14  Favg Lbs.....: 136.426
+15  Favg Newtons.: 606.853
+16  TotImp Lbsecs: 691.508
+17  TotImp Ntsecs: 3075.980
+18  REM1.........: converted from TMT test stand data 2001 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.21    190.267
+20  Time /Thrust.: 0.64    170.232
+20  Time /Thrust.: 1.07    181.547
+20  Time /Thrust.: 1.50    179.271
+20  Time /Thrust.: 1.93    176.780
+20  Time /Thrust.: 2.36    198.703
+20  Time /Thrust.: 2.79    167.571
+20  Time /Thrust.: 3.21    143.448
+20  Time /Thrust.: 3.64    107.713
+20  Time /Thrust.: 4.07     52.342
+20  Time /Thrust.: 4.50     30.796
+20  Time /Thrust.: 4.93     16.600
+20  Time /Thrust.: 5.36      8.356
+20  Time /Thrust.: 5.79      0.000
+61  Mass Fraction: 0.399
+62  Isp lb/s/lb..: 196.451
+63  Rating.......: 3076-L-607
+64  Pct Full.....: 20% L

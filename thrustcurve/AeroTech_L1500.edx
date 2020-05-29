@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: L1500T
+02  Data date....: 11/21/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 17.45
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 2464.0
+12  Load Wt. gms.: 4659.2
+13  Burn time....: 3.884
+14  Favg Lbs.....: 337.078
+15  Favg Newtons.: 1499.397
+16  TotImp Lbsecs: 1146.77
+17  TotImp Ntsecs: 5101.085
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.14    311.304
+20  Time /Thrust.: 0.43    343.417
+20  Time /Thrust.: 0.72    362.968
+20  Time /Thrust.: 1.01    376.829
+20  Time /Thrust.: 1.29    382.634
+20  Time /Thrust.: 1.58    382.255
+20  Time /Thrust.: 1.87    378.180
+20  Time /Thrust.: 2.16    364.633
+20  Time /Thrust.: 2.44    342.993
+20  Time /Thrust.: 2.73    318.150
+20  Time /Thrust.: 3.02    291.589
+20  Time /Thrust.: 3.31    132.885
+20  Time /Thrust.: 3.60      1.369
+20  Time /Thrust.: 3.88      0.000
+61  Mass Fraction: 0.529
+62  Isp lb/s/lb..: 208.503
+63  Rating.......: 5101-L-1499
+64  Pct Full.....: 99% L

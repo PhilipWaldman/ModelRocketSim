@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H148R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.50
+08  Case Len.....: 5.98
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 147.8
+12  Load Wt. gms.: 309.1
+13  Burn time....: 1.500
+14  Favg Lbs.....: 32.438
+15  Favg Newtons.: 144.291
+16  TotImp Lbsecs: 48.657
+17  TotImp Ntsecs: 216.437
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.06     27.741
+20  Time /Thrust.: 0.17     42.039
+20  Time /Thrust.: 0.29     43.300
+20  Time /Thrust.: 0.40     42.354
+20  Time /Thrust.: 0.52     40.999
+20  Time /Thrust.: 0.63     38.863
+20  Time /Thrust.: 0.75     36.960
+20  Time /Thrust.: 0.87     34.478
+20  Time /Thrust.: 0.98     31.617
+20  Time /Thrust.: 1.10     28.156
+20  Time /Thrust.: 1.21     24.051
+20  Time /Thrust.: 1.33     21.499
+20  Time /Thrust.: 1.45      7.682
+20  Time /Thrust.: 1.50      0.000
+61  Mass Fraction: 0.478
+62  Isp lb/s/lb..: 0
+63  Rating.......: 216-H-144
+64  Pct Full.....:

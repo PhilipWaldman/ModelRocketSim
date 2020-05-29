@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: G60
+02  Data date....: 06/11/00
+03  Manufacturer.: Cesaroni
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 4.938
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 77.1
+12  Load Wt. gms.: 201.6
+13  Burn time....: 2.275
+14  Favg Lbs.....: 15.8072
+15  Favg Newtons.: 70.314
+16  TotImp Lbsecs: 31.5157
+17  TotImp Ntsecs: 140.189
+18  REM1.........: converted from TMT test stand data 2002 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.08     15.615
+20  Time /Thrust.: 0.25     18.952
+20  Time /Thrust.: 0.42     18.454
+20  Time /Thrust.: 0.59     18.214
+20  Time /Thrust.: 0.76     17.931
+20  Time /Thrust.: 0.92     17.260
+20  Time /Thrust.: 1.09     16.447
+20  Time /Thrust.: 1.26     15.564
+20  Time /Thrust.: 1.43     14.711
+20  Time /Thrust.: 1.60     13.917
+20  Time /Thrust.: 1.77     12.988
+20  Time /Thrust.: 1.94      7.149
+20  Time /Thrust.: 2.11      0.418
+20  Time /Thrust.: 2.28      0.000
+61  Mass Fraction: 0.382
+62  Isp lb/s/lb..: 183.231
+63  Rating.......: 140-G-70
+64  Pct Full.....: 75% G

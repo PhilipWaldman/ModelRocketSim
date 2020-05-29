@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: K650T
+02  Data date....: 11/21/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 11.38
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 1270.1
+12  Load Wt. gms.: 2935.3
+13  Burn time....: 4.183
+14  Favg Lbs.....: 147.705
+15  Favg Newtons.: 657.024
+16  TotImp Lbsecs: 541.277
+17  TotImp Ntsecs: 2407.719
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.15    124.096
+20  Time /Thrust.: 0.46    141.143
+20  Time /Thrust.: 0.77    150.990
+20  Time /Thrust.: 1.08    159.249
+20  Time /Thrust.: 1.39    164.318
+20  Time /Thrust.: 1.70    167.078
+20  Time /Thrust.: 2.01    167.999
+20  Time /Thrust.: 2.32    164.653
+20  Time /Thrust.: 2.63    154.401
+20  Time /Thrust.: 2.94    142.259
+20  Time /Thrust.: 3.25    129.035
+20  Time /Thrust.: 3.56     81.835
+20  Time /Thrust.: 3.87      0.297
+20  Time /Thrust.: 4.18      0.000
+61  Mass Fraction: 0.433
+62  Isp lb/s/lb..: 190.927
+63  Rating.......: 2408-K-657
+64  Pct Full.....: 88% K

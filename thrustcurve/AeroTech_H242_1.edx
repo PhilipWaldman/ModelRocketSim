@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H242T
+02  Data date....: 10/16/99
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 6.073
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 114.7
+12  Load Wt. gms.: 264.8
+13  Burn time....: 1.365
+14  Favg Lbs.....: 47.8585
+15  Favg Newtons.: 212.885
+16  TotImp Lbsecs: 57.2308
+17  TotImp Ntsecs: 254.575
+18  REM1.........: converted from TMT test stand data 1999 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.05     49.863
+20  Time /Thrust.: 0.15     54.179
+20  Time /Thrust.: 0.25     55.244
+20  Time /Thrust.: 0.35     55.555
+20  Time /Thrust.: 0.45     55.156
+20  Time /Thrust.: 0.55     54.611
+20  Time /Thrust.: 0.66     52.933
+20  Time /Thrust.: 0.76     50.221
+20  Time /Thrust.: 0.86     46.839
+20  Time /Thrust.: 0.96     41.994
+20  Time /Thrust.: 1.06     38.174
+20  Time /Thrust.: 1.16     12.502
+20  Time /Thrust.: 1.26      2.251
+20  Time /Thrust.: 1.36      0.000
+61  Mass Fraction: 0.433
+62  Isp lb/s/lb..: 223.558
+63  Rating.......: 255-H-213
+64  Pct Full.....: 59% H

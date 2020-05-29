@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: K1275R
+02  Data date....:
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.13
+08  Case Len.....: 22.40
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 1290.2
+12  Load Wt. gms.: 2033.9
+13  Burn time....: 2.000
+14  Favg Lbs.....: 243.130
+15  Favg Newtons.: 1081.496
+16  TotImp Lbsecs: 486.260
+17  TotImp Ntsecs: 2162.991
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.08    318.170
+20  Time /Thrust.: 0.23    345.056
+20  Time /Thrust.: 0.38    334.201
+20  Time /Thrust.: 0.54    318.691
+20  Time /Thrust.: 0.69    303.750
+20  Time /Thrust.: 0.85    287.983
+20  Time /Thrust.: 1.00    269.048
+20  Time /Thrust.: 1.16    249.853
+20  Time /Thrust.: 1.31    234.056
+20  Time /Thrust.: 1.46    218.447
+20  Time /Thrust.: 1.62    202.403
+20  Time /Thrust.: 1.77     71.146
+20  Time /Thrust.: 1.93      0.475
+20  Time /Thrust.: 2.00      0.000
+61  Mass Fraction: 0.634
+62  Isp lb/s/lb..: 0
+63  Rating.......: 2163-K-1081
+64  Pct Full.....:

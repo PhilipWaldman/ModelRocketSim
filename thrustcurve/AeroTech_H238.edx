@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H238T
+02  Data date....: 06/29/97
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.125
+08  Case Len.....: 7.625
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 80.6
+12  Load Wt. gms.: 188.2
+13  Burn time....: 1.055
+14  Favg Lbs.....: 43.4609
+15  Favg Newtons.: 193.324
+16  TotImp Lbsecs: 40.2013
+17  TotImp Ntsecs: 178.824
+18  REM1.........: converted from TMT test stand data 1997 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.04     42.586
+20  Time /Thrust.: 0.12     47.722
+20  Time /Thrust.: 0.19     48.955
+20  Time /Thrust.: 0.27     49.896
+20  Time /Thrust.: 0.35     51.514
+20  Time /Thrust.: 0.43     51.334
+20  Time /Thrust.: 0.51     50.009
+20  Time /Thrust.: 0.58     48.937
+20  Time /Thrust.: 0.66     46.874
+20  Time /Thrust.: 0.74     43.895
+20  Time /Thrust.: 0.82     25.563
+20  Time /Thrust.: 0.90      7.879
+20  Time /Thrust.: 0.98      1.266
+20  Time /Thrust.: 1.06      0.000
+61  Mass Fraction: 0.429
+62  Isp lb/s/lb..: 223.34
+63  Rating.......: 179-H-193
+64  Pct Full.....: 11% H

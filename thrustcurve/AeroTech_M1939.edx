@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: M1939W
+02  Data date....: 04/18/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 28.813
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 5656.0
+12  Load Wt. gms.: 8988.2
+13  Burn time....: 7.076
+14  Favg Lbs.....: 380.164
+15  Favg Newtons.: 1691.053
+16  TotImp Lbsecs: 2355.43
+17  TotImp Ntsecs: 10477.471
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.26    440.535
+20  Time /Thrust.: 0.78    476.610
+20  Time /Thrust.: 1.31    495.606
+20  Time /Thrust.: 1.83    501.025
+20  Time /Thrust.: 2.36    499.730
+20  Time /Thrust.: 2.88    483.257
+20  Time /Thrust.: 3.41    431.401
+20  Time /Thrust.: 3.93    375.420
+20  Time /Thrust.: 4.45    307.487
+20  Time /Thrust.: 4.98    253.807
+20  Time /Thrust.: 5.50    172.591
+20  Time /Thrust.: 6.03     61.080
+20  Time /Thrust.: 6.55      4.724
+20  Time /Thrust.: 7.08      0.000
+61  Mass Fraction: 0.629
+62  Isp lb/s/lb..: 186.569
+63  Rating.......: 10477-M-1691
+64  Pct Full.....: 2% N

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: L540 (2800/75-172-L)
+02  Data date....:
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.965
+08  Case Len.....: 54.6
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 2522.2
+12  Load Wt. gms.: 5057.9
+13  Burn time....: 9.964
+14  Favg Lbs.....: 119.589
+15  Favg Newtons.: 531.958
+16  TotImp Lbsecs: 1043.42
+17  TotImp Ntsecs: 4641.362
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.37    152.036
+20  Time /Thrust.: 1.11    142.469
+20  Time /Thrust.: 1.84    151.180
+20  Time /Thrust.: 2.58    164.080
+20  Time /Thrust.: 3.32    174.430
+20  Time /Thrust.: 4.06    165.265
+20  Time /Thrust.: 4.80    152.685
+20  Time /Thrust.: 5.53    136.108
+20  Time /Thrust.: 6.27     93.329
+20  Time /Thrust.: 7.01     43.558
+20  Time /Thrust.: 7.75     26.138
+20  Time /Thrust.: 8.49     14.360
+20  Time /Thrust.: 9.22      6.232
+20  Time /Thrust.: 9.96      0.000
+61  Mass Fraction: 0.499
+62  Isp lb/s/lb..: 184.741
+63  Rating.......: 4641-L-532
+64  Pct Full.....: 81% L

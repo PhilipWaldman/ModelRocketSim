@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H180W
+02  Data date....: 06/29/97
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.125
+08  Case Len.....: 9.375
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 121.0
+12  Load Wt. gms.: 246.4
+13  Burn time....: 1.336
+14  Favg Lbs.....: 45.1198
+15  Favg Newtons.: 200.703
+16  TotImp Lbsecs: 52.8278
+17  TotImp Ntsecs: 234.990
+18  REM1.........: converted from TMT test stand data 1997 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.05     41.637
+20  Time /Thrust.: 0.15     50.460
+20  Time /Thrust.: 0.25     52.913
+20  Time /Thrust.: 0.34     54.385
+20  Time /Thrust.: 0.44     54.073
+20  Time /Thrust.: 0.54     53.494
+20  Time /Thrust.: 0.64     52.835
+20  Time /Thrust.: 0.74     51.573
+20  Time /Thrust.: 0.84     51.980
+20  Time /Thrust.: 0.94     44.193
+20  Time /Thrust.: 1.04     21.765
+20  Time /Thrust.: 1.14      5.102
+20  Time /Thrust.: 1.24      1.176
+20  Time /Thrust.: 1.34      0.000
+61  Mass Fraction: 0.491
+62  Isp lb/s/lb..: 195.659
+63  Rating.......: 235-H-201
+64  Pct Full.....: 46% H

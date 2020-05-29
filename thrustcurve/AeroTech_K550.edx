@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: K550W
+02  Data date....: 07/18/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 16.125
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 919.7
+12  Load Wt. gms.: 1487.4
+13  Burn time....: 3.418
+14  Favg Lbs.....: 123.029
+15  Favg Newtons.: 547.260
+16  TotImp Lbsecs: 368.317
+17  TotImp Ntsecs: 1638.355
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.13    139.807
+20  Time /Thrust.: 0.38    158.070
+20  Time /Thrust.: 0.63    171.978
+20  Time /Thrust.: 0.88    178.769
+20  Time /Thrust.: 1.14    178.247
+20  Time /Thrust.: 1.39    158.859
+20  Time /Thrust.: 1.64    132.922
+20  Time /Thrust.: 1.90    111.005
+20  Time /Thrust.: 2.15     92.082
+20  Time /Thrust.: 2.40     74.075
+20  Time /Thrust.: 2.66     44.837
+20  Time /Thrust.: 2.91     16.156
+20  Time /Thrust.: 3.16      4.589
+20  Time /Thrust.: 3.42      0.000
+61  Mass Fraction: 0.618
+62  Isp lb/s/lb..: 179.404
+63  Rating.......: 1638-K-547
+64  Pct Full.....: 27% K

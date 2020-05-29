@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J180T
+02  Data date....: 07/19/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 9.063
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 429.2
+12  Load Wt. gms.: 809.1
+13  Burn time....: 4.895
+14  Favg Lbs.....: 41.654
+15  Favg Newtons.: 185.286
+16  TotImp Lbsecs: 178.592
+17  TotImp Ntsecs: 794.417
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.18     69.044
+20  Time /Thrust.: 0.54     70.060
+20  Time /Thrust.: 0.91     66.841
+20  Time /Thrust.: 1.27     61.881
+20  Time /Thrust.: 1.63     54.632
+20  Time /Thrust.: 1.99     46.201
+20  Time /Thrust.: 2.36     37.825
+20  Time /Thrust.: 2.72     30.196
+20  Time /Thrust.: 3.08     23.071
+20  Time /Thrust.: 3.44     16.561
+20  Time /Thrust.: 3.81     10.906
+20  Time /Thrust.: 4.17      6.292
+20  Time /Thrust.: 4.53      3.359
+20  Time /Thrust.: 4.89      0.000
+61  Mass Fraction: 0.530
+62  Isp lb/s/lb..: 186.421
+63  Rating.......: 794-J-185
+64  Pct Full.....: 24% J

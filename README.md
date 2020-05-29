@@ -1,5 +1,5 @@
-# Waldman Rocket Program (WaRP)
-WaRP, short for **Wa**ldman **R**ocket **P**rogram, is a model rocket simulator created by Philip Waldman.
+# Waldman Rocket Program (WARP)
+WARP, short for **Wa**ldman **R**ocket **P**rogram, is a model rocket simulator created by Philip Waldman.
 
 ## Features
 * Calculates and plots the ballistic trajectory of 1-, 2-, and 3-D input data.
@@ -9,4 +9,4 @@ WaRP, short for **Wa**ldman **R**ocket **P**rogram, is a model rocket simulator 
     
 
 ## Planned features
-* Website?
+* ???

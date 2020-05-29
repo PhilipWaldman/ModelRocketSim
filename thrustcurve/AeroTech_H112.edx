@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H112J
+02  Data date....: 09/13/99
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 7.948
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 187.7
+12  Load Wt. gms.: 379.5
+13  Burn time....: 3.382
+14  Favg Lbs.....: 19.9117
+15  Favg Newtons.: 88.572
+16  TotImp Lbsecs: 58.9885
+17  TotImp Ntsecs: 262.394
+18  REM1.........: converted from TMT test stand data 1999 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.12     21.006
+20  Time /Thrust.: 0.37     23.000
+20  Time /Thrust.: 0.62     23.439
+20  Time /Thrust.: 0.88     23.260
+20  Time /Thrust.: 1.13     23.620
+20  Time /Thrust.: 1.38     23.095
+20  Time /Thrust.: 1.63     22.541
+20  Time /Thrust.: 1.88     21.266
+20  Time /Thrust.: 2.13     18.837
+20  Time /Thrust.: 2.38     16.578
+20  Time /Thrust.: 2.63     13.868
+20  Time /Thrust.: 2.88      5.239
+20  Time /Thrust.: 3.13      0.692
+20  Time /Thrust.: 3.38      0.000
+61  Mass Fraction: 0.495
+62  Isp lb/s/lb..: 140.784
+63  Rating.......: 262-H-89
+64  Pct Full.....: 63% H

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J90W
+02  Data date....: 05/31/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 9.563
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 427.4
+12  Load Wt. gms.: 852.5
+13  Burn time....: 7.465
+14  Favg Lbs.....: 23.735
+15  Favg Newtons.: 105.579
+16  TotImp Lbsecs: 155.168
+17  TotImp Ntsecs: 690.221
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.28     31.388
+20  Time /Thrust.: 0.83     40.354
+20  Time /Thrust.: 1.38     41.832
+20  Time /Thrust.: 1.93     39.128
+20  Time /Thrust.: 2.49     34.780
+20  Time /Thrust.: 3.04     28.580
+20  Time /Thrust.: 3.59     21.170
+20  Time /Thrust.: 4.15     15.404
+20  Time /Thrust.: 4.70     11.160
+20  Time /Thrust.: 5.25      7.944
+20  Time /Thrust.: 5.81      5.600
+20  Time /Thrust.: 6.36      3.867
+20  Time /Thrust.: 6.91      2.511
+20  Time /Thrust.: 7.46      0.000
+61  Mass Fraction: 0.501
+62  Isp lb/s/lb..: 162.65
+63  Rating.......: 690-J-106
+64  Pct Full.....: 7% J

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: M1419W
+02  Data date....: 04/18/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 22.813
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 4032.0
+12  Load Wt. gms.: 6916.2
+13  Burn time....: 8.081
+14  Favg Lbs.....: 246.257
+15  Favg Newtons.: 1095.405
+16  TotImp Lbsecs: 1742.78
+17  TotImp Ntsecs: 7752.269
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.30    268.732
+20  Time /Thrust.: 0.90    297.332
+20  Time /Thrust.: 1.49    320.774
+20  Time /Thrust.: 2.09    335.103
+20  Time /Thrust.: 2.69    339.952
+20  Time /Thrust.: 3.29    332.885
+20  Time /Thrust.: 3.89    297.906
+20  Time /Thrust.: 4.49    245.928
+20  Time /Thrust.: 5.09    187.097
+20  Time /Thrust.: 5.69    144.932
+20  Time /Thrust.: 6.28    106.029
+20  Time /Thrust.: 6.88     37.071
+20  Time /Thrust.: 7.48      1.950
+20  Time /Thrust.: 8.08      0.000
+61  Mass Fraction: 0.583
+62  Isp lb/s/lb..: 193.643
+63  Rating.......: 7752-M-1095
+64  Pct Full.....: 51% M

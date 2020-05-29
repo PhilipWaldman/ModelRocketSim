@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I240
+02  Data date....: 06/17/00
+03  Manufacturer.: Cesaroni
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 11.875
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 274.6
+12  Load Wt. gms.: 503.6
+13  Burn time....: 2.311
+14  Favg Lbs.....: 61.5104
+15  Favg Newtons.: 273.612
+16  TotImp Lbsecs: 124.559
+17  TotImp Ntsecs: 554.066
+18  REM1.........: converted from TMT test stand data 2002 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.08     65.777
+20  Time /Thrust.: 0.26     70.511
+20  Time /Thrust.: 0.43     70.414
+20  Time /Thrust.: 0.60     72.482
+20  Time /Thrust.: 0.77     73.527
+20  Time /Thrust.: 0.94     72.765
+20  Time /Thrust.: 1.11     71.178
+20  Time /Thrust.: 1.28     67.716
+20  Time /Thrust.: 1.45     64.055
+20  Time /Thrust.: 1.63     58.868
+20  Time /Thrust.: 1.80     31.831
+20  Time /Thrust.: 1.97      8.835
+20  Time /Thrust.: 2.14      1.063
+20  Time /Thrust.: 2.31      0.000
+61  Mass Fraction: 0.545
+62  Isp lb/s/lb..: 203.195
+63  Rating.......: 554-I-274
+64  Pct Full.....: 73% I

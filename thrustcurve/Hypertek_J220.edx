@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J220
+02  Data date....: 03/14/98
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 25.38
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 418.0
+12  Load Wt. gms.: 1305.0
+13  Burn time....: 3.742
+14  Favg Lbs.....: 49.4264
+15  Favg Newtons.: 219.860
+16  TotImp Lbsecs: 161.975
+17  TotImp Ntsecs: 720.500
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.14     61.408
+20  Time /Thrust.: 0.41     66.281
+20  Time /Thrust.: 0.69     65.917
+20  Time /Thrust.: 0.97     63.173
+20  Time /Thrust.: 1.25     61.030
+20  Time /Thrust.: 1.52     59.203
+20  Time /Thrust.: 1.80     56.826
+20  Time /Thrust.: 2.08     53.780
+20  Time /Thrust.: 2.35     49.356
+20  Time /Thrust.: 2.63     25.197
+20  Time /Thrust.: 2.91     14.236
+20  Time /Thrust.: 3.19      9.439
+20  Time /Thrust.: 3.46      5.173
+20  Time /Thrust.: 3.74      0.000
+61  Mass Fraction: 0.320
+62  Isp lb/s/lb..: 173.606
+63  Rating.......: 721-J-220
+64  Pct Full.....: 12% J

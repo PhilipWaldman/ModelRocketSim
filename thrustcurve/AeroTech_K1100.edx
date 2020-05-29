@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: K1100T
+02  Data date....: 04/18/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 15.688
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 761.6
+12  Load Wt. gms.: 1325.2
+13  Burn time....: 1.847
+14  Favg Lbs.....: 222.888
+15  Favg Newtons.: 991.455
+16  TotImp Lbsecs: 360.801
+17  TotImp Ntsecs: 1604.922
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.07    278.947
+20  Time /Thrust.: 0.20    263.883
+20  Time /Thrust.: 0.34    258.429
+20  Time /Thrust.: 0.48    255.926
+20  Time /Thrust.: 0.61    252.146
+20  Time /Thrust.: 0.75    244.970
+20  Time /Thrust.: 0.89    235.859
+20  Time /Thrust.: 1.02    223.915
+20  Time /Thrust.: 1.16    212.218
+20  Time /Thrust.: 1.30    199.591
+20  Time /Thrust.: 1.43    160.662
+20  Time /Thrust.: 1.57     54.910
+20  Time /Thrust.: 1.71      2.605
+20  Time /Thrust.: 1.85      0.000
+61  Mass Fraction: 0.575
+62  Isp lb/s/lb..: 212.236
+63  Rating.......: 1605-K-991
+64  Pct Full.....: 25% K

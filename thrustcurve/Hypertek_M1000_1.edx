@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: M1000 (4630/98-RG-M)
+02  Data date....:
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.860
+08  Case Len.....: 55.3
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 4175.4
+12  Load Wt. gms.: 8727.0
+13  Burn time....: 10.284
+14  Favg Lbs.....: 227.424
+15  Favg Newtons.: 1011.632
+16  TotImp Lbsecs: 2047.77
+17  TotImp Ntsecs: 9108.931
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.38    315.853
+20  Time /Thrust.: 1.14    329.005
+20  Time /Thrust.: 1.90    316.083
+20  Time /Thrust.: 2.66    306.196
+20  Time /Thrust.: 3.43    290.934
+20  Time /Thrust.: 4.19    278.144
+20  Time /Thrust.: 4.95    269.159
+20  Time /Thrust.: 5.71    254.589
+20  Time /Thrust.: 6.47    166.879
+20  Time /Thrust.: 7.24     86.959
+20  Time /Thrust.: 8.00     50.808
+20  Time /Thrust.: 8.76     27.226
+20  Time /Thrust.: 9.52     13.124
+20  Time /Thrust.: 10.28      0.000
+61  Mass Fraction: 0.478
+62  Isp lb/s/lb..: 219.765
+63  Rating.......: 9109-M-1012
+64  Pct Full.....: 77% M

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: H73J
+02  Data date....: 06/29/97
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 6
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 147.8
+12  Load Wt. gms.: 309.1
+13  Burn time....: 3.006
+14  Favg Lbs.....: 16.129
+15  Favg Newtons.: 71.745
+16  TotImp Lbsecs: 42.473
+17  TotImp Ntsecs: 188.929
+18  REM1.........: converted from TMT test stand data 1997 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.11     14.620
+20  Time /Thrust.: 0.33     18.678
+20  Time /Thrust.: 0.55     19.672
+20  Time /Thrust.: 0.78     20.246
+20  Time /Thrust.: 1.00     20.989
+20  Time /Thrust.: 1.22     21.237
+20  Time /Thrust.: 1.45     20.507
+20  Time /Thrust.: 1.67     18.685
+20  Time /Thrust.: 1.89     16.110
+20  Time /Thrust.: 2.11     11.995
+20  Time /Thrust.: 2.34      6.085
+20  Time /Thrust.: 2.56      2.062
+20  Time /Thrust.: 2.78      0.590
+20  Time /Thrust.: 3.01      0.000
+61  Mass Fraction: 0.478
+62  Isp lb/s/lb..: 128.706
+63  Rating.......: 189-H-72
+64  Pct Full.....: 18% H

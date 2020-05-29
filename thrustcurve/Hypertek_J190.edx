@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: J190 (440CC098JFX)
+02  Data date....: 01/19/01
+03  Manufacturer.: HyperTek
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.125
+08  Case Len.....: 24.188
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 439.5
+12  Load Wt. gms.: 1293.4
+13  Burn time....: 5.014
+14  Favg Lbs.....: 42.6402
+15  Favg Newtons.: 189.673
+16  TotImp Lbsecs: 187.261
+17  TotImp Ntsecs: 832.978
+18  REM1.........: converted from TMT test stand data 2001 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.18     81.100
+20  Time /Thrust.: 0.56     71.163
+20  Time /Thrust.: 0.93     59.184
+20  Time /Thrust.: 1.30     55.958
+20  Time /Thrust.: 1.67     53.805
+20  Time /Thrust.: 2.04     51.842
+20  Time /Thrust.: 2.41     48.042
+20  Time /Thrust.: 2.78     34.995
+20  Time /Thrust.: 3.16     19.504
+20  Time /Thrust.: 3.53     14.300
+20  Time /Thrust.: 3.90      9.494
+20  Time /Thrust.: 4.27      5.710
+20  Time /Thrust.: 4.64      3.189
+20  Time /Thrust.: 5.01      0.000
+61  Mass Fraction: 0.340
+62  Isp lb/s/lb..: 190.888
+63  Rating.......: 833-J-190
+64  Pct Full.....: 30% J

@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: M1000
+02  Data date....: 07/25/98
+03  Manufacturer.: Ellis Mountain
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3
+08  Case Len.....: 31
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 3475.1
+12  Load Wt. gms.: 5577.6
+13  Burn time....: 8.358
+14  Favg Lbs.....: 224.136
+15  Favg Newtons.: 997.006
+16  TotImp Lbsecs: 1640.4
+17  TotImp Ntsecs: 7296.860
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.31    395.898
+20  Time /Thrust.: 0.93    317.087
+20  Time /Thrust.: 1.55    289.526
+20  Time /Thrust.: 2.16    275.160
+20  Time /Thrust.: 2.78    264.137
+20  Time /Thrust.: 3.40    249.512
+20  Time /Thrust.: 4.02    234.940
+20  Time /Thrust.: 4.64    214.650
+20  Time /Thrust.: 5.26    167.828
+20  Time /Thrust.: 5.88    120.385
+20  Time /Thrust.: 6.50     84.493
+20  Time /Thrust.: 7.12     40.491
+20  Time /Thrust.: 7.74     11.782
+20  Time /Thrust.: 8.36      0.000
+61  Mass Fraction: 0.623
+62  Isp lb/s/lb..: 211.473
+63  Rating.......: 7297-M-997
+64  Pct Full.....: 42% M

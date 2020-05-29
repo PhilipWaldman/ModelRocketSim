@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I160
+02  Data date....: 07/25/98
+03  Manufacturer.: Ellis Mountain
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 11.031
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 235.6
+12  Load Wt. gms.: 528.2
+13  Burn time....: 3.609
+14  Favg Lbs.....: 35.3888
+15  Favg Newtons.: 157.417
+16  TotImp Lbsecs: 111.917
+17  TotImp Ntsecs: 497.831
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.13     41.335
+20  Time /Thrust.: 0.40     46.192
+20  Time /Thrust.: 0.67     46.155
+20  Time /Thrust.: 0.93     45.174
+20  Time /Thrust.: 1.20     45.623
+20  Time /Thrust.: 1.47     46.446
+20  Time /Thrust.: 1.74     47.733
+20  Time /Thrust.: 2.00     46.473
+20  Time /Thrust.: 2.27     31.518
+20  Time /Thrust.: 2.54      9.833
+20  Time /Thrust.: 2.81      8.087
+20  Time /Thrust.: 3.07      4.490
+20  Time /Thrust.: 3.34      0.965
+20  Time /Thrust.: 3.61      0.000
+61  Mass Fraction: 0.446
+62  Isp lb/s/lb..: 212.77
+63  Rating.......: 498-I-157
+64  Pct Full.....: 55% I

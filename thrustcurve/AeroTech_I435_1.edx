@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I435T
+02  Data date....: 09/12/99
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 11.7
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 266.6
+12  Load Wt. gms.: 513.4
+13  Burn time....: 1.297
+14  Favg Lbs.....: 112.476
+15  Favg Newtons.: 500.318
+16  TotImp Lbsecs: 127.941
+17  TotImp Ntsecs: 569.110
+18  REM1.........: converted from TMT test stand data 1999 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.05    176.797
+20  Time /Thrust.: 0.14    152.772
+20  Time /Thrust.: 0.24    142.577
+20  Time /Thrust.: 0.33    134.107
+20  Time /Thrust.: 0.43    126.937
+20  Time /Thrust.: 0.53    121.013
+20  Time /Thrust.: 0.62    113.569
+20  Time /Thrust.: 0.72    104.662
+20  Time /Thrust.: 0.82     95.693
+20  Time /Thrust.: 0.91     88.604
+20  Time /Thrust.: 1.01     56.536
+20  Time /Thrust.: 1.10     21.223
+20  Time /Thrust.: 1.20      4.275
+20  Time /Thrust.: 1.30      0.000
+61  Mass Fraction: 0.519
+62  Isp lb/s/lb..: 215.027
+63  Rating.......: 569-I-500
+64  Pct Full.....: 77% I

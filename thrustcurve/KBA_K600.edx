@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: K600F
+02  Data date....:
+03  Manufacturer.: Kosdon by AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 2.13
+08  Case Len.....: 15.87
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 681.0
+12  Load Wt. gms.: 1415.7
+13  Burn time....: 2.600
+14  Favg Lbs.....: 124.331
+15  Favg Newtons.: 553.052
+16  TotImp Lbsecs: 323.260
+17  TotImp Ntsecs: 1437.932
+18  REM1.........:
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.10    151.925
+20  Time /Thrust.: 0.29    156.375
+20  Time /Thrust.: 0.49    157.750
+20  Time /Thrust.: 0.69    158.550
+20  Time /Thrust.: 0.89    157.950
+20  Time /Thrust.: 1.09    156.375
+20  Time /Thrust.: 1.30    153.100
+20  Time /Thrust.: 1.50    147.200
+20  Time /Thrust.: 1.70    139.900
+20  Time /Thrust.: 1.90    132.200
+20  Time /Thrust.: 2.10     87.200
+20  Time /Thrust.: 2.29     15.975
+20  Time /Thrust.: 2.50      2.292
+20  Time /Thrust.: 2.60      0.000
+61  Mass Fraction: 0.481
+62  Isp lb/s/lb..: 0
+63  Rating.......: 1438-K-553
+64  Pct Full.....:

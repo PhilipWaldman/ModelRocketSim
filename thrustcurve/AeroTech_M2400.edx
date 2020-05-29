@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: M2400T
+02  Data date....: 11/21/98
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 3.858
+08  Case Len.....: 23.51
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 3652.5
+12  Load Wt. gms.: 6451.2
+13  Burn time....: 3.681
+14  Favg Lbs.....: 537.266
+15  Favg Newtons.: 2389.877
+16  TotImp Lbsecs: 1732.68
+17  TotImp Ntsecs: 7707.342
+18  REM1.........: converted from TMT test stand data 1998 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.13    554.423
+20  Time /Thrust.: 0.41    578.472
+20  Time /Thrust.: 0.68    594.422
+20  Time /Thrust.: 0.95    602.186
+20  Time /Thrust.: 1.22    605.895
+20  Time /Thrust.: 1.50    603.094
+20  Time /Thrust.: 1.77    590.937
+20  Time /Thrust.: 2.04    567.935
+20  Time /Thrust.: 2.32    540.040
+20  Time /Thrust.: 2.59    500.218
+20  Time /Thrust.: 2.86    452.618
+20  Time /Thrust.: 3.14    166.470
+20  Time /Thrust.: 3.41      1.920
+20  Time /Thrust.: 3.68      0.000
+61  Mass Fraction: 0.566
+62  Isp lb/s/lb..: 212.521
+63  Rating.......: 7707-M-2390
+64  Pct Full.....: 50% M

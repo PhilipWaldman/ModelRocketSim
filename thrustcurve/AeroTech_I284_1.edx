@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I284W
+02  Data date....: 10/17/99
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 11.698
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 310.0
+12  Load Wt. gms.: 555.1
+13  Burn time....: 2.199
+14  Favg Lbs.....: 70.6916
+15  Favg Newtons.: 314.452
+16  TotImp Lbsecs: 136.229
+17  TotImp Ntsecs: 605.977
+18  REM1.........: converted from TMT test stand data 1999 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.08     97.809
+20  Time /Thrust.: 0.24    102.486
+20  Time /Thrust.: 0.41     98.113
+20  Time /Thrust.: 0.57     91.627
+20  Time /Thrust.: 0.73     85.253
+20  Time /Thrust.: 0.89     79.068
+20  Time /Thrust.: 1.06     73.133
+20  Time /Thrust.: 1.22     65.666
+20  Time /Thrust.: 1.38     56.865
+20  Time /Thrust.: 1.55     47.861
+20  Time /Thrust.: 1.71     29.002
+20  Time /Thrust.: 1.87     10.612
+20  Time /Thrust.: 2.04      2.688
+20  Time /Thrust.: 2.20      0.000
+61  Mass Fraction: 0.559
+62  Isp lb/s/lb..: 196.862
+63  Rating.......: 606-I-314
+64  Pct Full.....: 89% I

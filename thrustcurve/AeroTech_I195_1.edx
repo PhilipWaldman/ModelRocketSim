@@ -1,0 +1,38 @@
+00  MRev 01......:
+01  Designation..: I195J
+02  Data date....: 09/12/99
+03  Manufacturer.: AeroTech
+04  Cost.........:
+05  Grain type...:
+06  Propellant ID:
+07  O.D..........: 1.5
+08  Case Len.....: 11.7
+09  Wgt Units....: G
+10  Specs........: T
+11  Wt Prop. gms.: 296.6
+12  Load Wt. gms.: 563.1
+13  Burn time....: 1.819
+14  Favg Lbs.....: 59.8946
+15  Favg Newtons.: 266.424
+16  TotImp Lbsecs: 95.457
+17  TotImp Ntsecs: 424.614
+18  REM1.........: converted from TMT test stand data 1999 (www.tripoli.org)
+19  REM2.........: provided by ThrustCurve.org (www.thrustcurve.org)
+20  Time /Thrust.: 0.07     60.311
+20  Time /Thrust.: 0.20     90.856
+20  Time /Thrust.: 0.34     84.186
+20  Time /Thrust.: 0.47     81.443
+20  Time /Thrust.: 0.60     79.971
+20  Time /Thrust.: 0.74     79.054
+20  Time /Thrust.: 0.87     69.589
+20  Time /Thrust.: 1.01     55.471
+20  Time /Thrust.: 1.14     44.985
+20  Time /Thrust.: 1.28     34.399
+20  Time /Thrust.: 1.41     21.056
+20  Time /Thrust.: 1.55      8.084
+20  Time /Thrust.: 1.68      2.308
+20  Time /Thrust.: 1.82      0.000
+61  Mass Fraction: 0.527
+62  Isp lb/s/lb..: 144.195
+63  Rating.......: 425-I-266
+64  Pct Full.....: 32% I
