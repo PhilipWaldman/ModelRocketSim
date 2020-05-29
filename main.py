@@ -14,8 +14,10 @@ def main():
     # g = np.array([0, 0, -STANDARD_GRAVITY])
     # projectile_motion(pos_0, vel_0, g)
 
-    thrust_curve = read_thrust_curve('Estes_C6.rse')
-    plot_thrust_curve(thrust_curve)
+    engines = ['Estes_C6_1.eng', 'Cesaroni_O25000']
+    for engine in engines:
+        thrust_curve = read_thrust_curve(engine)
+        plot_thrust_curve(thrust_curve, engine)
 
 
 def read_thrust_curve(file_name: str) -> dict:
@@ -39,7 +41,7 @@ def read_eng_thrust_curve(text: str) -> dict:
     lines = lines[1:]
 
     times = [float(line.split(' ')[0]) for line in lines]
-    thrusts = [float(line.split(' ')[1]) for line in lines]
+    thrusts = [float(line.split(' ')[-1]) for line in lines]
 
     thrust_curve = dict(zip(times, thrusts))
 
@@ -82,22 +84,36 @@ def read_txt_thrust_curve(text: str) -> dict:
     return {}
 
 
-def plot_thrust_curve(thrust_curve: dict):
+def plot_thrust_curve(thrust_curve: dict, file_name: str):
     fig = plt.figure()
     ax = fig.add_subplot()
+
     t = list(thrust_curve.keys())
-    y = list(thrust_curve.values())
-    ax.plot(t, y)
+    f = list(thrust_curve.values())
+
+    ax.plot(t, f)
+
+    average_thrust = calc_average_thrust(t, f)
+    ax.plot([0, math.ceil(max(t) * 4) / 4], [average_thrust, average_thrust], '--')
+
+    ax.set_title(file_name[:-4].replace('_', ' ', 1).replace('_', '-', 1))
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Thrust (N)')
     ax.set_xlim(0, math.ceil(max(t) * 4) / 4)
-    ax.set_ylim(0, math.ceil(max(y)))
+    ax.set_ylim(0, round(max(f) * 1.1))
     ax.grid()
+
     fig.show()
 
 
-def calc_average_thrust(thrust_curve: dict) -> float:
-    return 0.0
+def calc_average_thrust(times: list, thrusts: list) -> float:
+    """ Uses trapezoid integral approximation to find the average thrust """
+    area = 0
+
+    for i in range(len(times) - 1):
+        area += (times[i + 1] - times[i]) * ((thrusts[i + 1] + thrusts[i]) / 2)
+
+    return area / max(times)
 
 
 def projectile_motion(pos: np.ndarray, vel: np.ndarray, gravity: np.ndarray, plot=True):
