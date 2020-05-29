@@ -14,7 +14,7 @@ def main():
     # g = np.array([0, 0, -STANDARD_GRAVITY])
     # projectile_motion(pos_0, vel_0, g)
 
-    engines = ['Hypertek_M1010.txt', 'Ellis_L330.txt']
+    engines = ['Hyperteck_M1010']
     for engine in engines:
         thrust_curve = read_thrust_curve(engine)
         plot_thrust_curve(thrust_curve, engine)
@@ -26,8 +26,23 @@ def read_thrust_curve(file_name: str) -> Dict[float, float]:
     :param file_name: The name of the thrust curve file
     :return: A dictionary with the times as keys and the corresponding thrust as the value
     """
-    # TODO: If the file extension is omitted, it will search for the file anyways.
-    # TODO: Do something special if the file does not exist.
+    file_exists = False
+    for dirname, _, filenames in os.walk(os.path.join('.', 'thrustcurve')):
+        for filename in filenames:
+            if filename.__contains__(file_name):
+                file_exists = True
+                break
+    if not file_exists:
+        raise FileNotFoundError('The entered file does not exist in the thrustcurve folder. '
+                                'Make sure you have not made any typos.')
+
+    if not file_name.__contains__('.'):
+        for dirname, _, filenames in os.walk(os.path.join('.', 'thrustcurve')):
+            for filename in filenames:
+                if filename.__contains__(file_name):
+                    file_name = filename
+                    break
+
     with open(os.path.join('.', 'thrustcurve', file_name), 'r') as f:
         file_text = f.read()
         if file_name.endswith('eng'):
