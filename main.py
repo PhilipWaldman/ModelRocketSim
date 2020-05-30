@@ -9,15 +9,12 @@ dt = 0.001
 
 
 def main():
-    # pos_0 = np.array([0, 0, 1])
-    # vel_0 = np.array([1, 5, 10])
-    # g = np.array([0, 0, -STANDARD_GRAVITY])
-    # projectile_motion(pos_0, vel_0, g)
+    pass
 
-    engines = ['Hyperteck_M1010']
-    for engine in engines:
-        thrust_curve = read_thrust_curve(engine)
-        plot_thrust_curve(thrust_curve, engine)
+
+def powered_flight(thrust_curve: Dict[float, float], pos: np.ndarray, vel: np.ndarray, gravity: np.ndarray,
+                   facing: np.ndarray, mass: float):
+    pass
 
 
 def read_thrust_curve(file_name: str) -> Dict[float, float]:
@@ -29,17 +26,16 @@ def read_thrust_curve(file_name: str) -> Dict[float, float]:
     file_exists = False
     for dirname, _, filenames in os.walk(os.path.join('.', 'thrustcurve')):
         for filename in filenames:
-            if filename.__contains__(file_name):
+            if file_name in filename:
                 file_exists = True
                 break
     if not file_exists:
-        raise FileNotFoundError('The entered file does not exist in the thrustcurve folder. '
-                                'Make sure you have not made any typos.')
+        raise FileNotFoundError
 
-    if not file_name.__contains__('.'):
+    if '.' not in file_name:
         for dirname, _, filenames in os.walk(os.path.join('.', 'thrustcurve')):
             for filename in filenames:
-                if filename.__contains__(file_name):
+                if file_name in filename:
                     file_name = filename
                     break
 
@@ -121,7 +117,7 @@ def read_edx_thrust_curve(text: str) -> Dict[float, float]:
     :return: A dictionary with the times as keys and the corresponding thrust as the value
     """
     lines = text.splitlines()
-    lines = [line.split(':')[-1] for line in lines if line.__contains__('Time /Thrust')]
+    lines = [line.split(':')[-1] for line in lines if 'Time /Thrust' in line]
 
     times = [value.strip().split(' ')[0] for value in lines]
     times = [float(time) for time in times]
@@ -174,7 +170,7 @@ def plot_thrust_curve(thrust_curve: Dict[float, float], file_name: str) -> None:
     average_thrust = calc_average_thrust(t, f)
     ax.plot([0, round(max(t) * 4 * 1.1) / 4], [average_thrust, average_thrust], '--')
 
-    if file_name.__contains__('.'):
+    if '.' in file_name:
         file_name = file_name.split('.')[0]
     ax.set_title(file_name.replace('_', ' ', 1).replace('_', '-', 1))
     ax.set_xlabel('Time (s)')
@@ -303,6 +299,25 @@ def calc_3D_axis_limits(x: List[float], y: List[float], z: List[float]) -> \
         z_limits = (min(z), max(z))
 
     return x_limits, y_limits, z_limits
+
+
+def example_projectile_motion():
+    """An example demonstrating the projectile_motion method"""
+    pos_0 = np.array([0, 0, 1])
+    vel_0 = np.array([1, 5, 10])
+    g = np.array([0, 0, -STANDARD_GRAVITY])
+    projectile_motion(pos_0, vel_0, g)
+
+
+def example_thrust_curve_reading():
+    """An example demonstrating thrust curve reading"""
+    engines = ['AeroTech_G8', 'Cesaroni_O25000']
+    for engine in engines:
+        try:
+            thrust_curve = read_thrust_curve(engine)
+            plot_thrust_curve(thrust_curve, engine)
+        except FileNotFoundError:
+            print('The entered file does not exist in the thrustcurve folder. Make sure you have not made any typos.')
 
 
 if __name__ == '__main__':
