@@ -9,7 +9,8 @@ dt = 0.001
 
 
 def main():
-    pass
+    plt.xkcd()  # LOL
+    example_thrust_curve_reading()
 
 
 def powered_flight(thrust_curve: Dict[float, float], pos: np.ndarray, vel: np.ndarray, gravity: np.ndarray,
@@ -239,6 +240,7 @@ def plot_trajectory(trajectory: List[np.ndarray]) -> None:
                 ax.set_xlim3d(axis_limits[0][0], axis_limits[0][1])
                 ax.set_ylim3d(axis_limits[1][0], axis_limits[1][1])
                 ax.set_zlim3d(axis_limits[2][0], axis_limits[2][1])
+                ax.set_proj_type('ortho')
                 if r == 0:
                     if c == 0:
                         ax.view_init(90, 0)
