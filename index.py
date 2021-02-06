@@ -4,7 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-from pages import page1, page2
+from pages import page1, page2, page404
 
 all_pages = {
     '/page1': 'Page 1',
@@ -62,7 +62,7 @@ def display_page(pathname):
     elif pathname == '/page2':
         return page2.layout
     else:
-        return '404'  # TODO: Make special 404 page
+        return page404.layout
 
 
 if __name__ == '__main__':
