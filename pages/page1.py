@@ -14,8 +14,7 @@ layout = html.Div([
             ]
         ]
     ),
-    html.Div(id='page-1-display-value'),
-    dcc.Link('Go to Page 2', href='/page2')
+    html.Div(id='page-1-display-value')
 ])
 
 
