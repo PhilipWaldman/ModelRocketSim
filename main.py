@@ -9,24 +9,34 @@ dt = 0.001
 
 def main():
     # plt.xkcd()  # LOL
-    # example_thrust_curve_reading()
-    example_projectile_motion()
+    example_thrust_curve_reading()
+    # example_projectile_motion()
 
 
-def powered_flight(thrust_curve: Dict[float, float], pos: np.ndarray, vel: np.ndarray, facing: np.ndarray, mass: float):
-    """
+def powered_flight(thrust_curve: Dict[float, float], pos: np.ndarray, vel: np.ndarray, facing: np.ndarray, mass: float,
+                   plot: bool = True) -> List[np.ndarray]:
+    """ Calculates the trajectory the object will take when under powered flight.
 
     :param thrust_curve:
-    :param pos:
-    :param vel:
+    :param pos: Initial position vector
+    :param vel: Initial velocity vector
     :param facing:
     :param mass:
+    :param plot: When True, plots the trajectory, otherwise only returns it
+    :return: List of position vectors where the object will be
     """
-    pass
+    t = 0
+    trajectory = [pos]
+    while t <= max(thrust_curve.keys()):
+        pass
+
+    if plot:
+        plot_trajectory(trajectory)
+    return trajectory
 
 
 def projectile_motion(pos: np.ndarray, vel: np.ndarray, plot: bool = True) -> List[np.ndarray]:
-    """Calculates the trajectory the object will take when not under powered flight.
+    """ Calculates the trajectory the object will take when not under powered flight.
 
     :param pos: Initial position vector
     :param vel: Initial velocity vector
@@ -36,21 +46,24 @@ def projectile_motion(pos: np.ndarray, vel: np.ndarray, plot: bool = True) -> Li
     gravity = np.array([0, 0, -STANDARD_GRAVITY])
     t = 0
     trajectory = [pos]
-    y_loc = len(pos) - 1
-    while pos[y_loc] > 0:
-        vel = vel + gravity * dt
-        pos = pos + vel * dt
+    while pos[-1] > 0:
+        pos, vel = move(pos, vel, gravity)
         t += dt
         trajectory.append(pos)
 
     if plot:
         plot_trajectory(trajectory)
-
     return trajectory
 
 
+def move(pos: np.ndarray, vel: np.ndarray, acc: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    new_vel = vel + acc * dt
+    new_pos = pos + vel * dt
+    return new_pos, new_vel
+
+
 def plot_trajectory(trajectory: List[np.ndarray]) -> None:
-    """Plots the trajectory of positions in 1-, 2-, and 3-D.
+    """ Plots the trajectory of positions in 1-, 2-, and 3-D.
 
     :param trajectory: List of position vectors the object
     """
@@ -135,14 +148,14 @@ def calc_3D_axis_limits(x: List[float], y: List[float], z: List[float]) -> \
 
 
 def example_projectile_motion():
-    """An example demonstrating the projectile_motion method"""
+    """ An example demonstrating the projectile_motion method """
     pos_0 = np.array([0, 0, 1])
     vel_0 = np.array([1, 5, 10])
     projectile_motion(pos_0, vel_0)
 
 
 def example_thrust_curve_reading():
-    """An example demonstrating thrust curve reading"""
+    """ An example demonstrating thrust curve reading """
     import thrust_curves as tc
     engines = ['AeroTech_G8', 'Cesaroni_O25000']
     for engine in engines:
