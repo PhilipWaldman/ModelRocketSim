@@ -1,7 +1,8 @@
 import os
 from typing import Dict
 
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+from dash_html_components import Figure
 
 
 def read_thrust_curve(file_name: str) -> Dict[float, float]:
@@ -140,34 +141,37 @@ def read_txt_thrust_curve(text: str) -> Dict[float, float]:
     return dict(zip(times, thrusts))
 
 
-def plot_thrust_curve(thrust_curve: Dict[float, float], file_name: str) -> None:
+def get_thrust_curve_plot(thrust_curve: Dict[float, float], file_name: str) -> Figure:
     """Plots the thrust curve. The file name is used to make a title to the graph.
 
     :param thrust_curve: A thrust curve dictionary
     :param file_name: The name of the file the thrust curve came from
     """
-    fig = plt.figure()
-    ax = fig.add_subplot()
 
     t = list(thrust_curve.keys())
     f = list(thrust_curve.values())
+    fig = go.Figure()
 
-    ax.plot(t, f)
+    fig.add_trace(go.Scatter(x=t,
+                             y=f,
+                             mode='lines',
+                             hovertemplate='<b>%{text}</b>',
+                             text=[f't = {time} s<br>F = {force} N' for time, force in zip(t, f)],
+                             showlegend=False))
 
     average_thrust = calc_average_thrust(t, f)
-    ax.plot([0, round(max(t) * 4 * 1.1) / 4], [average_thrust, average_thrust], '--')
+    fig.add_trace(go.Scatter(x=[-0.1 * max(t), 1.1 * max(t)],
+                             y=[average_thrust, average_thrust],
+                             mode='lines',
+                             name='Average thrust'))
 
     if '.' in file_name:
         file_name = file_name.split('.')[0]
-    ax.set_title(file_name.replace('_', ' ', 1).replace('_', '-', 1))
-    ax.set_xlabel('Time (s)')
-    ax.set_ylabel('Thrust (N)')
-
-    ax.set_xlim(0, round(max(t) * 4 * 1.1) / 4)
-    ax.set_ylim(0, round(max(f) * 1.1))
-    ax.grid()
-
-    fig.show()
+    file_name = file_name.replace('_', ' ', 1).replace('_', '-', 1)
+    fig.update_layout(title_text=file_name,
+                      xaxis_title_text='Time (s)',
+                      yaxis_title_text='Thrust (N)')
+    return fig
 
 
 def calc_average_thrust(times: list, thrusts: list) -> float:
