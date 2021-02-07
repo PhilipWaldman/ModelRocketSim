@@ -31,6 +31,7 @@ class ThrustCurve:
 
         self.manufacturer = file_name.split('_')[0]
         self.thrust_curve = read_thrust_curve(file_name)  # {s, N}
+        self.impulse = calc_impulse(list(self.thrust_curve.keys()), list(self.thrust_curve.values()))  # Ns
         self.avg_thrust = calc_average_thrust(list(self.thrust_curve.keys()), list(self.thrust_curve.values()))  # N
         # self.isp_range = ''
         # self.length = -1  # m
@@ -39,7 +40,6 @@ class ThrustCurve:
         # self.dry_mass = -1  # kg
         # self.wet_mass = -1  # kg
         # self.burn_time = -1  # s
-        # self.impulse = -1  # Ns
         # self.delay = -1  # s
         # self.mass_curve = {}  # s,kg
 
@@ -115,12 +115,22 @@ def calc_average_thrust(times: list, thrusts: list) -> float:
     :param thrusts: The thrusts corresponding to the time at the same index.
     :return: The average thrust.
     """
+    return calc_impulse(times, thrusts) / max(times)
+
+
+def calc_impulse(times: list, thrusts: list) -> float:
+    """ Uses trapezoid integral approximation to calculate the impulse.
+
+    :param times: The times at which the measurements have been made.
+    :param thrusts: The thrusts corresponding to the time at the same index.
+    :return: The impulse.
+    """
     area = 0
 
     for i in range(len(times) - 1):
         area += (times[i + 1] - times[i]) * ((thrusts[i + 1] + thrusts[i]) / 2)
 
-    return area / max(times)
+    return area
 
 
 thrust_folder = 'thrustcurve'
