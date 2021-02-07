@@ -9,44 +9,36 @@ from dash_html_components import Figure
 
 class ThrustCurve:
     def __init__(self, file_name: str):
-        """
+        """ The thrust curve.
 
-        :param file_name: The file name including file extension. E.g. 'Estes_D12.eng'
+        :param file_name: The file name including file extension. The file extension has to be .eng. E.g. 'Estes_D12.eng'
         """
-        # Only allow .eng files, for now. Could be plenty.
         if not file_name.endswith('.eng'):
             raise Exception('File should be of type .eng')
         self.file_name = file_name
 
-        # TODO: Mostly works
         self.name = ''
-        file_str = file_name.split('_')[1].split('.')[0].split('_')
-        rec = ''
+        with open(os.path.join('.', 'thrustcurve', file_name), 'r') as f:
+            file_text = f.read()
+            lines = file_text.splitlines()
+            lines = [line.strip() for line in lines if line and not line.startswith(';')]
+            self.name = lines[0].split()[0]
+
+        file_str = file_name.split('_', 1)[1].split('.')[0].split('_')
         if file_str[-1].isnumeric():
             rec = int(file_str[-1])
-            file_str = file_str[:-1]
-        if len(file_str) == 1:
-            self.name = f'{file_str[0]}'
-        elif len(file_str) == 2 and file_str[0].isnumeric() and not file_str[1].isnumeric():
-            self.name = f'{file_str[0]}/{file_str[1]}'
-        elif len(file_str) == 2:
-            self.name = f'{file_str[0]} {file_str[1]}'
-        else:
-            for i in file_str:
-                self.name += f'{i} '
-            self.name.strip()
-        if rec != '':
             self.name += f' (#{rec + 1})'
 
         self.manufacturer = file_name.split('_')[0]
         self.thrust_curve = read_thrust_curve(file_name)  # {s, N}
-        # self.type = ''
+        self.avg_thrust = calc_average_thrust(list(self.thrust_curve.keys()), list(self.thrust_curve.values()))  # N
+        # self.isp_range = ''
         # self.length = -1  # m
         # self.diameter = -1  # m
+        # self.type = ''
         # self.dry_mass = -1  # kg
         # self.wet_mass = -1  # kg
         # self.burn_time = -1  # s
-        # self.avg_thrust = -1  # N
         # self.impulse = -1  # Ns
         # self.delay = -1  # s
         # self.mass_curve = {}  # s,kg
@@ -68,10 +60,9 @@ class ThrustCurve:
                                  text=[f't = {time} s<br>F = {force} N' for time, force in zip(t, f)],
                                  showlegend=False))
 
-        average_thrust = calc_average_thrust(t, f)
         x_range = [-0.025 * max(t), 1.025 * max(t)]
         fig.add_trace(go.Scatter(x=x_range,
-                                 y=[average_thrust, average_thrust],
+                                 y=[self.avg_thrust, self.avg_thrust],
                                  mode='lines',
                                  name='Average thrust'))
 
@@ -89,15 +80,7 @@ def read_thrust_curve(file_name: str) -> Dict[float, float]:
 
     with open(os.path.join('.', 'thrustcurve', file_name), 'r') as f:
         file_text = f.read()
-        if file_name.endswith('eng'):
-            thrust_curve = read_eng_thrust_curve(file_text)
-        # implement later, maybe.
-        # elif file_name.endswith('rse'):
-        #     thrust_curve = read_rse_thrust_curve(file_text)
-        # elif file_name.endswith('edx'):
-        #     thrust_curve = read_edx_thrust_curve(file_text)
-        # elif file_name.endswith('txt'):
-        #     thrust_curve = read_txt_thrust_curve(file_text)
+        thrust_curve = read_eng_thrust_curve(file_text)
 
     if 0 not in thrust_curve.keys():
         thrust_curve[0] = 0
@@ -126,7 +109,12 @@ def read_eng_thrust_curve(text: str) -> Dict[float, float]:
 
 
 def calc_average_thrust(times: list, thrusts: list) -> float:
-    """Uses trapezoid integral approximation to find the average thrust."""
+    """ Uses trapezoid integral approximation to find the average thrust.
+
+    :param times: The times at which the measurements have been made.
+    :param thrusts: The thrusts corresponding to the time at the same index.
+    :return: The average thrust.
+    """
     area = 0
 
     for i in range(len(times) - 1):
@@ -139,6 +127,8 @@ thrust_folder = 'thrustcurve'
 thrust_files = [f for f in listdir(thrust_folder) if isfile(join(thrust_folder, f)) and f.endswith('.eng')]
 motor_names = [str(ThrustCurve(n)) for n in thrust_files]
 
+# I'm keeping this for if I do someday to also allow these file types.
+#
 # def read_rse_thrust_curve(text: str) -> Dict[float, float]:
 #     """Converts the raw thrust curve .rse data file to a dictionary.
 #
