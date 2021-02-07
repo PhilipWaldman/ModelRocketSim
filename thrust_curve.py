@@ -69,7 +69,8 @@ class ThrustCurve:
                                  showlegend=False))
 
         average_thrust = calc_average_thrust(t, f)
-        fig.add_trace(go.Scatter(x=[-0.1 * max(t), 1.1 * max(t)],
+        x_range = [-0.025 * max(t), 1.025 * max(t)]
+        fig.add_trace(go.Scatter(x=x_range,
                                  y=[average_thrust, average_thrust],
                                  mode='lines',
                                  name='Average thrust'))
@@ -77,6 +78,7 @@ class ThrustCurve:
         fig.update_layout(title_text=str(self),
                           xaxis_title_text='Time (s)',
                           yaxis_title_text='Thrust (N)')
+        fig.update_xaxes(range=x_range)
         return fig
 
 
