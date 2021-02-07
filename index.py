@@ -7,7 +7,7 @@ from app import app
 from pages import page1, page2, page404, home_page
 
 all_pages = {
-    '/page1': 'Page 1',
+    '/thrust_curves': 'Thrust curves',
     '/page2': 'Page 2'
 }
 
@@ -59,7 +59,7 @@ def display_page(pathname):
     """
     if pathname == '/':
         return home_page.layout
-    elif pathname == '/page1':
+    elif pathname == '/thrust_curves':
         return page1.layout
     elif pathname == '/page2':
         return page2.layout
