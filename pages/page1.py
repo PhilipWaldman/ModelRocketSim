@@ -1,24 +1,19 @@
-from os import listdir
-from os.path import isfile, join
-
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 
-import thrust_curves
+import thrust_curve as tc
 from app import app
 
-thrust_folder = 'thrustcurve'
-thrust_files = [f for f in listdir(thrust_folder) if isfile(join(thrust_folder, f)) and f != '00INDEX.txt']
-
+# TODO: add range sliders to narrow down thrust curves
 layout = html.Div([
     html.H3('Thrust curve'),
     dcc.Dropdown(
         id='thrust-curve-dropdown',
         options=[
-            {'label': tc.split('.')[0].replace('_', ' ', 1).replace('_', '-', 1), 'value': tc} for tc in thrust_files
+            {'label': m, 'value': f} for m, f in zip(tc.motor_names, tc.thrust_files)
         ],
-        value='AeroTech_G8'
+        value=tc.thrust_files[0]
     ),
     dcc.Graph(id='thrust-curve')
 ])
@@ -27,6 +22,6 @@ layout = html.Div([
 @app.callback(
     Output('thrust-curve', 'figure'),
     Input('thrust-curve-dropdown', 'value'))
-def display_value(value):
-    thrust_curve = thrust_curves.read_thrust_curve(value)
-    return thrust_curves.get_thrust_curve_plot(thrust_curve, value)
+def display_value(file_name):
+    thrust_curve = tc.ThrustCurve(file_name)
+    return thrust_curve.get_thrust_curve_plot()
