@@ -4,7 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-from pages import page1, page2, page404, home_page
+from pages import thrust_curve_page, page2, page404, home_page
 
 all_pages = {
     '/thrust_curves': 'Thrust curves',
@@ -60,7 +60,7 @@ def display_page(pathname):
     if pathname == '/':
         return home_page.layout
     elif pathname == '/thrust_curves':
-        return page1.layout
+        return thrust_curve_page.layout
     elif pathname == '/page2':
         return page2.layout
     else:
