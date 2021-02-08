@@ -11,14 +11,15 @@ class ThrustCurve:
     def __init__(self, file_name: str):
         """ The thrust curve.
 
-        :param file_name: The file name including file extension. The file extension has to be .eng. E.g. 'Estes_D12.eng'
+        :param file_name: The file name including file extension.
+        The file extension has to be .eng. E.g. 'Estes_D12.eng'
         """
         if not file_name.endswith('.eng'):
             raise Exception('File should be of type .eng')
         self.file_name = file_name
 
         self.name = ''
-        with open(os.path.join('.', 'thrustcurve', file_name), 'r') as f:
+        with open(os.path.join('.', thrust_folder, file_name), 'r') as f:
             file_text = f.read()
             lines = file_text.splitlines()
             lines = [line.strip() for line in lines if line and not line.startswith(';')]
@@ -78,7 +79,7 @@ def read_thrust_curve(file_name: str) -> Dict[float, float]:
     if file_name not in thrust_files:
         raise FileNotFoundError(f'{file_name} does not exist in the directory "{thrust_folder}"')
 
-    with open(os.path.join('.', 'thrustcurve', file_name), 'r') as f:
+    with open(os.path.join('.', thrust_folder, file_name), 'r') as f:
         file_text = f.read()
         thrust_curve = read_eng_thrust_curve(file_text)
 
