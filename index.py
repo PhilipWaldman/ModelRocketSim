@@ -60,9 +60,9 @@ def display_page(pathname):
     if pathname == '/':
         return home_page.layout
     elif pathname == '/thrust_curves':
-        return thrust_curve_page.layout
+        return thrust_curve_page.get_layout()
     elif pathname == '/page2':
-        return page2.layout
+        return page2.get_layout()
     else:
         return page404.layout
 
