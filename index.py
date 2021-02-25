@@ -1,15 +1,14 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 from app import app
-from pages import thrust_curve_page, page2, page404, home_page, rocket_builder_page
+from pages import thrust_curve_page, page404, home_page, rocket_builder_page
 
 all_pages = {
     '/thrust_curves': 'Thrust curves',
-    '/rocket_builder': 'Rocket builder',
-    '/page2': 'Page 2'
+    '/rocket_builder': 'Rocket builder'
 }
 
 # themes = {'Cerulean': dbc.themes.CERULEAN, 'Cosmo': dbc.themes.COSMO, 'Cyborg': dbc.themes.CYBORG,
@@ -43,6 +42,7 @@ navbar = dbc.NavbarSimple(
 )
 
 app.layout = html.Div([
+    dcc.Store(id='thrust-curve-data', storage_type='session'),
     dcc.Location(id='url', refresh=False),
     navbar,
     html.Div(id='page-content')
@@ -51,19 +51,19 @@ app.layout = html.Div([
 
 @app.callback(
     Output('page-content', 'children'),
-    Input('url', 'pathname'))
-def display_page(pathname):
+    Input('url', 'pathname'),
+    State('thrust-curve-data', 'data'))
+def display_page(pathname, thrust_curve_data):
     """Displays the page that corresponds to the given pathname.
 
     :param pathname: The current pathname (the last part of the URL) of the page.
+    :param thrust_curve_data: 
     :return: The page that should be at that pathname; otherwise a 404 page.
     """
     if pathname == '/':
         return home_page.layout
     elif pathname == '/thrust_curves':
-        return thrust_curve_page.get_layout()
-    elif pathname == '/page2':
-        return page2.get_layout()
+        return thrust_curve_page.get_layout(thrust_curve_data)
     elif pathname == '/rocket_builder':
         return rocket_builder_page.get_layout()
     else:

@@ -1,28 +1,21 @@
-import json
-from os import path
-
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
-from dash_html_components import Figure
 
 import thrust_curve as tc
 from app import app
 
 # The option for the dropdown. List of pairs of motor names and file names.
 motor_options = [{'label': m, 'value': f} for m, f in zip(tc.motor_names, tc.thrust_files)]
-# The path to save the data file.
-save_path = path.join('data', 'thrust_curve_page_data.json')
 
 
-def get_layout():
-    # Load the current motor from the data file
-    cur_motor = tc.thrust_files[0]
-    if path.exists(save_path):
-        with open(save_path, 'r') as file:
-            data = json.load(file)
-            cur_motor = data['motor_file']
+def get_layout(data):
+    # Load the current motor from Store
+    if data:
+        cur_motor = data['motor_file']
+    else:
+        cur_motor = tc.thrust_files[0]
 
     return html.Div([
         html.H3('Thrust curve'),
@@ -49,29 +42,19 @@ def get_layout():
 
 @app.callback(
     Output('thrust-curve', 'figure'),
+    Output('thrust-curve-data', 'data'),
     Input('thrust-curve-dropdown', 'value'))
-def plot_thrust_curve(file_name: str) -> Figure:
-    """ Plots the thrust curve of the given file.
-
-    :param file_name: The trust curve file to plot.
-    :return: The trust curve plot.
-    """
-    save_data(file_name)
+def plot_thrust_curve(file_name: str):
     if file_name is None:
         return go.Figure()
     thrust_curve = tc.ThrustCurve(file_name)
-    return thrust_curve.get_thrust_curve_plot()
+    return thrust_curve.get_thrust_curve_plot(), save_data(file_name)
 
 
 def save_data(file_name: str):
-    """ Saves data about the currently selected thrust cure to the data file.
-
-    :param file_name: The currently selected thrust curve file.
-    """
     current_motor = ''
     for m in motor_options:
         if m['value'] == file_name:
             current_motor = m['label']
-    data_dict = {'motor_name': current_motor, 'motor_file': file_name}
-    with open(save_path, 'w') as outfile:
-        json.dump(data_dict, outfile)
+    data = {'motor_name': current_motor, 'motor_file': file_name}
+    return data
