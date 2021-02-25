@@ -5,6 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
+from dash_html_components import Figure
 
 import thrust_curve as tc
 from app import app
@@ -49,7 +50,12 @@ def get_layout():
 @app.callback(
     Output('thrust-curve', 'figure'),
     Input('thrust-curve-dropdown', 'value'))
-def plot_thrust_curve(file_name):
+def plot_thrust_curve(file_name: str) -> Figure:
+    """ Plots the thrust curve of the given file.
+
+    :param file_name: The trust curve file to plot.
+    :return: The trust curve plot.
+    """
     save_data(file_name)
     if file_name is None:
         return go.Figure()
@@ -57,7 +63,11 @@ def plot_thrust_curve(file_name):
     return thrust_curve.get_thrust_curve_plot()
 
 
-def save_data(file_name):
+def save_data(file_name: str):
+    """ Saves data about the currently selected thrust cure to the data file.
+
+    :param file_name: The currently selected thrust curve file.
+    """
     current_motor = ''
     for m in motor_options:
         if m['value'] == file_name:
