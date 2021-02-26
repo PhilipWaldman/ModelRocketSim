@@ -3,8 +3,10 @@ from os import listdir
 from os.path import isfile, join
 from typing import Dict
 
+import numpy as np
 import plotly.graph_objects as go
 from dash_html_components import Figure
+from scipy.interpolate import interp1d
 
 
 class ThrustCurve:
@@ -47,31 +49,36 @@ class ThrustCurve:
     def __str__(self):
         return f'{self.manufacturer} {self.name}'
 
-    def get_thrust_curve_plot(self) -> Figure:
-        """ Plots the thrust curve. The file name is used to make a title to the graph. """
+    def thrust_curve_smooth(self):
+        return spline_thrust_curve(self.thrust_curve, 0.001)
 
-        t = list(self.thrust_curve.keys())
-        f = list(self.thrust_curve.values())
-        fig = go.Figure()
 
-        fig.add_trace(go.Scatter(x=t,
-                                 y=f,
-                                 mode='lines',
-                                 hovertemplate='<b>%{text}</b>',
-                                 text=[f't = {time} s<br>F = {force} N' for time, force in zip(t, f)],
-                                 showlegend=False))
+def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = None, title: str = '') -> Figure:
+    """ Plots the thrust curve. The file name is used to make a title to the graph. """
 
-        x_range = [-0.025 * max(t), 1.025 * max(t)]
+    t = list(thrust_curve.keys())
+    f = list(thrust_curve.values())
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=t,
+                             y=f,
+                             mode='lines',
+                             hovertemplate='<b>%{text}</b>',
+                             text=[f't = {round(time, 3)} s<br>F = {round(force, 3)} N' for time, force in zip(t, f)],
+                             showlegend=False))
+
+    x_range = [-0.025 * max(t), 1.025 * max(t)]
+    if avg_thrust:
         fig.add_trace(go.Scatter(x=x_range,
-                                 y=[self.avg_thrust, self.avg_thrust],
+                                 y=[avg_thrust, avg_thrust],
                                  mode='lines',
                                  name='Average thrust'))
 
-        fig.update_layout(title_text=str(self),
-                          xaxis_title_text='Time (s)',
-                          yaxis_title_text='Thrust (N)')
-        fig.update_xaxes(range=x_range)
-        return fig
+    fig.update_layout(title_text=title,
+                      xaxis_title_text='Time (s)',
+                      yaxis_title_text='Thrust (N)')
+    fig.update_xaxes(range=x_range)
+    return fig
 
 
 def read_thrust_curve(file_name: str) -> Dict[float, float]:
@@ -132,6 +139,21 @@ def calc_impulse(times: list, thrusts: list) -> float:
         area += (times[i + 1] - times[i]) * ((thrusts[i + 1] + thrusts[i]) / 2)
 
     return area
+
+
+def spline_thrust_curve(thrust_curve: Dict[float, float], dt: float) -> Dict[float, float]:
+    """Smooths/interpolates the thrust curve using a cubic spline function.
+
+    :param thrust_curve: The thrust curve to smooth.
+    :param dt: The size of the interpolated time steps. In seconds.
+    :return: The smoothed thrust curve.
+    """
+    x = np.array(list(thrust_curve.keys()))
+    y = np.array(list(thrust_curve.values()))
+    f = interp1d(x, y, kind='cubic')
+    x_new = np.linspace(0, max(x), num=int(max(x) / dt))
+    values = f(x_new)
+    return dict(zip(x_new, values))
 
 
 thrust_folder = 'thrustcurve'

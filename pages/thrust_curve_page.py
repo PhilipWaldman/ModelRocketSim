@@ -31,7 +31,8 @@ def get_layout(data):
         #     step=0.5,
         #     value=[5, 15]
         # )
-        dcc.Graph(id='thrust-curve')
+        dcc.Graph(id='thrust-curve'),
+        dcc.Graph(id='thrust-curve-smooth')
     ],
         style={
             'margin-left': '2rem',
@@ -42,13 +43,16 @@ def get_layout(data):
 
 @app.callback(
     Output('thrust-curve', 'figure'),
+    Output('thrust-curve-smooth', 'figure'),
     Output('thrust-curve-data', 'data'),
     Input('thrust-curve-dropdown', 'value'))
 def plot_thrust_curve(file_name: str):
     if file_name is None:
         return go.Figure()
     thrust_curve = tc.ThrustCurve(file_name)
-    return thrust_curve.get_thrust_curve_plot(), save_data(file_name)
+    return (tc.get_thrust_curve_plot(thrust_curve.thrust_curve, thrust_curve.avg_thrust, str(thrust_curve)),
+            tc.get_thrust_curve_plot(thrust_curve.thrust_curve_smooth(), title=f'{str(thrust_curve)} (smoothed)'),
+            save_data(file_name))
 
 
 def save_data(file_name: str):
