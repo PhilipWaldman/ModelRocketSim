@@ -1,27 +1,36 @@
-import json
-from os import path
+import dash_daq as daq
 
 import dash_html_components as html
 
-# The path to save the data file.
-save_path = path.join('data', 'rocket_builder_data.json')
-
 
 def get_layout():
-    # TODO: Load rocket config from the data file
+    layout = [html.H3('Rocket builder')]
+    options = {
+        'Mass': 'g',
+        'Length': 'cm',
+        'Diameter': 'cm',
+        'Center of gravity': 'cm',
+        'Center of pressure': 'cm'
+    }
 
-    return html.Div([
-        html.H3('Rocket builder'),
+    for name, unit in options.items():
+        layout.extend([
+            html.P(f'{name}:',
+                   style={'width': '10%',
+                          'display': 'inline-block',
+                          'margin-right': '1rem'}),
+            html.Div(
+                daq.NumericInput(
+                    id=f'{name.lower().replace(" ", "-")}-input',
+                    min=0,
+                    value=0),
+                style={'display': 'inline-block',
+                       'margin-right': '1rem'}),
+            html.P(unit,
+                   style={'width': '1%',
+                          'display': 'inline-block'}),
+            html.Div()])
 
-    ],
-        style={
-            'margin-left': '2rem',
-            'margin-right': '2rem'
-        }
-    )
-
-
-def save_data():
-    data_dict = {}
-    with open(save_path, 'w') as outfile:
-        json.dump(data_dict, outfile)
+    return html.Div(layout,
+                    style={'margin-left': '2rem',
+                           'margin-right': '2rem'})
