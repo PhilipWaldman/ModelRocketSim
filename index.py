@@ -43,6 +43,7 @@ navbar = dbc.NavbarSimple(
 
 app.layout = html.Div([
     dcc.Store(id='thrust-curve-data', storage_type='session'),
+    dcc.Store(id='rocket-builder-data', storage_type='session'),
     dcc.Location(id='url', refresh=False),
     navbar,
     html.Div(id='page-content')
@@ -52,8 +53,9 @@ app.layout = html.Div([
 @app.callback(
     Output('page-content', 'children'),
     Input('url', 'pathname'),
-    State('thrust-curve-data', 'data'))
-def display_page(pathname, thrust_curve_data):
+    State('thrust-curve-data', 'data'),
+    State('rocket-builder-data', 'data'))
+def display_page(pathname, thrust_curve_data, rocket_builder_data):
     """Displays the page that corresponds to the given pathname.
 
     :param pathname: The current pathname (the last part of the URL) of the page.
@@ -65,7 +67,7 @@ def display_page(pathname, thrust_curve_data):
     elif pathname == '/thrust_curves':
         return thrust_curve_page.get_layout(thrust_curve_data)
     elif pathname == '/rocket_builder':
-        return rocket_builder_page.get_layout()
+        return rocket_builder_page.get_layout(rocket_builder_data)
     else:
         return page404.layout
 
