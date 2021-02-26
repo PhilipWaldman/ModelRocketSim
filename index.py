@@ -4,11 +4,12 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 
 from app import app
-from pages import thrust_curve_page, page404, home_page, rocket_builder_page
+from pages import thrust_curve_page, page404, home_page, rocket_builder_page, plots_page
 
 all_pages = {
     '/thrust_curves': 'Thrust curves',
-    '/rocket_builder': 'Rocket builder'
+    '/rocket_builder': 'Rocket builder',
+    '/plots': 'Plots'
 }
 
 # themes = {'Cerulean': dbc.themes.CERULEAN, 'Cosmo': dbc.themes.COSMO, 'Cyborg': dbc.themes.CYBORG,
@@ -59,7 +60,8 @@ def display_page(pathname, thrust_curve_data, rocket_builder_data):
     """Displays the page that corresponds to the given pathname.
 
     :param pathname: The current pathname (the last part of the URL) of the page.
-    :param thrust_curve_data: 
+    :param thrust_curve_data:
+    :param rocket_builder_data:
     :return: The page that should be at that pathname; otherwise a 404 page.
     """
     if pathname == '/':
@@ -68,6 +70,8 @@ def display_page(pathname, thrust_curve_data, rocket_builder_data):
         return thrust_curve_page.get_layout(thrust_curve_data)
     elif pathname == '/rocket_builder':
         return rocket_builder_page.get_layout(rocket_builder_data)
+    elif pathname == '/plots':
+        return plots_page.get_layout()
     else:
         return page404.layout
 
