@@ -33,6 +33,7 @@ def get_layout(data):
                 daq.NumericInput(
                     id=f'{name.replace("_", "-")}-input',
                     min=0,
+                    max=10 ** 9,
                     value=value),
                 style={'display': 'inline-block',
                        'margin-right': '1rem'}),
@@ -48,7 +49,6 @@ def get_layout(data):
 
 @app.callback(
     Output('rocket-builder-data', 'data'),
-    Input('mass-input', 'value')
-)
+    Input('mass-input', 'value'))
 def save_data(mass):
     return {'mass': mass}
