@@ -51,7 +51,7 @@ def plot_thrust_curve(file_name: str):
         return go.Figure()
     thrust_curve = tc.ThrustCurve(file_name)
     return (tc.get_thrust_curve_plot(thrust_curve.thrust_curve, thrust_curve.avg_thrust, str(thrust_curve)),
-            tc.get_thrust_curve_plot(thrust_curve.thrust_curve_smooth(), title=f'{str(thrust_curve)} (smoothed)'),
+            tc.get_thrust_curve_plot(thrust_curve.thrust_curve_smooth(0.01), title=f'{str(thrust_curve)} (smoothed)'),
             save_data(file_name))
 
 

@@ -49,8 +49,8 @@ class ThrustCurve:
     def __str__(self):
         return f'{self.manufacturer} {self.name}'
 
-    def thrust_curve_smooth(self):
-        return spline_thrust_curve(self.thrust_curve, 0.001)
+    def thrust_curve_smooth(self, dt: float):
+        return spline_thrust_curve(self.thrust_curve, dt)
 
 
 def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = None, title: str = '') -> Figure:
@@ -150,7 +150,7 @@ def spline_thrust_curve(thrust_curve: Dict[float, float], dt: float) -> Dict[flo
     """
     x = np.array(list(thrust_curve.keys()))
     y = np.array(list(thrust_curve.values()))
-    f = interp1d(x, y, kind='cubic')
+    f = interp1d(x, y, kind='slinear')
     x_new = np.linspace(0, max(x), num=int(max(x) / dt))
     values = f(x_new)
     return dict(zip(x_new, values))
