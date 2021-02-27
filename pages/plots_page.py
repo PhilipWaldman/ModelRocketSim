@@ -2,7 +2,7 @@ import math
 
 import dash_core_components as dcc
 import dash_html_components as html
-import plotly.express as px
+import plotly.graph_objects as go
 from dash.dependencies import Output, Input
 
 import thrust_curve as tc
@@ -84,20 +84,41 @@ def altitude_time_graph(rocket_data, motor_data):
 
     x_range = [-0.025 * max(altitude.keys()), 1.025 * max(altitude.keys())]
 
-    fig_alt = px.line(x=altitude.keys(), y=altitude.values(), title='Altitude-time')
-    fig_alt.update_xaxes(range=x_range)
-    fig_alt.update_layout(xaxis_title_text='Time (s)',
+    fig_alt = go.Figure(go.Scatter(x=list(altitude.keys()),
+                                   y=list(altitude.values()),
+                                   mode='lines',
+                                   hovertemplate='<b>%{text}</b>',
+                                   text=[f't = {round(time, 3)} s<br>'
+                                         f'y = {round(alt, 3)} m'
+                                         for time, alt in altitude.items()]))
+    fig_alt.update_layout(title_text='Altitude-time',
+                          xaxis_title_text='Time (s)',
                           yaxis_title_text='Altitude (m)')
+    fig_alt.update_xaxes(range=x_range)
 
-    fig_vel = px.line(x=velocity.keys(), y=velocity.values(), title='Velocity-time')
-    fig_vel.update_xaxes(range=x_range)
-    fig_vel.update_layout(xaxis_title_text='Time (s)',
+    fig_vel = go.Figure(go.Scatter(x=list(velocity.keys()),
+                                   y=list(velocity.values()),
+                                   mode='lines',
+                                   hovertemplate='<b>%{text}</b>',
+                                   text=[f't = {round(time, 3)} s<br>'
+                                         f'v = {round(vel, 3)} m/s'
+                                         for time, vel in velocity.items()]))
+    fig_vel.update_layout(title_text='Velocity-time',
+                          xaxis_title_text='Time (s)',
                           yaxis_title_text='Velocity (m/s)')
+    fig_vel.update_xaxes(range=x_range)
 
-    fig_acc = px.line(x=acceleration.keys(), y=acceleration.values(), title='Acceleration-time')
+    fig_acc = go.Figure(go.Scatter(x=list(acceleration.keys()),
+                                   y=list(acceleration.values()),
+                                   mode='lines',
+                                   hovertemplate='<b>%{text}</b>',
+                                   text=[f't = {round(time, 3)} s<br>'
+                                         f'a = {round(acc, 3)} m/s^2'
+                                         for time, acc in acceleration.items()]))
+    fig_acc.update_layout(title_text='Acceleration-time',
+                          xaxis_title_text='Time (s)',
+                          yaxis_title_text='Acceleration (m/s)')
     fig_acc.update_xaxes(range=x_range)
-    fig_acc.update_layout(xaxis_title_text='Time (s)',
-                          yaxis_title_text='Acceleration (m/s^2)')
 
     return fig_alt, fig_vel, fig_acc
 
