@@ -78,3 +78,4 @@ def display_page(pathname, thrust_curve_data, rocket_builder_data):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+    # app.run_server(debug=False, port=8080, host='0.0.0.0')  # Run on LAN (replace host with your IP address)
