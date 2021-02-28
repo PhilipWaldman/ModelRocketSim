@@ -11,35 +11,23 @@ def get_layout(data):
         data = {}
 
     layout = [html.H3('Rocket builder')]
-    options = {
-        'mass': 'g'
-        # 'length': 'cm',
-        # 'diameter': 'cm',
-        # 'center_of_gravity': 'cm',
-        # 'center_of_pressure': 'cm'
-    }
 
-    for name, unit in options.items():
-        value = 0
+    inputs = [
+        {'name': 'mass', 'unit': 'g', 'conversion_factor': 1000, 'default_value': 100},
+        {'name': 'length', 'unit': 'cm', 'conversion_factor': 100, 'default_value': 50},
+        {'name': 'diameter', 'unit': 'cm', 'conversion_factor': 100, 'default_value': 5}
+    ]
+
+    for i in inputs:
+        name = i['name']
+        unit = i['unit']
+        value = i['default_value']
         if name in data.keys():
-            value = data[name]
-
+            value = data[name] * i['conversion_factor']
         layout.extend([
-            html.P(f'{name.capitalize().replace("_", " ")}:',
-                   style={'width': '10%',
-                          'display': 'inline-block',
-                          'margin-right': '1rem'}),
-            html.Div(
-                daq.NumericInput(
-                    id=f'{name.replace("_", "-")}-input',
-                    min=0,
-                    max=10 ** 9,
-                    value=value),
-                style={'display': 'inline-block',
-                       'margin-right': '1rem'}),
-            html.P(unit,
-                   style={'width': '1%',
-                          'display': 'inline-block'}),
+            html_name(name),
+            html_numeric_input(name, value),
+            html_unit(unit),
             html.Div()])
 
     return html.Div(layout,
@@ -47,8 +35,48 @@ def get_layout(data):
                            'margin-right': '2rem'})
 
 
+def html_name(name: str):
+    """ :param name: The name of the input. Should be lowercase with spaces between words. """
+    return html.P(f'{name.capitalize()}:',
+                  style={'width': '10%',
+                         'display': 'inline-block',
+                         'margin-right': '1rem'})
+
+
+def html_numeric_input(name: str, value: float):
+    """
+    :param name: The name of the input. Should be lowercase with spaces between words.
+    :param value: The default value of the input.
+    """
+    return html.Div(
+        daq.NumericInput(
+            id=f'{name.replace(" ", "-")}-input',
+            size=64,
+            min=0,
+            max=10 ** 9,
+            value=value),
+        style={'display': 'inline-block',
+               'margin-right': '1rem'})
+
+
+def html_unit(unit: str):
+    """ :param unit: The unit of the input. """
+    return html.P(unit,
+                  style={'width': '1%',
+                         'display': 'inline-block'})
+
+
 @app.callback(
     Output('rocket-builder-data', 'data'),
-    Input('mass-input', 'value'))
-def save_data(mass):
-    return {'mass': mass}
+    Input('mass-input', 'value'),
+    Input('length-input', 'value'),
+    Input('diameter-input', 'value'))
+def save_data(mass: float, length: float, diameter: float):
+    """
+    :param diameter: The diameter in centimeters (cm).
+    :param length: The length in centimeters (cm).
+    :param mass: The mass in grams (g).
+    """
+    return {'mass': mass / 1000,
+            'length': length / 100,
+            'diameter': diameter / 100}
