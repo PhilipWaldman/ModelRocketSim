@@ -3,27 +3,31 @@ import dash_html_components as html
 from dash.dependencies import Output, Input
 
 from app import app
+from conversions import metric_convert
+
+inputs = [
+    {'name': 'mass', 'unit': 'g', 'default_value': 100, 'input_prefix': '-', 'si_prefix': 'k'},
+    {'name': 'length', 'unit': 'cm', 'default_value': 50, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'diameter', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'}
+]
 
 
 def get_layout(data):
     # Load the current motor from Store
-    if not data:
+    if data is None:
         data = {}
+    for i in inputs:
+        if i['name'] not in data:
+            data[i['name']] = metric_convert(i['default_value'], i['input_prefix'], i['si_prefix'])
 
     layout = [html.H3('Rocket builder')]
-
-    inputs = [
-        {'name': 'mass', 'unit': 'g', 'conversion_factor': 1000, 'default_value': 100},
-        {'name': 'length', 'unit': 'cm', 'conversion_factor': 100, 'default_value': 50},
-        {'name': 'diameter', 'unit': 'cm', 'conversion_factor': 100, 'default_value': 5}
-    ]
 
     for i in inputs:
         name = i['name']
         unit = i['unit']
         value = i['default_value']
         if name in data.keys():
-            value = data[name] * i['conversion_factor']
+            value = metric_convert(data[name], i['si_prefix'], i['input_prefix'])
         layout.extend([
             html_name(name),
             html_numeric_input(name, value),
@@ -73,10 +77,11 @@ def html_unit(unit: str):
     Input('diameter-input', 'value'))
 def save_data(mass: float, length: float, diameter: float):
     """
-    :param diameter: The diameter in centimeters (cm).
-    :param length: The length in centimeters (cm).
+
     :param mass: The mass in grams (g).
+    :param length: The length in centimeters (cm).
+    :param diameter: The diameter in centimeters (cm).
     """
-    return {'mass': mass / 1000,
-            'length': length / 100,
-            'diameter': diameter / 100}
+    return {'mass': metric_convert(mass, '-', 'k'),
+            'length': metric_convert(length, 'c', '-'),
+            'diameter': metric_convert(diameter, 'c', '-')}
