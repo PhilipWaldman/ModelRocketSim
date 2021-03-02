@@ -45,9 +45,16 @@ def get_layout():
 def altitude_time_graph(rocket_data, motor_data):
     dt = 0.01
     # Load rocket and motor from Store
-    m = 1
-    if rocket_data and 'mass' in rocket_data.keys():
-        m = rocket_data['mass'] / 1000
+    m = 0.1
+    l = 0.5
+    d = 0.05
+    if rocket_data:
+        if 'mass' in rocket_data.keys():
+            m = rocket_data['mass']
+        if 'length' in rocket_data.keys():
+            l = rocket_data['length']
+        if 'diameter' in rocket_data.keys():
+            d = rocket_data['diameter']
     motor_file = tc.thrust_files[0]
     if motor_data and 'motor_file' in motor_data.keys():
         motor_file = motor_data['motor_file']
@@ -60,7 +67,7 @@ def altitude_time_graph(rocket_data, motor_data):
     v = 0
     t = 0
     for t1, F_thrust in motor_tc.items():
-        F = F_thrust - g * m - calc_drag_force(v)
+        F = F_thrust - g * m - calc_drag_force(v, d)
         a = F / m
         v += a * (t1 - t)
         y += v * (t1 - t)
@@ -74,7 +81,7 @@ def altitude_time_graph(rocket_data, motor_data):
     dt = 0.01
     while y > 0:
         t += dt
-        F = - g * m - calc_drag_force(v)
+        F = - g * m - calc_drag_force(v, d)
         a = F / m
         v += a * dt
         y += v * dt
@@ -84,6 +91,7 @@ def altitude_time_graph(rocket_data, motor_data):
 
     x_range = [-0.025 * max(altitude.keys()), 1.025 * max(altitude.keys())]
 
+    # ------------------------------ Altitude ------------------------------
     fig_alt = go.Figure(go.Scatter(x=list(altitude.keys()),
                                    y=list(altitude.values()),
                                    mode='lines',
@@ -96,6 +104,7 @@ def altitude_time_graph(rocket_data, motor_data):
                           yaxis_title_text='Altitude (m)')
     fig_alt.update_xaxes(range=x_range)
 
+    # ------------------------------ Velocity ------------------------------
     fig_vel = go.Figure(go.Scatter(x=list(velocity.keys()),
                                    y=list(velocity.values()),
                                    mode='lines',
@@ -108,6 +117,7 @@ def altitude_time_graph(rocket_data, motor_data):
                           yaxis_title_text='Velocity (m/s)')
     fig_vel.update_xaxes(range=x_range)
 
+    # ------------------------------ Acceleration ------------------------------
     fig_acc = go.Figure(go.Scatter(x=list(acceleration.keys()),
                                    y=list(acceleration.values()),
                                    mode='lines',
@@ -123,11 +133,13 @@ def altitude_time_graph(rocket_data, motor_data):
     return fig_alt, fig_vel, fig_acc
 
 
-def calc_drag_force(v):
-    """ F_drag = 0.5 * Cd * ρ * v^2 * A \n
+def calc_drag_force(v, d):
+    """ F_drag = 0.5 * Cd * ρ * v^2 * A
+
     https://www.grc.nasa.gov/www/k-12/airplane/drageq.html
 
     :param v: Velocity
+    :param d: Diameter
     :return: The drag force
     """
-    return 0.5 * 0.37 * 1.205 * (v ** 2) * ((0.066 / 2) ** 2 * math.pi)
+    return 0.5 * 0.37 * 1.205 * (v ** 2) * ((d / 2) ** 2 * math.pi)
