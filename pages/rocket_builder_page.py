@@ -1,5 +1,7 @@
+import dash_core_components as dcc
 import dash_daq as daq
 import dash_html_components as html
+import plotly.graph_objects as go
 from dash.dependencies import Output, Input
 
 from app import app
@@ -33,6 +35,8 @@ def get_layout(data):
             html_numeric_input(name, value),
             html_unit(unit),
             html.Div()])
+
+    layout.append(dcc.Graph(id='rocket-drawing'))
 
     return html.Div(layout,
                     style={'margin-left': '2rem',
@@ -68,6 +72,43 @@ def html_unit(unit: str):
     return html.P(unit,
                   style={'width': '1%',
                          'display': 'inline-block'})
+
+
+@app.callback(
+    Output('rocket-drawing', 'figure'),
+    Input('length-input', 'value'),
+    Input('diameter-input', 'value'))
+def draw_rocket(length: float, diameter: float):
+    nose_cone = {'x': [0, 0.2, 0.2, 0], 'y': [0, 0.5, -0.5, 0]}
+    body = {'x': [0.2, 0.2, 1, 1, 0.2], 'y': [0.5, -0.5, -0.5, 0.5, 0.5]}
+    fin = {'x': [0.8, 1, 1, 0.8], 'y': [0.5, 0.5, 1, 0.5]}
+
+    x = []
+    x.extend([i * length for i in nose_cone['x']])
+    x.append(None)
+    x.extend([i * length for i in body['x']])
+    x.append(None)
+    x.extend([i * length for i in fin['x']])
+    x.append(None)
+    x.extend([i * length for i in fin['x']])
+    y = []
+    y.extend([i * diameter for i in nose_cone['y']])
+    y.append(None)
+    y.extend([i * diameter for i in body['y']])
+    y.append(None)
+    y.extend([i * diameter for i in fin['y']])
+    y.append(None)
+    y.extend([-i * diameter for i in fin['y']])
+
+    fig = go.Figure(
+        go.Scatter(x=x,
+                   y=y,
+                   fill='toself'))
+    fig.update_layout(plot_bgcolor='white')
+    fig.update_xaxes(visible=False)
+    fig.update_yaxes(visible=False, scaleanchor="x", scaleratio=1)
+
+    return fig
 
 
 @app.callback(
