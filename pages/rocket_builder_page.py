@@ -9,8 +9,14 @@ from conversions import metric_convert
 
 inputs = [
     {'name': 'mass', 'unit': 'g', 'default_value': 100, 'input_prefix': '-', 'si_prefix': 'k'},
-    {'name': 'length', 'unit': 'cm', 'default_value': 50, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'diameter', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'}
+    {'name': 'body tube length', 'unit': 'cm', 'default_value': 50, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'diameter', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'nose cone length', 'unit': 'cm', 'default_value': 15, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'number of fins', 'unit': '', 'default_value': 4, 'input_prefix': '-', 'si_prefix': '-'},
+    {'name': 'root chord', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'tip chord', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'fin height', 'unit': 'cm', 'default_value': 3, 'input_prefix': 'c', 'si_prefix': '-'},
+    {'name': 'sweep length', 'unit': 'cm', 'default_value': 2.5, 'input_prefix': 'c', 'si_prefix': '-'}
 ]
 
 
@@ -76,29 +82,41 @@ def html_unit(unit: str):
 
 @app.callback(
     Output('rocket-drawing', 'figure'),
-    Input('length-input', 'value'),
-    Input('diameter-input', 'value'))
-def draw_rocket(length: float, diameter: float):
-    nose_cone = {'x': [0, 0.2, 0.2, 0], 'y': [0, 0.5, -0.5, 0]}
-    body = {'x': [0.2, 0.2, 1, 1, 0.2], 'y': [0.5, -0.5, -0.5, 0.5, 0.5]}
-    fin = {'x': [0.8, 1, 1, 0.8], 'y': [0.5, 0.5, 1, 0.5]}
+    Input('body-tube-length-input', 'value'),
+    Input('diameter-input', 'value'),
+    Input('nose-cone-length-input', 'value'),
+    Input('root-chord-input', 'value'),
+    Input('tip-chord-input', 'value'),
+    Input('fin-height-input', 'value'),
+    Input('sweep-length-input', 'value')
+)
+def draw_rocket(tube_length: float, diameter: float, nose_length: float, root_chord: float, tip_chord: float,
+                fin_height: float, sweep_length: float):
+    length = nose_length + tube_length
+    radius = diameter / 2
+    nose_cone = {'x': [0, nose_length, nose_length, 0],
+                 'y': [0, radius, -radius, 0]}
+    body = {'x': [nose_length, nose_length, length, length, nose_length],
+            'y': [radius, -radius, -radius, radius, radius]}
+    fin = {'x': [length, length - root_chord, length + sweep_length - tip_chord, length + sweep_length, length],
+           'y': [radius, radius, radius + fin_height, radius + fin_height, radius]}
 
     x = []
-    x.extend([i * length for i in nose_cone['x']])
+    x.extend([i for i in nose_cone['x']])
     x.append(None)
-    x.extend([i * length for i in body['x']])
+    x.extend([i for i in body['x']])
     x.append(None)
-    x.extend([i * length for i in fin['x']])
+    x.extend([i for i in fin['x']])
     x.append(None)
-    x.extend([i * length for i in fin['x']])
+    x.extend([i for i in fin['x']])
     y = []
-    y.extend([i * diameter for i in nose_cone['y']])
+    y.extend([i for i in nose_cone['y']])
     y.append(None)
-    y.extend([i * diameter for i in body['y']])
+    y.extend([i for i in body['y']])
     y.append(None)
-    y.extend([i * diameter for i in fin['y']])
+    y.extend([i for i in fin['y']])
     y.append(None)
-    y.extend([-i * diameter for i in fin['y']])
+    y.extend([-i for i in fin['y']])
 
     fig = go.Figure(
         go.Scatter(x=x,
@@ -106,7 +124,7 @@ def draw_rocket(length: float, diameter: float):
                    fill='toself'))
     fig.update_layout(plot_bgcolor='white')
     fig.update_xaxes(visible=False)
-    fig.update_yaxes(visible=False, scaleanchor="x", scaleratio=1)
+    fig.update_yaxes(visible=False, scaleanchor='x', scaleratio=1)
 
     return fig
 
@@ -114,7 +132,7 @@ def draw_rocket(length: float, diameter: float):
 @app.callback(
     Output('rocket-builder-data', 'data'),
     Input('mass-input', 'value'),
-    Input('length-input', 'value'),
+    Input('body-tube-length-input', 'value'),
     Input('diameter-input', 'value'))
 def save_data(mass: float, length: float, diameter: float):
     """
