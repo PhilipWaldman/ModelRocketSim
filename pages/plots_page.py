@@ -9,6 +9,8 @@ import thrust_curve as tc
 from app import app
 from constants import g
 
+pathname = '/plots'
+
 
 def get_layout():
     return html.Div([

@@ -6,6 +6,8 @@ from dash.dependencies import Input, Output
 import thrust_curve as tc
 from app import app
 
+pathname = '/thrust_curves'
+
 # The option for the dropdown. List of pairs of motor names and file names.
 motor_options = [{'label': m, 'value': f} for m, f in zip(tc.motor_names, tc.thrust_files)]
 

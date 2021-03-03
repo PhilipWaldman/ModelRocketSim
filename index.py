@@ -4,7 +4,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 
 from app import app
-from pages import thrust_curve_page, page404, home_page, rocket_builder_page, plots_page
+from pages import thrust_curve_page, page404, home_page, plots_page
+from pages.rocket_builder import rocket_builder_page
 
 all_pages = {
     '/thrust_curves': 'Thrust curves',
@@ -50,11 +51,11 @@ def display_page(pathname, thrust_curve_data, rocket_builder_data):
     """
     if pathname == '/':
         return home_page.layout
-    elif pathname == '/thrust_curves':
+    elif pathname == thrust_curve_page.pathname:
         return thrust_curve_page.get_layout(thrust_curve_data)
-    elif pathname == '/rocket_builder':
+    elif pathname.startswith(rocket_builder_page.pathname):
         return rocket_builder_page.get_layout(rocket_builder_data)
-    elif pathname == '/plots':
+    elif pathname == plots_page.pathname:
         return plots_page.get_layout()
     else:
         return page404.layout

@@ -18,6 +18,7 @@ inputs = [
     {'name': 'fin height', 'unit': 'cm', 'default_value': 3, 'input_prefix': 'c', 'si_prefix': '-'},
     {'name': 'sweep length', 'unit': 'cm', 'default_value': 2.5, 'input_prefix': 'c', 'si_prefix': '-'}
 ]
+pathname = '/rocket_builder'
 
 
 def get_layout(data):
