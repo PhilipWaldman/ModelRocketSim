@@ -12,14 +12,6 @@ all_pages = {
     '/plots': 'Plots'
 }
 
-# themes = {'Cerulean': dbc.themes.CERULEAN, 'Cosmo': dbc.themes.COSMO, 'Cyborg': dbc.themes.CYBORG,
-#          'Darkly': dbc.themes.DARKLY, 'Flatly': dbc.themes.FLATLY, 'Journal': dbc.themes.JOURNAL,
-#          'Litera': dbc.themes.LITERA, 'Lumen': dbc.themes.LUMEN, 'Lux': dbc.themes.LUX, 'Materia': dbc.themes.MATERIA,
-#          'Minty': dbc.themes.MINTY, 'Pulse': dbc.themes.PULSE, 'Sandstone': dbc.themes.SANDSTONE,
-#          'Simplex': dbc.themes.SIMPLEX, 'Sketchy': dbc.themes.SKETCHY, 'Slate': dbc.themes.SLATE,
-#          'Solar': dbc.themes.SOLAR, 'Spacelab': dbc.themes.SPACELAB, 'Superhero': dbc.themes.SUPERHERO,
-#          'United': dbc.themes.UNITED, 'Yeti': dbc.themes.YETI}
-
 navbar = dbc.NavbarSimple(
     children=[
         # All pages dropdown
@@ -28,15 +20,7 @@ navbar = dbc.NavbarSimple(
             nav=True,
             in_navbar=True,
             label='Pages'
-        ),
-        # TODO: Theme selector dropdown
-        # dbc.DropdownMenu(
-        #     children=[dbc.DropdownMenuItem(theme) for theme in themes],
-        #     nav=True,
-        #     in_navbar=True,
-        #     label='Theme',
-        #     id='theme-dropdown'
-        # )
+        )
     ],
     brand='WARP',
     brand_href='/'
