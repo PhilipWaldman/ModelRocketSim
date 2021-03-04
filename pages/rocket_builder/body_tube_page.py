@@ -2,6 +2,6 @@ import dash_html_components as html
 
 
 def get_layout(data):
-    return html.Div([
+    return [
         html.P('Body tube')
-    ])
+    ]

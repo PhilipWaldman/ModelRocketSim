@@ -4,20 +4,16 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 
 from app import app
-from pages import thrust_curve_page, page404, home_page, plots_page
-from pages.rocket_builder import rocket_builder_page
+from pages import thrust_curve_page as tc_page, page404, home_page, plots_page
+from pages.rocket_builder import rocket_builder_page as rb_page
 
-all_pages = {
-    '/thrust_curves': 'Thrust curves',
-    '/rocket_builder': 'Rocket builder',
-    '/plots': 'Plots'
-}
+all_pages = [tc_page, plots_page, rb_page]
 
 navbar = dbc.NavbarSimple(
     children=[
         # All pages dropdown
         dbc.DropdownMenu(
-            children=[dbc.DropdownMenuItem(all_pages[page], href=page) for page in all_pages],
+            children=[dbc.DropdownMenuItem(page.page_name, href=page.pathname) for page in all_pages],
             nav=True,
             in_navbar=True,
             label='Pages'
@@ -41,20 +37,20 @@ app.layout = html.Div([
     Input('url', 'pathname'),
     State('thrust-curve-data', 'data'),
     State('rocket-builder-data', 'data'))
-def display_page(pathname, thrust_curve_data, rocket_builder_data):
+def display_page(pathname, tc_data, rb_data):
     """Displays the page that corresponds to the given pathname.
 
     :param pathname: The current pathname (the last part of the URL) of the page.
-    :param thrust_curve_data:
-    :param rocket_builder_data:
+    :param tc_data:
+    :param rb_data:
     :return: The page that should be at that pathname; otherwise a 404 page.
     """
     if pathname == '/':
         return home_page.layout
-    elif pathname == thrust_curve_page.pathname:
-        return thrust_curve_page.get_layout(thrust_curve_data)
-    elif pathname.startswith(rocket_builder_page.pathname):
-        return rocket_builder_page.get_layout(rocket_builder_data, pathname)
+    elif pathname == tc_page.pathname:
+        return tc_page.get_layout(tc_data)
+    elif pathname.startswith(rb_page.pathname):
+        return rb_page.get_layout(rb_data, pathname)
     elif pathname == plots_page.pathname:
         return plots_page.get_layout()
     else:

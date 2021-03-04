@@ -10,11 +10,12 @@ from app import app
 from constants import g
 
 pathname = '/plots'
+page_name = 'Plots'
 
 
 def get_layout():
     return html.Div([
-        html.H3('Plots'),
+        html.H3(page_name),
         dcc.Loading(
             id='loading-altitude-time-graph',
             type='dot',

@@ -7,6 +7,7 @@ import thrust_curve as tc
 from app import app
 
 pathname = '/thrust_curves'
+page_name = 'Thrust curves'
 
 # The option for the dropdown. List of pairs of motor names and file names.
 motor_options = [{'label': m, 'value': f} for m, f in zip(tc.motor_names, tc.thrust_files)]
@@ -20,7 +21,7 @@ def get_layout(data):
         cur_motor = tc.thrust_files[0]
 
     return html.Div([
-        html.H3('Thrust curve'),
+        html.H3(page_name),
         dcc.Dropdown(
             id='thrust-curve-dropdown',
             options=motor_options,

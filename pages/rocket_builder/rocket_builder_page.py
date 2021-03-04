@@ -1,4 +1,5 @@
 import dash
+import dash_core_components as dcc
 import dash_daq as daq
 import dash_html_components as html
 import plotly.graph_objects as go
@@ -7,6 +8,7 @@ from dash.exceptions import PreventUpdate
 
 from app import app
 from conversions import metric_convert
+from pages import page404
 from pages.rocket_builder import fins_page, nose_cone_page, body_tube_page
 
 inputs = [
@@ -21,6 +23,7 @@ inputs = [
     {'name': 'sweep length', 'unit': 'cm', 'default_value': 2.5, 'input_prefix': 'c', 'si_prefix': '-'}
 ]
 pathname = '/rocket_builder'
+page_name = 'Rocket builder'
 
 
 @app.callback(
@@ -46,18 +49,20 @@ def fin_page_button(nose_cone_clicks, body_tube_clicks, fins_clicks):
 
 def get_layout(data, url):
     if url.endswith('nose_cone'):
-        return nose_cone_page.get_layout(data)
+        layout = nose_cone_page.get_layout(data)
     elif url.endswith('body_tube'):
-        return body_tube_page.get_layout(data)
+        layout = body_tube_page.get_layout(data)
     elif url.endswith('fins'):
-        return fins_page.get_layout(data)
-
-    layout = [
-        html.H3('Rocket builder'),
-        html.Div(html.Button('Nose cone', id='nose-cone-page-button')),
-        html.Div(html.Button('Body tube', id='body-tube-page-button')),
-        html.Div(html.Button('Fins', id='fins-page-button'))
-    ]
+        layout = fins_page.get_layout(data)
+    elif url.endswith(pathname):
+        layout = [
+            html.H3('Rocket builder'),
+            html.Div(html.Button('Nose cone', id='nose-cone-page-button')),
+            html.Div(html.Button('Body tube', id='body-tube-page-button')),
+            html.Div(html.Button('Fins', id='fins-page-button'))
+        ]
+    else:
+        return page404.layout
 
     # # Load the current motor from Store
     # if data is None:
@@ -78,7 +83,7 @@ def get_layout(data, url):
     #         html_unit(unit),
     #         html.Div()])
     #
-    # layout.append(dcc.Graph(id='rocket-drawing'))
+    layout.append(dcc.Graph(id='rocket-drawing'))
 
     return html.Div(layout,
                     style={'margin-left': '2rem',
