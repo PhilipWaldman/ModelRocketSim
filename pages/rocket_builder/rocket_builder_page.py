@@ -1,11 +1,13 @@
-import dash_core_components as dcc
+import dash
 import dash_daq as daq
 import dash_html_components as html
 import plotly.graph_objects as go
 from dash.dependencies import Output, Input
+from dash.exceptions import PreventUpdate
 
 from app import app
 from conversions import metric_convert
+from pages.rocket_builder import fins_page, nose_cone_page, body_tube_page
 
 inputs = [
     {'name': 'mass', 'unit': 'g', 'default_value': 100, 'input_prefix': '-', 'si_prefix': 'k'},
@@ -21,29 +23,62 @@ inputs = [
 pathname = '/rocket_builder'
 
 
-def get_layout(data):
-    # Load the current motor from Store
-    if data is None:
-        data = {}
-    for i in inputs:
-        if i['name'] not in data:
-            data[i['name']] = metric_convert(i['default_value'], i['input_prefix'], i['si_prefix'])
+@app.callback(
+    Output('url', 'pathname'),
+    Input('nose-cone-page-button', 'n_clicks'),
+    Input('body-tube-page-button', 'n_clicks'),
+    Input('fins-page-button', 'n_clicks')
+)
+def fin_page_button(nose_cone_clicks, body_tube_clicks, fins_clicks):
+    if nose_cone_clicks is None and body_tube_clicks is None and fins_clicks is None:
+        raise PreventUpdate
+    changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+    if 'nose-cone-page-button' in changed_id:
+        page = '/nose_cone'
+    elif 'body-tube-page-button' in changed_id:
+        page = '/body_tube'
+    elif 'fins-page-button' in changed_id:
+        page = '/fins'
+    else:
+        page = ''
+    return f'{pathname}{page}'
 
-    layout = [html.H3('Rocket builder')]
 
-    for i in inputs:
-        name = i['name']
-        unit = i['unit']
-        value = i['default_value']
-        if name in data.keys():
-            value = metric_convert(data[name], i['si_prefix'], i['input_prefix'])
-        layout.extend([
-            html_name(name),
-            html_numeric_input(name, value),
-            html_unit(unit),
-            html.Div()])
+def get_layout(data, url):
+    if url.endswith('nose_cone'):
+        return nose_cone_page.get_layout(data)
+    elif url.endswith('body_tube'):
+        return body_tube_page.get_layout(data)
+    elif url.endswith('fins'):
+        return fins_page.get_layout(data)
 
-    layout.append(dcc.Graph(id='rocket-drawing'))
+    layout = [
+        html.H3('Rocket builder'),
+        html.Div(html.Button('Nose cone', id='nose-cone-page-button')),
+        html.Div(html.Button('Body tube', id='body-tube-page-button')),
+        html.Div(html.Button('Fins', id='fins-page-button'))
+    ]
+
+    # # Load the current motor from Store
+    # if data is None:
+    #     data = {}
+    # for i in inputs:
+    #     if i['name'] not in data:
+    #         data[i['name']] = metric_convert(i['default_value'], i['input_prefix'], i['si_prefix'])
+    #
+    # for i in inputs:
+    #     name = i['name']
+    #     unit = i['unit']
+    #     value = i['default_value']
+    #     if name in data.keys():
+    #         value = metric_convert(data[name], i['si_prefix'], i['input_prefix'])
+    #     layout.extend([
+    #         html_name(name),
+    #         html_numeric_input(name, value),
+    #         html_unit(unit),
+    #         html.Div()])
+    #
+    # layout.append(dcc.Graph(id='rocket-drawing'))
 
     return html.Div(layout,
                     style={'margin-left': '2rem',

@@ -54,7 +54,7 @@ def display_page(pathname, thrust_curve_data, rocket_builder_data):
     elif pathname == thrust_curve_page.pathname:
         return thrust_curve_page.get_layout(thrust_curve_data)
     elif pathname.startswith(rocket_builder_page.pathname):
-        return rocket_builder_page.get_layout(rocket_builder_data)
+        return rocket_builder_page.get_layout(rocket_builder_data, pathname)
     elif pathname == plots_page.pathname:
         return plots_page.get_layout()
     else:
