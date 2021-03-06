@@ -147,7 +147,8 @@ def draw_rocket(ts, data):
                  'y': [0, radius, -radius, 0]}
     body = {'x': [nose_length, nose_length, length, length, nose_length],
             'y': [radius, -radius, -radius, radius, radius]}
-    fin = {'x': [length, length - root_chord, length + sweep_length - tip_chord, length + sweep_length, length],
+    fin = {'x': [length, length - root_chord, length - root_chord + sweep_length,
+                 length - root_chord + sweep_length + tip_chord, length],
            'y': [radius, radius, radius + fin_height, radius + fin_height, radius]}
 
     x = []
