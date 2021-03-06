@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_daq as daq
 import dash_html_components as html
 import plotly.graph_objects as go
-from dash.dependencies import Output, Input
+from dash.dependencies import Output, Input, State
 from dash.exceptions import PreventUpdate
 
 from app import app
@@ -11,19 +11,9 @@ from conversions import metric_convert
 from pages import page404
 from pages.rocket_builder import fins_page, nose_cone_page, body_tube_page
 
-inputs = [
-    {'name': 'mass', 'unit': 'g', 'default_value': 100, 'input_prefix': '-', 'si_prefix': 'k'},
-    {'name': 'body tube length', 'unit': 'cm', 'default_value': 50, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'diameter', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'nose cone length', 'unit': 'cm', 'default_value': 15, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'number of fins', 'unit': '', 'default_value': 4, 'input_prefix': '-', 'si_prefix': '-'},
-    {'name': 'root chord', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'tip chord', 'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'fin height', 'unit': 'cm', 'default_value': 3, 'input_prefix': 'c', 'si_prefix': '-'},
-    {'name': 'sweep length', 'unit': 'cm', 'default_value': 2.5, 'input_prefix': 'c', 'si_prefix': '-'}
-]
 pathname = '/rocket_builder'
 page_name = 'Rocket builder'
+cur_page = ''  # main, fins, body tube, nose cone
 
 
 @app.callback(
@@ -32,7 +22,7 @@ page_name = 'Rocket builder'
     Input('body-tube-page-button', 'n_clicks'),
     Input('fins-page-button', 'n_clicks')
 )
-def fin_page_button(nose_cone_clicks, body_tube_clicks, fins_clicks):
+def change_page(nose_cone_clicks, body_tube_clicks, fins_clicks):
     if nose_cone_clicks is None and body_tube_clicks is None and fins_clicks is None:
         raise PreventUpdate
     changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
@@ -48,13 +38,22 @@ def fin_page_button(nose_cone_clicks, body_tube_clicks, fins_clicks):
 
 
 def get_layout(data, url):
+    if data is None:
+        data = {}
+        init_data(data)
+
+    global cur_page
     if url.endswith('nose_cone'):
+        cur_page = 'nose cone'
         layout = nose_cone_page.get_layout(data)
     elif url.endswith('body_tube'):
+        cur_page = 'body tube'
         layout = body_tube_page.get_layout(data)
     elif url.endswith('fins'):
+        cur_page = 'fins'
         layout = fins_page.get_layout(data)
     elif url.endswith(pathname):
+        cur_page = 'main'
         layout = [
             html.H3('Rocket builder'),
             html.Div(html.Button('Nose cone', id='nose-cone-page-button')),
@@ -62,32 +61,36 @@ def get_layout(data, url):
             html.Div(html.Button('Fins', id='fins-page-button'))
         ]
     else:
+        cur_page = ''
         return page404.layout
 
-    # # Load the current motor from Store
-    # if data is None:
-    #     data = {}
-    # for i in inputs:
-    #     if i['name'] not in data:
-    #         data[i['name']] = metric_convert(i['default_value'], i['input_prefix'], i['si_prefix'])
-    #
-    # for i in inputs:
-    #     name = i['name']
-    #     unit = i['unit']
-    #     value = i['default_value']
-    #     if name in data.keys():
-    #         value = metric_convert(data[name], i['si_prefix'], i['input_prefix'])
-    #     layout.extend([
-    #         html_name(name),
-    #         html_numeric_input(name, value),
-    #         html_unit(unit),
-    #         html.Div()])
-    #
     layout.append(dcc.Graph(id='rocket-drawing'))
+
+    layout.extend([
+        dcc.Store(id='fin-builder-data'),
+        dcc.Store(id='body-tube-builder-data'),
+        dcc.Store(id='nose-cone-builder-data')
+    ])
 
     return html.Div(layout,
                     style={'margin-left': '2rem',
                            'margin-right': '2rem'})
+
+
+def simple_input(name: str, value: float, unit: str):
+    """ Constructs a simple numeric input. It displays the name of the input, a numeric input field with an initial
+    value, and a unit behind it.
+
+    :param name: The name of the input. Should be lowercase with spaces between words.
+    :param value: The default value of the input.
+    :param unit: The unit of the input.
+    :return: A simple input.
+    """
+    return html.Div([
+        html_name(name),
+        html_numeric_input(name, value),
+        html_unit(unit)
+    ])
 
 
 def html_name(name: str):
@@ -123,16 +126,21 @@ def html_unit(unit: str):
 
 @app.callback(
     Output('rocket-drawing', 'figure'),
-    Input('body-tube-length-input', 'value'),
-    Input('diameter-input', 'value'),
-    Input('nose-cone-length-input', 'value'),
-    Input('root-chord-input', 'value'),
-    Input('tip-chord-input', 'value'),
-    Input('fin-height-input', 'value'),
-    Input('sweep-length-input', 'value')
+    Input('rocket-builder-data', 'modified_timestamp'),
+    State('rocket-builder-data', 'data')
 )
-def draw_rocket(tube_length: float, diameter: float, nose_length: float, root_chord: float, tip_chord: float,
-                fin_height: float, sweep_length: float):
+def draw_rocket(ts, data):
+    if ts is None or data is None:
+        raise PreventUpdate
+
+    nose_length = data['nose_cone_length']
+    tube_length = data['body_tube_length']
+    diameter = data['diameter']
+    root_chord = data['root_chord']
+    sweep_length = data['sweep_length']
+    tip_chord = data['tip_chord']
+    fin_height = data['fin_height']
+
     length = nose_length + tube_length
     radius = diameter / 2
     nose_cone = {'x': [0, nose_length, nose_length, 0],
@@ -172,16 +180,33 @@ def draw_rocket(tube_length: float, diameter: float, nose_length: float, root_ch
 
 @app.callback(
     Output('rocket-builder-data', 'data'),
-    Input('mass-input', 'value'),
-    Input('body-tube-length-input', 'value'),
-    Input('diameter-input', 'value'))
-def save_data(mass: float, length: float, diameter: float):
-    """
+    Input('nose-cone-builder-data', 'data'),
+    Input('body-tube-builder-data', 'data'),
+    Input('fin-builder-data', 'data'),
+    State('rocket-builder-data', 'data')
+)
+def save_data(nose_cone, body_tube, fins, data):
+    data = data or {}
+    init_data(data)
+    if nose_cone is not None:
+        for key, val in nose_cone.items():
+            data[key] = val
+    if body_tube is not None:
+        for key, val in body_tube.items():
+            data[key] = val
+    if fins is not None:
+        for key, val in fins.items():
+            data[key] = val
+    return data
 
-    :param mass: The mass in grams (g).
-    :param length: The length in centimeters (cm).
-    :param diameter: The diameter in centimeters (cm).
-    """
-    return {'mass': metric_convert(mass, '-', 'k'),
-            'length': metric_convert(length, 'c', '-'),
-            'diameter': metric_convert(diameter, 'c', '-')}
+
+def init_data(data):
+    nose_cone_page.init_data(data)
+    body_tube_page.init_data(data)
+    fins_page.init_data(data)
+
+
+def convert_default_input(name: str, inputs: dict[str, dict]) -> float:
+    return metric_convert(inputs[name]['default_value'],
+                          inputs[name]['input_prefix'],
+                          inputs[name]['si_prefix'])
