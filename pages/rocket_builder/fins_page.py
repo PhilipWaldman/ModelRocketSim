@@ -14,6 +14,9 @@ inputs = {
 }
 
 
+# TODO: sweep length is allowed to be negative
+
+
 def get_layout(data):
     layout = [html.H3('Fins')]
     layout.extend([rb.simple_input(i,
@@ -35,21 +38,30 @@ def get_layout(data):
 )
 def save_data(number_of_fins: int, root_chord: float, tip_chord: float, fin_height: float, sweep_length: float):
     return {
-        'number_of_fins': metric_convert(number_of_fins,
-                                         inputs['number of fins']['input_prefix'],
-                                         inputs['number of fins']['si_prefix']),
-        'root_chord': metric_convert(root_chord,
-                                     inputs['root chord']['input_prefix'],
-                                     inputs['root chord']['si_prefix']),
-        'tip_chord': metric_convert(tip_chord,
-                                    inputs['tip chord']['input_prefix'],
-                                    inputs['tip chord']['si_prefix']),
-        'fin_height': metric_convert(fin_height,
-                                     inputs['fin height']['input_prefix'],
-                                     inputs['fin height']['si_prefix']),
-        'sweep_length': metric_convert(sweep_length,
-                                       inputs['sweep length']['input_prefix'],
-                                       inputs['sweep length']['si_prefix'])
+        'number_of_fins': round(
+            metric_convert(number_of_fins,
+                           inputs['number of fins']['input_prefix'],
+                           inputs['number of fins']['si_prefix'])),
+        'root_chord': round(
+            metric_convert(root_chord,
+                           inputs['root chord']['input_prefix'],
+                           inputs['root chord']['si_prefix']),
+            4),
+        'tip_chord': round(
+            metric_convert(tip_chord,
+                           inputs['tip chord']['input_prefix'],
+                           inputs['tip chord']['si_prefix']),
+            4),
+        'fin_height': round(
+            metric_convert(fin_height,
+                           inputs['fin height']['input_prefix'],
+                           inputs['fin height']['si_prefix']),
+            4),
+        'sweep_length': round(
+            metric_convert(sweep_length,
+                           inputs['sweep length']['input_prefix'],
+                           inputs['sweep length']['si_prefix']),
+            4)
     }
 
 

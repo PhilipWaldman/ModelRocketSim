@@ -33,15 +33,21 @@ def get_layout(data):
 def save_data(mass: float, body_tube_length: float, diameter: float):
     return {
         # TODO: same as above about mass.
-        'mass': metric_convert(mass,
-                               inputs['mass']['input_prefix'],
-                               inputs['mass']['si_prefix']),
-        'body_tube_length': metric_convert(body_tube_length,
-                                           inputs['body tube length']['input_prefix'],
-                                           inputs['body tube length']['si_prefix']),
-        'diameter': metric_convert(diameter,
-                                   inputs['diameter']['input_prefix'],
-                                   inputs['diameter']['si_prefix'])
+        'mass': round(
+            metric_convert(mass,
+                           inputs['mass']['input_prefix'],
+                           inputs['mass']['si_prefix']),
+            4),
+        'body_tube_length': round(
+            metric_convert(body_tube_length,
+                           inputs['body tube length']['input_prefix'],
+                           inputs['body tube length']['si_prefix']),
+            4),
+        'diameter': round(
+            metric_convert(diameter,
+                           inputs['diameter']['input_prefix'],
+                           inputs['diameter']['si_prefix']),
+            4)
     }
 
 

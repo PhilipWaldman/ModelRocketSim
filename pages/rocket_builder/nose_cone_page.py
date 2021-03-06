@@ -27,9 +27,11 @@ def get_layout(data):
 )
 def save_data(nose_cone_length: float):
     return {
-        'nose_cone_length': metric_convert(nose_cone_length,
-                                           inputs['nose cone length']['input_prefix'],
-                                           inputs['nose cone length']['si_prefix'])
+        'nose_cone_length': round(
+            metric_convert(nose_cone_length,
+                           inputs['nose cone length']['input_prefix'],
+                           inputs['nose cone length']['si_prefix']),
+            4)
     }
 
 

@@ -109,10 +109,10 @@ def html_numeric_input(name: str, value: float):
     return html.Div(
         daq.NumericInput(
             id=f'{name.replace(" ", "-")}-input',
-            size=64,
+            size=100,
             min=0,
             max=10 ** 9,
-            value=value),
+            value=round(value, 3)),
         style={'display': 'inline-block',
                'margin-right': '1rem'})
 
