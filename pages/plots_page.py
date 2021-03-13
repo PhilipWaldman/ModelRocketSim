@@ -49,13 +49,10 @@ def altitude_time_graph(rocket_data, motor_data):
     dt = 0.01
     # Load rocket and motor from Store
     m = 0.1
-    l = 0.5
     d = 0.05
     if rocket_data:
         if 'mass' in rocket_data.keys():
             m = rocket_data['mass']
-        if 'length' in rocket_data.keys():
-            l = rocket_data['length']
         if 'diameter' in rocket_data.keys():
             d = rocket_data['diameter']
     motor_file = tc.thrust_files[0]

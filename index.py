@@ -7,7 +7,7 @@ from app import app
 from pages import thrust_curve_page as tc_page, page404, home_page, plots_page
 from pages.rocket_builder import rocket_builder_page as rb_page
 
-all_pages = [tc_page, plots_page, rb_page]
+all_pages = [tc_page, rb_page, plots_page]
 
 navbar = dbc.NavbarSimple(
     children=[
