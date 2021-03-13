@@ -6,11 +6,11 @@ from app import app
 from conversions import metric_convert
 
 inputs = {
-    'number of fins': {'unit': '', 'default_value': 3, 'input_prefix': '-', 'si_prefix': '-'},
+    'number of fins': {'unit': '', 'default_value': 4, 'input_prefix': '-', 'si_prefix': '-'},
     'root chord': {'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
-    'tip chord': {'unit': 'cm', 'default_value': 5, 'input_prefix': 'c', 'si_prefix': '-'},
-    'fin height': {'unit': 'cm', 'default_value': 3, 'input_prefix': 'c', 'si_prefix': '-'},
-    'sweep length': {'unit': 'cm', 'default_value': 2.5, 'input_prefix': 'c', 'si_prefix': '-'}
+    'tip chord': {'unit': 'cm', 'default_value': 2, 'input_prefix': 'c', 'si_prefix': '-'},
+    'fin height': {'unit': 'cm', 'default_value': 4.5, 'input_prefix': 'c', 'si_prefix': '-'},
+    'sweep length': {'unit': 'cm', 'default_value': 1.5, 'input_prefix': 'c', 'si_prefix': '-'}
 }
 
 
@@ -21,13 +21,9 @@ def get_layout(data):
                                                   inputs[i]['si_prefix'],
                                                   inputs[i]['input_prefix']),
                                    inputs[i]['unit'])
-                   for i in inputs if i != 'sweep length'])
+                   for i in inputs
+                   if i != 'sweep length'])
     sweep_length = 'sweep length'
-    layout.append(rb.simple_input(sweep_length,
-                                  metric_convert(data[sweep_length.replace(' ', '_')],
-                                                 inputs[sweep_length]['si_prefix'],
-                                                 inputs[sweep_length]['input_prefix']),
-                                  inputs[sweep_length]['unit']))
     layout.append(html.Div([
         rb.html_name(sweep_length),
         rb.html_numeric_input(sweep_length, metric_convert(data[sweep_length.replace(' ', '_')],

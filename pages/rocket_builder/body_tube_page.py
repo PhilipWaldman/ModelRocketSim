@@ -7,9 +7,9 @@ from conversions import metric_convert
 
 inputs = {
     # TODO: mass is total mass for now. change so every component has separate mass that is added up.
-    'mass': {'unit': 'g', 'default_value': 75, 'input_prefix': '-', 'si_prefix': 'k'},
-    'body tube length': {'unit': 'cm', 'default_value': 30, 'input_prefix': 'c', 'si_prefix': '-'},
-    'diameter': {'unit': 'cm', 'default_value': 2.5, 'input_prefix': 'c', 'si_prefix': '-'}
+    'mass': {'unit': 'g', 'default_value': 95, 'input_prefix': '-', 'si_prefix': 'k'},
+    'body tube length': {'unit': 'cm', 'default_value': 45, 'input_prefix': 'c', 'si_prefix': '-'},
+    'diameter': {'unit': 'cm', 'default_value': 3.5, 'input_prefix': 'c', 'si_prefix': '-'}
 }
 
 

@@ -6,7 +6,7 @@ from app import app
 from conversions import metric_convert
 
 inputs = {
-    'nose cone length': {'unit': 'cm', 'default_value': 10, 'input_prefix': 'c', 'si_prefix': '-'}
+    'nose cone length': {'unit': 'cm', 'default_value': 10.5, 'input_prefix': 'c', 'si_prefix': '-'}
 }
 
 
