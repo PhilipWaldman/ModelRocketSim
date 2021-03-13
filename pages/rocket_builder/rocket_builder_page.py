@@ -9,7 +9,7 @@ from dash.exceptions import PreventUpdate
 from app import app
 from conversions import metric_convert
 from pages import page404
-from pages.rocket_builder import fins_page, nose_cone_page, body_tube_page
+from pages.rocket_builder import fins_page, nose_cone_page, body_tube_page, recovery_page
 
 pathname = '/rocket_builder'
 page_name = 'Rocket builder'
@@ -18,15 +18,21 @@ cur_page = ''  # main, fins, body tube, nose cone
 
 @app.callback(
     Output('url', 'pathname'),
+    Input('recovery-page-button', 'n_clicks'),
     Input('nose-cone-page-button', 'n_clicks'),
     Input('body-tube-page-button', 'n_clicks'),
     Input('fins-page-button', 'n_clicks')
 )
-def change_page(nose_cone_clicks, body_tube_clicks, fins_clicks):
-    if nose_cone_clicks is None and body_tube_clicks is None and fins_clicks is None:
+def change_page(recovery_clicks, nose_cone_clicks, body_tube_clicks, fins_clicks):
+    if recovery_clicks is None and \
+            nose_cone_clicks is None and \
+            body_tube_clicks is None and \
+            fins_clicks is None:
         raise PreventUpdate
     changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
-    if 'nose-cone-page-button' in changed_id:
+    if 'recovery-page-button' in changed_id:
+        page = '/recovery'
+    elif 'nose-cone-page-button' in changed_id:
         page = '/nose_cone'
     elif 'body-tube-page-button' in changed_id:
         page = '/body_tube'
@@ -42,7 +48,10 @@ def get_layout(data, url):
     init_data(data)
 
     global cur_page
-    if url.endswith('nose_cone'):
+    if url.endswith('recovery'):
+        cur_page = 'recovery'
+        layout = recovery_page.get_layout(data)
+    elif url.endswith('nose_cone'):
         cur_page = 'nose cone'
         layout = nose_cone_page.get_layout(data)
     elif url.endswith('body_tube'):
@@ -57,7 +66,8 @@ def get_layout(data, url):
             html.H3('Rocket builder'),
             html.Div(html.Button('Nose cone', id='nose-cone-page-button')),
             html.Div(html.Button('Body tube', id='body-tube-page-button')),
-            html.Div(html.Button('Fins', id='fins-page-button'))
+            html.Div(html.Button('Fins', id='fins-page-button')),
+            html.Div(html.Button('Recovery', id='recovery-page-button'))
         ]
     else:
         cur_page = ''
@@ -68,7 +78,8 @@ def get_layout(data, url):
     layout.extend([
         dcc.Store(id='fin-builder-data'),
         dcc.Store(id='body-tube-builder-data'),
-        dcc.Store(id='nose-cone-builder-data')
+        dcc.Store(id='nose-cone-builder-data'),
+        dcc.Store(id='recovery-builder-data')
     ])
 
     return html.Div(layout,
@@ -76,7 +87,7 @@ def get_layout(data, url):
                            'margin-right': '2rem'})
 
 
-def simple_input(name: str, value: float, unit: str, min: float = 0, max: float = 10 ** 9):
+def simple_input(name: str, value: float, unit: str, min: float = 0, max: float = 10 ** 9, id=None):
     """ Constructs a simple numeric input. It displays the name of the input, a numeric input field with an initial
     value, and a unit behind it.
 
@@ -85,11 +96,14 @@ def simple_input(name: str, value: float, unit: str, min: float = 0, max: float 
     :param unit: The unit of the input.
     :param min: The minimum input value allowed.
     :param max: The maximum input value allowed.
+    :param id: The id of the input field.
     :return: A simple input.
     """
+    if not id:
+        id = f'{name.replace(" ", "-")}-input'
     return html.Div([
         html_name(name),
-        html_numeric_input(name, value, min, max),
+        html_numeric_input(name, value, min, max, id),
         html_unit(unit)
     ])
 
@@ -102,16 +116,17 @@ def html_name(name: str):
                          'margin-right': '1rem'})
 
 
-def html_numeric_input(name: str, value: float, min: float, max: float):
+def html_numeric_input(name: str, value: float, min: float, max: float, id: str):
     """
     :param name: The name of the input. Should be lowercase with spaces between words.
     :param value: The default value of the input.
     :param min: The minimum input value allowed.
     :param max: The maximum input value allowed.
+    :param id: The id of the input field.
     """
     return html.Div(
         daq.NumericInput(
-            id=f'{name.replace(" ", "-")}-input',
+            id=id,
             size=100,
             min=min,
             max=max,
@@ -187,9 +202,10 @@ def draw_rocket(ts, data):
     Input('nose-cone-builder-data', 'data'),
     Input('body-tube-builder-data', 'data'),
     Input('fin-builder-data', 'data'),
+    Input('recovery-builder-data', 'data'),
     State('rocket-builder-data', 'data')
 )
-def save_data(nose_cone, body_tube, fins, data):
+def save_data(nose_cone, body_tube, fins, recovery, data):
     data = data or {}
     init_data(data)
     if nose_cone is not None:
@@ -201,6 +217,9 @@ def save_data(nose_cone, body_tube, fins, data):
     if fins is not None:
         for key, val in fins.items():
             data[key] = val
+    if recovery is not None:
+        for key, val in recovery.items():
+            data[key] = val
     return data
 
 
@@ -208,6 +227,7 @@ def init_data(data):
     nose_cone_page.init_data(data)
     body_tube_page.init_data(data)
     fins_page.init_data(data)
+    recovery_page.init_data(data)
 
 
 def convert_default_input(name: str, inputs: dict[str, dict]) -> float:
