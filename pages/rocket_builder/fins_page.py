@@ -29,7 +29,7 @@ def get_layout(data):
                                                  inputs[sweep_length]['si_prefix'],
                                                  inputs[sweep_length]['input_prefix']),
                                   inputs[sweep_length]['unit'],
-                                  max=1))
+                                  min=-10 ** 9))
     return layout
 
 
