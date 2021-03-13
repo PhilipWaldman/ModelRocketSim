@@ -26,16 +26,7 @@ def get_layout(data):
             id='thrust-curve-dropdown',
             options=motor_options,
             value=cur_motor),
-        # TODO: Add sliders to set ranges
-        # dcc.RangeSlider(
-        #     id='thrust-slider',
-        #     min=0,
-        #     max=20,
-        #     step=0.5,
-        #     value=[5, 15]
-        # )
         dcc.Graph(id='thrust-curve'),
-        dcc.Graph(id='thrust-curve-smooth')
     ],
         style={
             'margin-left': '2rem',
@@ -46,7 +37,6 @@ def get_layout(data):
 
 @app.callback(
     Output('thrust-curve', 'figure'),
-    Output('thrust-curve-smooth', 'figure'),
     Output('thrust-curve-data', 'data'),
     Input('thrust-curve-dropdown', 'value'))
 def plot_thrust_curve(file_name: str):
@@ -54,7 +44,6 @@ def plot_thrust_curve(file_name: str):
         return go.Figure()
     thrust_curve = tc.ThrustCurve(file_name)
     return (tc.get_thrust_curve_plot(thrust_curve.thrust_curve, thrust_curve.avg_thrust, str(thrust_curve)),
-            tc.get_thrust_curve_plot(thrust_curve.thrust_curve_smooth(0.01), title=f'{str(thrust_curve)} (smoothed)'),
             save_data(file_name))
 
 
