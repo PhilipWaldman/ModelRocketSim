@@ -14,9 +14,6 @@ inputs = {
 }
 
 
-# TODO: sweep length is allowed to be negative
-
-
 def get_layout(data):
     layout = [html.H3('Fins')]
     layout.extend([rb.simple_input(i,
@@ -24,7 +21,21 @@ def get_layout(data):
                                                   inputs[i]['si_prefix'],
                                                   inputs[i]['input_prefix']),
                                    inputs[i]['unit'])
-                   for i in inputs])
+                   for i in inputs if i != 'sweep length'])
+    sweep_length = 'sweep length'
+    layout.append(rb.simple_input(sweep_length,
+                                  metric_convert(data[sweep_length.replace(' ', '_')],
+                                                 inputs[sweep_length]['si_prefix'],
+                                                 inputs[sweep_length]['input_prefix']),
+                                  inputs[sweep_length]['unit']))
+    layout.append(html.Div([
+        rb.html_name(sweep_length),
+        rb.html_numeric_input(sweep_length, metric_convert(data[sweep_length.replace(' ', '_')],
+                                                           inputs[sweep_length]['si_prefix'],
+                                                           inputs[sweep_length]['input_prefix']),
+                              min=-10 ** 9),
+        rb.html_unit(inputs[sweep_length]['unit'])
+    ]))
     return layout
 
 

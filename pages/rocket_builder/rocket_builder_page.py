@@ -101,17 +101,19 @@ def html_name(name: str):
                          'margin-right': '1rem'})
 
 
-def html_numeric_input(name: str, value: float):
+def html_numeric_input(name: str, value: float, min: float = 0, max: float = 10 ** 9):
     """
     :param name: The name of the input. Should be lowercase with spaces between words.
     :param value: The default value of the input.
+    :param min: The minimum input value allowed.
+    :param max: The maximum input value allowed.
     """
     return html.Div(
         daq.NumericInput(
             id=f'{name.replace(" ", "-")}-input',
             size=100,
-            min=0,
-            max=10 ** 9,
+            min=min,
+            max=max,
             value=round(value, 3)),
         style={'display': 'inline-block',
                'margin-right': '1rem'})
