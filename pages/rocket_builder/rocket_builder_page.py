@@ -38,9 +38,8 @@ def change_page(nose_cone_clicks, body_tube_clicks, fins_clicks):
 
 
 def get_layout(data, url):
-    if data is None:
-        data = {}
-        init_data(data)
+    data = data or {}
+    init_data(data)
 
     global cur_page
     if url.endswith('nose_cone'):
@@ -134,8 +133,8 @@ def html_unit(unit: str):
     State('rocket-builder-data', 'data')
 )
 def draw_rocket(ts, data):
-    if ts is None or data is None:
-        raise PreventUpdate
+    data = data or {}
+    init_data(data)
 
     nose_length = data['nose_cone_length']
     tube_length = data['body_tube_length']
