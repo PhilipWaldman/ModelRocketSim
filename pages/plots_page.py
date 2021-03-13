@@ -133,13 +133,14 @@ def altitude_time_graph(rocket_data, motor_data):
     return fig_alt, fig_vel, fig_acc
 
 
-def calc_drag_force(v, d):
+def calc_drag_force(v: float, d: float, Cd=0.37):
     """ F_drag = 0.5 * Cd * ρ * v^2 * A
 
     https://www.grc.nasa.gov/www/k-12/airplane/drageq.html
 
     :param v: Velocity
     :param d: Diameter
+    :param Cd: Drag coefficient
     :return: The drag force
     """
-    return 0.5 * 0.37 * 1.205 * (v ** 2) * ((d / 2) ** 2 * math.pi)
+    return 0.5 * Cd * 1.205 * (v ** 2) * ((d / 2) ** 2 * math.pi)

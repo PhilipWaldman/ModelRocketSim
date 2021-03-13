@@ -77,18 +77,20 @@ def get_layout(data, url):
                            'margin-right': '2rem'})
 
 
-def simple_input(name: str, value: float, unit: str):
+def simple_input(name: str, value: float, unit: str, min: float = 0, max: float = 10 ** 9):
     """ Constructs a simple numeric input. It displays the name of the input, a numeric input field with an initial
     value, and a unit behind it.
 
     :param name: The name of the input. Should be lowercase with spaces between words.
     :param value: The default value of the input.
     :param unit: The unit of the input.
+    :param min: The minimum input value allowed.
+    :param max: The maximum input value allowed.
     :return: A simple input.
     """
     return html.Div([
         html_name(name),
-        html_numeric_input(name, value),
+        html_numeric_input(name, value, min, max),
         html_unit(unit)
     ])
 
@@ -101,7 +103,7 @@ def html_name(name: str):
                          'margin-right': '1rem'})
 
 
-def html_numeric_input(name: str, value: float, min: float = 0, max: float = 10 ** 9):
+def html_numeric_input(name: str, value: float, min: float, max: float):
     """
     :param name: The name of the input. Should be lowercase with spaces between words.
     :param value: The default value of the input.
