@@ -50,11 +50,20 @@ def altitude_time_graph(rocket_data, motor_data):
     # Load rocket and motor from Store
     m = 0.1
     d = 0.05
+    chute_d = 50
+    chute_delay = 5
+    chute_Cd = 1
     if rocket_data:
         if 'mass' in rocket_data.keys():
             m = rocket_data['mass']
         if 'diameter' in rocket_data.keys():
             d = rocket_data['diameter']
+        if 'parachute_diameter' in rocket_data.keys():
+            chute_d = rocket_data['parachute_diameter']
+        if 'parachute_deploy_delay' in rocket_data.keys():
+            chute_delay = rocket_data['parachute_deploy_delay']
+        if 'parachute_drag_coefficient' in rocket_data.keys():
+            chute_Cd = rocket_data['parachute_drag_coefficient']
     motor_file = tc.thrust_files[0]
     if motor_data and 'motor_file' in motor_data.keys():
         motor_file = motor_data['motor_file']
@@ -67,24 +76,17 @@ def altitude_time_graph(rocket_data, motor_data):
     v = 0
     t = 0
     for t1, F_thrust in motor_tc.items():
-        F = F_thrust - g * m - calc_drag_force(v, d)
-        a = F / m
-        v += a * (t1 - t)
-        y += v * (t1 - t)
-        if y < 0:
-            y = 0
-            v = 0
+        _, a, v, y = move(0, (t1 - t), F_thrust, v, y, m, d)
         altitude[t1] = y
         velocity[t1] = v
         acceleration[t1] = a
         t = t1
-    dt = 0.01
+    burnout = t
     while y > 0:
-        t += dt
-        F = - g * m - calc_drag_force(v, d)
-        a = F / m
-        v += a * dt
-        y += v * dt
+        if t - burnout < chute_delay:
+            t, a, v, y = move(t, dt, 0, v, y, m, d)
+        else:
+            t, a, v, y = move(t, dt, 0, v, y, m, chute_d, chute_Cd)
         altitude[t] = y
         velocity[t] = v
         acceleration[t] = a
@@ -133,7 +135,22 @@ def altitude_time_graph(rocket_data, motor_data):
     return fig_alt, fig_vel, fig_acc
 
 
-def calc_drag_force(v: float, d: float, Cd=0.37):
+def move(t: float, dt: float, F_thrust: float, v: float, y: float, m: float, d: float, Cd: float = None) \
+        -> tuple[float, float, float, float]:
+    if not Cd:
+        F = F_thrust - g * m + calc_drag_force(v, d)
+    else:
+        F = F_thrust - g * m + calc_drag_force(v, d, Cd)
+    a = F / m
+    v += a * dt
+    y += v * dt
+    if y < 0:
+        y = 0
+        v = 0
+    return t + dt, a, v, y
+
+
+def calc_drag_force(v: float, d: float, Cd=0.5):
     """ F_drag = 0.5 * Cd * ρ * v^2 * A
 
     https://www.grc.nasa.gov/www/k-12/airplane/drageq.html
@@ -143,4 +160,7 @@ def calc_drag_force(v: float, d: float, Cd=0.37):
     :param Cd: Drag coefficient
     :return: The drag force
     """
-    return 0.5 * Cd * 1.205 * (v ** 2) * ((d / 2) ** 2 * math.pi)
+    direction = 1
+    if v > 0:
+        direction = -1
+    return direction * 0.5 * Cd * 1.205 * (v ** 2) * ((d / 2) ** 2 * math.pi)
