@@ -16,6 +16,11 @@ class ThrustCurve:
         :param file_name: The file name including file extension.
         The file extension has to be .eng. E.g. 'Estes_D12.eng'
         """
+        # TODO: load thrust curves with API
+        # https://www.thrustcurve.org/info/api.html
+        # https://www.thrustcurve.org/info/apidemo.html
+        # Read more info from file
+        # https://www.thrustcurve.org/info/raspformat.html
         if not file_name.endswith('.eng'):
             raise Exception('File should be of type .eng')
         self.file_name = file_name
@@ -159,88 +164,3 @@ def spline_thrust_curve(thrust_curve: Dict[float, float], dt: float) -> Dict[flo
 thrust_folder = 'thrustcurve'
 thrust_files = [f for f in listdir(thrust_folder) if isfile(join(thrust_folder, f)) and f.endswith('.eng')]
 motor_names = [str(ThrustCurve(n)) for n in thrust_files]
-
-# I'm keeping this for if I do someday to also allow these file types.
-#
-# def read_rse_thrust_curve(text: str) -> Dict[float, float]:
-#     """Converts the raw thrust curve .rse data file to a dictionary.
-#
-#     :param text: The raw data from the file
-#     :return: A dictionary with the times as keys and the corresponding thrust as the value
-#     """
-#     lines = text.splitlines()
-#     data_start = lines.index('<data>')
-#     data_end = lines.index('</data>')
-#     data = lines[data_start + 1:data_end]
-#
-#     times = [find_rse_time(line) for line in data]
-#     thrusts = [find_rse_thrust(line) for line in data]
-#
-#     return dict(zip(times, thrusts))
-#
-#
-# def find_rse_time(line: str) -> float:
-#     """Extracts the time component out of a data line of a .rse file.
-#
-#     :param line: The line from the file that contains the data
-#     :return: The time that is specified in that line
-#     """
-#     time_str = line[line.find('t='):]
-#     time_str = time_str[time_str.find("\"") + 1:]
-#     time_str = time_str[:time_str.find("\"")]
-#     return float(time_str)
-#
-#
-# def find_rse_thrust(line: str) -> float:
-#     """Extracts the thrust component out of a data line of a .rse file.
-#
-#     :param line: The line from the file that contains the data
-#     :return: The thrust that is specified in that line
-#     """
-#     time_str = line[line.find('f='):]
-#     time_str = time_str[time_str.find("\"") + 1:]
-#     time_str = time_str[:time_str.find("\"")]
-#     return float(time_str)
-#
-#
-# def read_edx_thrust_curve(text: str) -> Dict[float, float]:
-#     """Converts the raw thrust curve .edx data file to a dictionary.
-#
-#     :param text: The raw data from the file
-#     :return: A dictionary with the times as keys and the corresponding thrust as the value
-#     """
-#     lines = text.splitlines()
-#     lines = [line.split(':')[-1] for line in lines if 'Time /Thrust' in line]
-#
-#     times = [value.strip().split(' ')[0] for value in lines]
-#     times = [float(time) for time in times]
-#
-#     thrusts = [value.strip().split(' ')[-1] for value in lines]
-#     thrusts = [lbf_to_N(float(thrust)) for thrust in thrusts]
-#
-#     return dict(zip(times, thrusts))
-#
-#
-# def lbf_to_N(lbf: float) -> float:
-#     """Converts pound-force to newtons.
-#
-#     :param lbf: Force in pound-force
-#     :return: Force in newtons
-#     """
-#     return lbf * 4.4482216
-#
-#
-# def read_txt_thrust_curve(text: str) -> Dict[float, float]:
-#     """Converts the raw thrust curve .txt data file to a dictionary.
-#
-#     :param text: The raw data from the file
-#     :return: A dictionary with the times as keys and the corresponding thrust as the value
-#     """
-#     lines = text.splitlines()
-#     lines = [line.strip() for line in lines if line and not line.startswith(';')]
-#     lines = lines[1:-1]
-#
-#     times = [float(line.split('\t')[0]) for line in lines]
-#     thrusts = [float(line.split('\t')[-1]) for line in lines]
-#
-#     return dict(zip(times, thrusts))
