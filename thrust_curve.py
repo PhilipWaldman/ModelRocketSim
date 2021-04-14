@@ -3,10 +3,9 @@ from os import listdir
 from os.path import isfile, join
 from typing import Dict
 
-import numpy as np
+import pandas as pd
 import plotly.graph_objects as go
 from dash_html_components import Figure
-from scipy.interpolate import interp1d
 
 
 class ThrustCurve:
@@ -25,37 +24,56 @@ class ThrustCurve:
             raise Exception('File should be of type .eng')
         self.file_name = file_name
 
-        self.name = ''
         with open(os.path.join('.', thrust_folder, file_name), 'r') as f:
             file_text = f.read()
             lines = file_text.splitlines()
             lines = [line.strip() for line in lines if line and not line.startswith(';')]
-            self.name = lines[0].split()[0]
+            header_line = lines[0].split()
 
-        file_str = file_name.split('_', 1)[1].split('.')[0].split('_')
-        if file_str[-1].isnumeric():
-            rec = int(file_str[-1])
-            self.name += f' (#{rec + 1})'
+            # self.name = header_line[0]
+            if file_name.split('_')[1] != 'Micro':
+                self.name = file_name.split('_')[1].split('.')[0]
+            else:
+                self.name = 'Micro Maxx'
+            self.diameter = int(float(header_line[1]))  # mm
+            self.length = float(header_line[2])  # mm
+            self.delays = [int(d) if type(d) == 'int' else d for d in header_line[3].split('-')]
+            self.prop_mass = float(header_line[4])  # kg
+            self.wet_mass = float(header_line[5])  # kg
+            self.dry_mass = self.wet_mass - self.prop_mass  # kg
 
-        self.manufacturer = file_name.split('_')[0]
+        self.manufacturer = map_manufacturer(file_name.split('_')[0])
         self.thrust_curve = read_thrust_curve(file_name)  # {s, N}
-        self.impulse = calc_impulse(list(self.thrust_curve.keys()), list(self.thrust_curve.values()))  # Ns
-        self.avg_thrust = calc_average_thrust(list(self.thrust_curve.keys()), list(self.thrust_curve.values()))  # N
-        # self.isp_range = ''
-        # self.length = -1  # m
-        # self.diameter = -1  # m
-        # self.type = ''
-        # self.dry_mass = -1  # kg
-        # self.wet_mass = -1  # kg
-        # self.burn_time = -1  # s
-        # self.delay = -1  # s
+        self.impulse = calc_impulse(self.thrust_curve, 2)  # Ns
+        self.avg_thrust = calc_average_thrust(self.thrust_curve, 2)  # N
+        self.burn_time = calc_burn_time(self.thrust_curve, 2)  # s
+        self.impulse_range = ''
         # self.mass_curve = {}  # s,kg
+
+    def plot(self):
+        return get_thrust_curve_plot(self.thrust_curve, self.avg_thrust, str(self))
 
     def __str__(self):
         return f'{self.manufacturer} {self.name}'
 
-    def thrust_curve_smooth(self, dt: float):
-        return spline_thrust_curve(self.thrust_curve, dt)
+
+def map_manufacturer(name: str) -> str:
+    mapping = {'AeroTech': 'AeroTech',
+               'AMW': 'Animal Motor Works',
+               'Apogee': 'Apogee Components',
+               'Cesaroni': 'Cesaroni Technology',
+               'Contrail': 'Contrail Rockets',
+               'Estes': 'Estes Industries',
+               'Hypertek': 'Hypertek',
+               'KBA': 'Kosdon by AeroTech',
+               'Loki': 'Loki Research',
+               'Quest': 'Quest Aerospace',
+               'RATT': 'R.A.T.T. Works',
+               'Klima': 'Raketenmodellbau Klima',
+               'SCR': 'Southern Cross Rocketry'}
+    if name in mapping.keys():
+        return mapping[name]
+    return name
 
 
 def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = None, title: str = '') -> Figure:
@@ -98,15 +116,13 @@ def read_thrust_curve(file_name: str) -> Dict[float, float]:
     if 0 not in thrust_curve.keys():
         thrust_curve[0] = 0
 
-    tc = {}
-    for k in sorted(thrust_curve):
-        tc[k] = thrust_curve[k]
+    tc = {k: thrust_curve[k] for k in sorted(thrust_curve)}
 
     return tc
 
 
 def read_eng_thrust_curve(text: str) -> Dict[float, float]:
-    """Converts the raw thrust curve .eng data file to a dictionary.
+    """ Converts the raw thrust curve .eng data file to a dictionary.
 
     :param text: The raw data from the file
     :return: A dictionary with the times as keys and the corresponding thrust as the value
@@ -121,46 +137,83 @@ def read_eng_thrust_curve(text: str) -> Dict[float, float]:
     return dict(zip(times, thrusts))
 
 
-def calc_average_thrust(times: list, thrusts: list) -> float:
+def calc_average_thrust(thrust_curve: Dict[float, float], ndigits: int = None) -> float:
     """ Uses trapezoid integral approximation to find the average thrust.
 
-    :param times: The times at which the measurements have been made.
-    :param thrusts: The thrusts corresponding to the time at the same index.
+    :param thrust_curve: The thrust curve.
+    :param ndigits: The number of digits to round to. Default: does not round.
     :return: The average thrust.
     """
-    return calc_impulse(times, thrusts) / max(times)
+    tc = get_5_percent_thrust_range(thrust_curve)
+    impulse = calc_impulse(tc)
+    dt = calc_burn_time(tc)
+    if dt == 0:
+        impulse = calc_impulse(thrust_curve)
+        dt = max(thrust_curve.keys())
+    thrust = impulse / dt
+    return round(thrust, ndigits) if ndigits else thrust
 
 
-def calc_impulse(times: list, thrusts: list) -> float:
+def calc_burn_time(thrust_curve: Dict[float, float], ndigits: int = None) -> float:
+    """ Calculates the burn time of the motor.
+
+    :param thrust_curve: The thrust curve.
+    :param ndigits: The number of digits to round to. Default: does not round.
+    :return: The burn time of the motor in seconds.
+    """
+    tc = get_5_percent_thrust_range(thrust_curve)
+    t = max(tc.keys()) - min(tc.keys())
+    return round(t, ndigits) if ndigits else t
+
+
+def get_5_percent_thrust_range(thrust_curve: Dict[float, float]) -> Dict[float, float]:
+    """ Removes the thrusts where the thrust is <= 5% of the max thrust.
+
+    :param thrust_curve: The thrust curve.
+    :return: The thrust curve where every thrust value is > 5% of the max thrust.
+    """
+    max_thrust = max(thrust_curve.values())
+    threshold = max_thrust * 0.05
+    valid_thrust_curve = {}
+    for t, F in thrust_curve.items():
+        if F > threshold:
+            valid_thrust_curve[t] = F
+    return valid_thrust_curve
+
+
+def calc_impulse(thrust_curve: Dict[float, float], ndigits: int = None) -> float:
     """ Uses trapezoid integral approximation to calculate the impulse.
 
-    :param times: The times at which the measurements have been made.
-    :param thrusts: The thrusts corresponding to the time at the same index.
+    :param thrust_curve: The thrust curve.
+    :param ndigits: The number of digits to round to. Default: does not round.
     :return: The impulse.
     """
-    area = 0
+    times = list(thrust_curve.keys())
+    thrusts = list(thrust_curve.values())
 
+    area = 0
     for i in range(len(times) - 1):
         area += (times[i + 1] - times[i]) * ((thrusts[i + 1] + thrusts[i]) / 2)
-
-    return area
-
-
-def spline_thrust_curve(thrust_curve: Dict[float, float], dt: float) -> Dict[float, float]:
-    """Smooths/interpolates the thrust curve using a cubic spline function.
-
-    :param thrust_curve: The thrust curve to smooth.
-    :param dt: The size of the interpolated time steps. In seconds.
-    :return: The smoothed thrust curve.
-    """
-    x = np.array(list(thrust_curve.keys()))
-    y = np.array(list(thrust_curve.values()))
-    f = interp1d(x, y, kind='cubic')
-    x_new = np.linspace(0, max(x), num=int(max(x) / dt))
-    values = f(x_new)
-    return dict(zip(x_new, values))
+    return round(area, ndigits) if ndigits else area
 
 
 thrust_folder = 'thrustcurve'
 thrust_files = [f for f in listdir(thrust_folder) if isfile(join(thrust_folder, f)) and f.endswith('.eng')]
 motor_names = [str(ThrustCurve(n)) for n in thrust_files]
+
+thrust_curves = [ThrustCurve(f) for f in thrust_files]
+thrust_curve_df = pd.DataFrame(
+    {'file_name': [tc.file_name for tc in thrust_curves],
+     'name': [tc.name for tc in thrust_curves],
+     'diameter': [tc.diameter for tc in thrust_curves],
+     'length': [tc.length for tc in thrust_curves],
+     'prop_mass': [tc.prop_mass for tc in thrust_curves],
+     'wet_mass': [tc.wet_mass for tc in thrust_curves],
+     'dry_mass': [tc.dry_mass for tc in thrust_curves],
+     'manufacturer': [tc.manufacturer for tc in thrust_curves],
+     'impulse': [tc.impulse for tc in thrust_curves],
+     'avg_thrust': [tc.avg_thrust for tc in thrust_curves],
+     'burn_time': [tc.burn_time for tc in thrust_curves],
+     'impulse_range': [tc.impulse_range for tc in thrust_curves]})
+# self.delays = [int(d) if type(d) == 'int' else d for d in header_line[3].split('-')]
+del thrust_curves

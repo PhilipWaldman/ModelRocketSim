@@ -43,7 +43,7 @@ def plot_thrust_curve(file_name: str):
     if file_name is None:
         return go.Figure()
     thrust_curve = tc.ThrustCurve(file_name)
-    return (tc.get_thrust_curve_plot(thrust_curve.thrust_curve, thrust_curve.avg_thrust, str(thrust_curve)),
+    return (thrust_curve.plot(),
             save_data(file_name))
 
 
