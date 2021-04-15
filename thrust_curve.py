@@ -3,7 +3,6 @@ from os import listdir
 from os.path import isfile, join
 from typing import Dict
 
-import pandas as pd
 import plotly.graph_objects as go
 from dash_html_components import Figure
 
@@ -31,10 +30,12 @@ class ThrustCurve:
             header_line = lines[0].split()
 
             # self.name = header_line[0]
-            if file_name.split('_')[1] != 'Micro':
-                self.name = file_name.split('_')[1].split('.')[0]
-            else:
+            if file_name.split('_')[1] == 'Micro':
                 self.name = 'Micro Maxx'
+            elif file_name.split('_')[1] == '1':
+                self.name = '/'.join(file_name.split('_')[1:]).split('.')[0]
+            else:
+                self.name = file_name.split('_')[1].split('.')[0]
             self.diameter = int(float(header_line[1]))  # mm
             self.length = float(header_line[2])  # mm
             self.delays = [int(d) if type(d) == 'int' else d for d in header_line[3].split('-')]
@@ -106,7 +107,8 @@ def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = 
 
 def read_thrust_curve(file_name: str) -> Dict[float, float]:
     """ Converts the raw thrust curve data file to a dictionary. """
-    if file_name not in thrust_files:
+    if 'thrust_files' in locals() and file_name not in thrust_files or \
+            'thrust_curves' in locals() and file_name not in [c.file_name for c in thrust_curves]:
         raise FileNotFoundError(f'{file_name} does not exist in the directory "{thrust_folder}"')
 
     with open(os.path.join('.', thrust_folder, file_name), 'r') as f:
@@ -172,6 +174,7 @@ def get_5_percent_thrust_range(thrust_curve: Dict[float, float]) -> Dict[float, 
     :param thrust_curve: The thrust curve.
     :return: The thrust curve where every thrust value is > 5% of the max thrust.
     """
+    # TODO: interpolate tc to smaller time steps in case of big time steps / thrust changes at start and end.
     max_thrust = max(thrust_curve.values())
     threshold = max_thrust * 0.05
     valid_thrust_curve = {}
@@ -179,6 +182,10 @@ def get_5_percent_thrust_range(thrust_curve: Dict[float, float]) -> Dict[float, 
         if F > threshold:
             valid_thrust_curve[t] = F
     return valid_thrust_curve
+
+
+def interpolate_thrust_curve(thrust_curve: Dict[float, float], dt: float = 0.01) -> Dict[float, float]:
+    pass
 
 
 def calc_impulse(thrust_curve: Dict[float, float], ndigits: int = None) -> float:
@@ -199,21 +206,15 @@ def calc_impulse(thrust_curve: Dict[float, float], ndigits: int = None) -> float
 
 thrust_folder = 'thrustcurve'
 thrust_files = [f for f in listdir(thrust_folder) if isfile(join(thrust_folder, f)) and f.endswith('.eng')]
-motor_names = [str(ThrustCurve(n)) for n in thrust_files]
 
 thrust_curves = [ThrustCurve(f) for f in thrust_files]
-thrust_curve_df = pd.DataFrame(
-    {'file_name': [tc.file_name for tc in thrust_curves],
-     'name': [tc.name for tc in thrust_curves],
-     'diameter': [tc.diameter for tc in thrust_curves],
-     'length': [tc.length for tc in thrust_curves],
-     'prop_mass': [tc.prop_mass for tc in thrust_curves],
-     'wet_mass': [tc.wet_mass for tc in thrust_curves],
-     'dry_mass': [tc.dry_mass for tc in thrust_curves],
-     'manufacturer': [tc.manufacturer for tc in thrust_curves],
-     'impulse': [tc.impulse for tc in thrust_curves],
-     'avg_thrust': [tc.avg_thrust for tc in thrust_curves],
-     'burn_time': [tc.burn_time for tc in thrust_curves],
-     'impulse_range': [tc.impulse_range for tc in thrust_curves]})
-# self.delays = [int(d) if type(d) == 'int' else d for d in header_line[3].split('-')]
-del thrust_curves
+# thrust_curve_df = pd.DataFrame({
+#     'thrust_curve': [tc for tc in thrust_curves],
+#     'diameter': [tc.diameter for tc in thrust_curves],
+#     'length': [tc.length for tc in thrust_curves],
+#     'manufacturer': [tc.manufacturer for tc in thrust_curves],
+#     'impulse': [tc.impulse for tc in thrust_curves],
+#     'avg_thrust': [tc.avg_thrust for tc in thrust_curves],
+#     'burn_time': [tc.burn_time for tc in thrust_curves],
+#     'impulse_range': [tc.impulse_range for tc in thrust_curves]
+# })

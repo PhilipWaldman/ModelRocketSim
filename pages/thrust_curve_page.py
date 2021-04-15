@@ -3,14 +3,18 @@ import dash_html_components as html
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 
-import thrust_curve as tc
 from app import app
+from thrust_curve import thrust_curves, ThrustCurve
 
 pathname = '/thrust_curves'
 page_name = 'Thrust curves'
 
 # The option for the dropdown. List of pairs of motor names and file names.
-motor_options = [{'label': m, 'value': f} for m, f in zip(tc.motor_names, tc.thrust_files)]
+motor_options = [{'label': str(tc), 'value': tc.file_name} for tc in thrust_curves]
+# The manufacturers to show in the selector dropdown.
+manufacturers = sorted(set([tc.manufacturer for tc in thrust_curves]))
+manufacturer_options = [{'label': m, 'value': m} for m in manufacturers]
+manufacturer_options.append({'label': '<all>', 'value': '<all>'})
 
 
 def get_layout(data):
@@ -18,7 +22,7 @@ def get_layout(data):
     if data:
         cur_motor = data['motor_file']
     else:
-        cur_motor = tc.thrust_files[0]
+        cur_motor = thrust_curves[0].file_name
 
     return html.Div([
         html.H3(page_name),
@@ -26,6 +30,19 @@ def get_layout(data):
             id='thrust-curve-dropdown',
             options=motor_options,
             value=cur_motor),
+        # TODO: add filters to narrow down motor options
+        # Select by:
+        # 'manufacturer'
+        dcc.Dropdown(
+            id='manufacturer-dropdown',
+            options=manufacturer_options,
+            value='<all>'),
+        # 'diameter'
+        # 'length'
+        # 'impulse'
+        # 'avg_thrust'
+        # 'burn_time'
+        # 'impulse_range' - Not implemented yet
         dcc.Graph(id='thrust-curve'),
     ],
         style={
@@ -36,13 +53,26 @@ def get_layout(data):
 
 
 @app.callback(
+    Output('thrust-curve-dropdown', 'options'),
+    Input('manufacturer-dropdown', 'value')
+)
+def filter_manufacturer(manufacturer: str):
+    if manufacturer == '<all>':
+        return motor_options
+    return [{'label': str(tc), 'value': tc.file_name}
+            for tc in thrust_curves
+            if tc.manufacturer == manufacturer]
+
+
+@app.callback(
     Output('thrust-curve', 'figure'),
     Output('thrust-curve-data', 'data'),
-    Input('thrust-curve-dropdown', 'value'))
+    Input('thrust-curve-dropdown', 'value')
+)
 def plot_thrust_curve(file_name: str):
     if file_name is None:
         return go.Figure()
-    thrust_curve = tc.ThrustCurve(file_name)
+    thrust_curve = ThrustCurve(file_name)
     return (thrust_curve.plot(),
             save_data(file_name))
 

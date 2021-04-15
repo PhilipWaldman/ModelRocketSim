@@ -45,7 +45,7 @@ def get_layout():
     Output('acceleration-time-graph', 'figure'),
     Input('rocket-builder-data', 'data'),
     Input('thrust-curve-data', 'data'))
-def altitude_time_graph(rocket_data, motor_data):
+def graphs(rocket_data, motor_data):
     dt = 0.01
     # Load rocket and motor from Store
     m = 0.1
@@ -64,7 +64,7 @@ def altitude_time_graph(rocket_data, motor_data):
             chute_delay = rocket_data['parachute_deploy_delay']
         if 'parachute_drag_coefficient' in rocket_data.keys():
             chute_Cd = rocket_data['parachute_drag_coefficient']
-    motor_file = tc.thrust_files[0]
+    motor_file = tc.thrust_curves[0].file_name
     if motor_data and 'motor_file' in motor_data.keys():
         motor_file = motor_data['motor_file']
     motor_tc = tc.ThrustCurve(motor_file).thrust_curve
