@@ -174,18 +174,56 @@ def get_5_percent_thrust_range(thrust_curve: Dict[float, float]) -> Dict[float, 
     :param thrust_curve: The thrust curve.
     :return: The thrust curve where every thrust value is > 5% of the max thrust.
     """
-    # TODO: interpolate tc to smaller time steps in case of big time steps / thrust changes at start and end.
-    max_thrust = max(thrust_curve.values())
+    interp_tc = interpolate_thrust_curve(thrust_curve)
+    max_thrust = max(interp_tc.values())
     threshold = max_thrust * 0.05
     valid_thrust_curve = {}
-    for t, F in thrust_curve.items():
+    for t, F in interp_tc.items():
         if F > threshold:
             valid_thrust_curve[t] = F
     return valid_thrust_curve
 
 
 def interpolate_thrust_curve(thrust_curve: Dict[float, float], dt: float = 0.01) -> Dict[float, float]:
-    pass
+    """ Interpolates the thrust curve linearly to have more data points.
+
+    :param thrust_curve: The thrust curve.
+    :param dt: The size of the time steps in the interpolation.
+    :return: The interpolated thrust curve.
+    """
+    times = list(thrust_curve.keys())
+    thrusts = list(thrust_curve.values())
+
+    interpolated = {}
+
+    for i in range(len(times) - 1):
+        inter = interpolate_between_points(times[i], thrusts[i], times[i + 1], thrusts[i + 1], dt)
+        for k, v in inter.items():
+            interpolated[k] = v
+
+    return interpolated
+
+
+def interpolate_between_points(x0: float, y0: float, x1: float, y1: float, dx: float) -> Dict[float, float]:
+    """ Interpolates a line between two points.
+
+    :param x0: The x-coordinate of the first point.
+    :param y0: The y-coordinate of the first point.
+    :param x1: The x-coordinate of the second point.
+    :param y1: The y-coordinate of the second point.
+    :param dx: The step size in the interpolation.
+    :return: A dict of the interpolated line.
+    """
+    m = (y1 - y0) / (x1 - x0)
+    b = y0 - m * x0
+    interpolated = {}
+
+    x = x0
+    while x < x1:
+        interpolated[x] = m * x + b
+        x += dx
+
+    return interpolated
 
 
 def calc_impulse(thrust_curve: Dict[float, float], ndigits: int = None) -> float:
@@ -208,13 +246,3 @@ thrust_folder = 'thrustcurve'
 thrust_files = [f for f in listdir(thrust_folder) if isfile(join(thrust_folder, f)) and f.endswith('.eng')]
 
 thrust_curves = [ThrustCurve(f) for f in thrust_files]
-# thrust_curve_df = pd.DataFrame({
-#     'thrust_curve': [tc for tc in thrust_curves],
-#     'diameter': [tc.diameter for tc in thrust_curves],
-#     'length': [tc.length for tc in thrust_curves],
-#     'manufacturer': [tc.manufacturer for tc in thrust_curves],
-#     'impulse': [tc.impulse for tc in thrust_curves],
-#     'avg_thrust': [tc.avg_thrust for tc in thrust_curves],
-#     'burn_time': [tc.burn_time for tc in thrust_curves],
-#     'impulse_range': [tc.impulse_range for tc in thrust_curves]
-# })
