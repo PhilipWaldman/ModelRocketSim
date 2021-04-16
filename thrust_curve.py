@@ -29,13 +29,13 @@ class ThrustCurve:
             lines = [line.strip() for line in lines if line and not line.startswith(';')]
             header_line = lines[0].split()
 
-            # self.name = header_line[0]
-            if file_name.split('_')[1] == 'Micro':
-                self.name = 'Micro Maxx'
-            elif file_name.split('_')[1] == '1':
-                self.name = '/'.join(file_name.split('_')[1:]).split('.')[0]
-            else:
-                self.name = file_name.split('_')[1].split('.')[0]
+            self.name = header_line[0]
+            # if file_name.split('_')[1] == 'Micro':
+            #     self.name = 'Micro Maxx'
+            # elif file_name.split('_')[1] == '1':
+            #     self.name = '/'.join(file_name.split('_')[1:]).split('.')[0]
+            # else:
+            #     self.name = file_name.split('_')[1].split('.')[0]
             self.diameter = int(float(header_line[1]))  # mm
             self.length = float(header_line[2])  # mm
             self.delays = [int(d) if type(d) == 'int' else d for d in header_line[3].split('-')]
