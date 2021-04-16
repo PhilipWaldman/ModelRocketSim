@@ -43,11 +43,14 @@ class ThrustCurve:
         tc_5_percent = get_5_percent_thrust_range(self.thrust_curve)
         self.avg_thrust = calc_average_thrust(tc_5_percent, 2)  # N
         self.burn_time = calc_burn_time(tc_5_percent, 2)  # s
+        self.burnout = max(tc_5_percent.keys())
         # self.impulse_range = ''
         # self.mass_curve = {}  # s,kg  # approximate
 
     def plot(self):
-        return get_thrust_curve_plot(self.thrust_curve, self.avg_thrust, str(self))
+        return get_thrust_curve_plot(interpolate_thrust_curve(self.thrust_curve),
+                                     avg_thrust=self.avg_thrust,
+                                     title=str(self))
 
     def __str__(self):
         return f'{self.manufacturer} {self.name}'
@@ -72,18 +75,18 @@ def map_manufacturer(name: str) -> str:
     return name
 
 
-def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = None, title: str = '') -> Figure:
+def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = None, burnout: float = None,
+                          title: str = '') -> Figure:
     """ Plots the thrust curve. The file name is used to make a title to the graph. """
-
     t = list(thrust_curve.keys())
-    f = list(thrust_curve.values())
+    F = list(thrust_curve.values())
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(x=t,
-                             y=f,
+                             y=F,
                              mode='lines',
                              hovertemplate='<b>%{text}</b>',
-                             text=[f't = {round(time, 3)} s<br>F = {round(force, 3)} N' for time, force in zip(t, f)],
+                             text=[f't = {round(time, 3)} s<br>F = {round(force, 3)} N' for time, force in zip(t, F)],
                              showlegend=False))
 
     x_range = [-0.025 * max(t), 1.025 * max(t)]
@@ -93,10 +96,18 @@ def get_thrust_curve_plot(thrust_curve: Dict[float, float], avg_thrust: float = 
                                  mode='lines',
                                  name='Average thrust'))
 
+    y_range = [-0.025 * max(F), 1.025 * max(F)]
+    if burnout:
+        fig.add_trace(go.Scatter(x=[burnout, burnout],
+                                 y=y_range,
+                                 mode='lines',
+                                 name='Burnout'))
+
     fig.update_layout(title_text=title,
                       xaxis_title_text='Time (s)',
                       yaxis_title_text='Thrust (N)')
     fig.update_xaxes(range=x_range)
+    fig.update_yaxes(range=y_range)
     return fig
 
 
