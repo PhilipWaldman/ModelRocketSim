@@ -30,12 +30,6 @@ class ThrustCurve:
             header_line = lines[0].split()
 
             self.name = header_line[0]
-            # if file_name.split('_')[1] == 'Micro':
-            #     self.name = 'Micro Maxx'
-            # elif file_name.split('_')[1] == '1':
-            #     self.name = '/'.join(file_name.split('_')[1:]).split('.')[0]
-            # else:
-            #     self.name = file_name.split('_')[1].split('.')[0]
             self.diameter = int(float(header_line[1]))  # mm
             self.length = float(header_line[2])  # mm
             self.delays = [int(d) if type(d) == 'int' else d for d in header_line[3].split('-')]
@@ -46,10 +40,11 @@ class ThrustCurve:
         self.manufacturer = map_manufacturer(file_name.split('_')[0])
         self.thrust_curve = read_thrust_curve(file_name)  # {s, N}
         self.impulse = calc_impulse(self.thrust_curve, 2)  # Ns
-        self.avg_thrust = calc_average_thrust(self.thrust_curve, 2)  # N
-        self.burn_time = calc_burn_time(self.thrust_curve, 2)  # s
-        self.impulse_range = ''
-        # self.mass_curve = {}  # s,kg
+        tc_5_percent = get_5_percent_thrust_range(self.thrust_curve)
+        self.avg_thrust = calc_average_thrust(tc_5_percent, 2)  # N
+        self.burn_time = calc_burn_time(tc_5_percent, 2)  # s
+        # self.impulse_range = ''
+        # self.mass_curve = {}  # s,kg  # approximate
 
     def plot(self):
         return get_thrust_curve_plot(self.thrust_curve, self.avg_thrust, str(self))
@@ -146,9 +141,8 @@ def calc_average_thrust(thrust_curve: Dict[float, float], ndigits: int = None) -
     :param ndigits: The number of digits to round to. Default: does not round.
     :return: The average thrust.
     """
-    tc = get_5_percent_thrust_range(thrust_curve)
-    impulse = calc_impulse(tc)
-    dt = calc_burn_time(tc)
+    impulse = calc_impulse(thrust_curve)
+    dt = calc_burn_time(thrust_curve)
     if dt == 0:
         impulse = calc_impulse(thrust_curve)
         dt = max(thrust_curve.keys())
@@ -163,8 +157,7 @@ def calc_burn_time(thrust_curve: Dict[float, float], ndigits: int = None) -> flo
     :param ndigits: The number of digits to round to. Default: does not round.
     :return: The burn time of the motor in seconds.
     """
-    tc = get_5_percent_thrust_range(thrust_curve)
-    t = max(tc.keys()) - min(tc.keys())
+    t = max(thrust_curve.keys()) - min(thrust_curve.keys())
     return round(t, ndigits) if ndigits else t
 
 
