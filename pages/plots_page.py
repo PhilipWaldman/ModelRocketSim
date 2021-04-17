@@ -164,7 +164,7 @@ def graphs(rocket_data, motor_data):
     # Set titles
     fig_vel.update_layout(title_text='Velocity-time',
                           xaxis_title_text='Time (s)',
-                          yaxis_title_text='Velocity (m/s)')
+                          yaxis_title_text=r'$\textsf{Velocity }(\frac{\textsf{m}}{\textsf{s}})$')
 
     # ------------------------------ Acceleration ------------------------------
     acc_range = [min(acceleration.values()) - 0.05 * (max(acceleration.values()) - min(acceleration.values())),
@@ -199,7 +199,7 @@ def graphs(rocket_data, motor_data):
     # Set titles
     fig_acc.update_layout(title_text='Acceleration-time',
                           xaxis_title_text='Time (s)',
-                          yaxis_title_text='Acceleration (m/s)')
+                          yaxis_title_text=r'$\textsf{Acceleration }(\frac{\textsf{m}}{\textsf{s}^2})$')
 
     return fig_alt, fig_vel, fig_acc
 
