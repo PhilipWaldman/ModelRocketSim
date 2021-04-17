@@ -94,6 +94,8 @@ def graphs(rocket_data, motor_data):
     x_range = [-0.025 * max(altitude.keys()), 1.025 * max(altitude.keys())]
 
     # ------------------------------ Altitude ------------------------------
+    alt_range = [min(altitude.values()) - 0.025 * max(altitude.values()), 1.025 * max(altitude.values())]
+    # Altitude
     fig_alt = go.Figure(go.Scatter(x=list(altitude.keys()),
                                    y=list(altitude.values()),
                                    mode='lines',
@@ -102,18 +104,27 @@ def graphs(rocket_data, motor_data):
                                          f'y = {round(alt, 3)} m'
                                          for time, alt in altitude.items()],
                                    name='Altitude'))
-    fig_alt.update_layout(title_text='Altitude-time',
-                          xaxis_title_text='Time (s)',
-                          yaxis_title_text='Altitude (m)')
-    alt_range = [min(altitude.values()) - 0.025 * max(altitude.values()), 1.025 * max(altitude.values())]
-    fig_alt.add_trace(go.Scatter(x=[motor.burnout, motor.burnout],
+    # Motor burnout
+    fig_alt.add_trace(go.Scatter(x=[burnout, burnout],
                                  y=alt_range,
                                  mode='lines',
                                  name='Burnout'))
+    # Chute deploy
+    fig_alt.add_trace(go.Scatter(x=[burnout + chute_delay, burnout + chute_delay],
+                                 y=alt_range,
+                                 mode='lines',
+                                 name='Chute deploy'))
+    # Set axis ranges
     fig_alt.update_xaxes(range=x_range)
     fig_alt.update_yaxes(range=alt_range)
+    # Set titles
+    fig_alt.update_layout(title_text='Altitude-time',
+                          xaxis_title_text='Time (s)',
+                          yaxis_title_text='Altitude (m)')
 
     # ------------------------------ Velocity ------------------------------
+    vel_range = [min(velocity.values()) - 0.025 * max(velocity.values()), 1.025 * max(velocity.values())]
+    # Velocity
     fig_vel = go.Figure(go.Scatter(x=list(velocity.keys()),
                                    y=list(velocity.values()),
                                    mode='lines',
@@ -122,18 +133,27 @@ def graphs(rocket_data, motor_data):
                                          f'v = {round(vel, 3)} m/s'
                                          for time, vel in velocity.items()],
                                    name='Velocity'))
-    fig_vel.update_layout(title_text='Velocity-time',
-                          xaxis_title_text='Time (s)',
-                          yaxis_title_text='Velocity (m/s)')
-    vel_range = [min(velocity.values()) - 0.025 * max(velocity.values()), 1.025 * max(velocity.values())]
-    fig_vel.add_trace(go.Scatter(x=[motor.burnout, motor.burnout],
+    # Motor burnout
+    fig_vel.add_trace(go.Scatter(x=[burnout, burnout],
                                  y=vel_range,
                                  mode='lines',
                                  name='Burnout'))
+    # Chute deploy
+    fig_vel.add_trace(go.Scatter(x=[burnout + chute_delay, burnout + chute_delay],
+                                 y=vel_range,
+                                 mode='lines',
+                                 name='Chute deploy'))
+    # Set axis ranges
     fig_vel.update_xaxes(range=x_range)
     fig_vel.update_yaxes(range=vel_range)
+    # Set titles
+    fig_vel.update_layout(title_text='Velocity-time',
+                          xaxis_title_text='Time (s)',
+                          yaxis_title_text='Velocity (m/s)')
 
     # ------------------------------ Acceleration ------------------------------
+    acc_range = [min(acceleration.values()) - 0.025 * max(acceleration.values()), 1.025 * max(acceleration.values())]
+    # Acceleration
     fig_acc = go.Figure(go.Scatter(x=list(acceleration.keys()),
                                    y=list(acceleration.values()),
                                    mode='lines',
@@ -142,16 +162,23 @@ def graphs(rocket_data, motor_data):
                                          f'a = {round(acc, 3)} m/s^2'
                                          for time, acc in acceleration.items()],
                                    name='Acceleration'))
-    fig_acc.update_layout(title_text='Acceleration-time',
-                          xaxis_title_text='Time (s)',
-                          yaxis_title_text='Acceleration (m/s)')
-    acc_range = [min(acceleration.values()) - 0.025 * max(acceleration.values()), 1.025 * max(acceleration.values())]
-    fig_acc.add_trace(go.Scatter(x=[motor.burnout, motor.burnout],
+    # Motor burnout
+    fig_acc.add_trace(go.Scatter(x=[burnout, burnout],
                                  y=acc_range,
                                  mode='lines',
                                  name='Burnout'))
+    # Chute deploy
+    fig_acc.add_trace(go.Scatter(x=[burnout + chute_delay, burnout + chute_delay],
+                                 y=acc_range,
+                                 mode='lines',
+                                 name='Chute deploy'))
+    # Set axis ranges
     fig_acc.update_xaxes(range=x_range)
     fig_acc.update_yaxes(range=acc_range)
+    # Set titles
+    fig_acc.update_layout(title_text='Acceleration-time',
+                          xaxis_title_text='Time (s)',
+                          yaxis_title_text='Acceleration (m/s)')
 
     return fig_alt, fig_vel, fig_acc
 
