@@ -1,4 +1,4 @@
-from math import ceil, floor
+from math import ceil, floor, log2
 
 import dash_core_components as dcc
 import dash_html_components as html
@@ -61,7 +61,7 @@ def get_layout(data):
         ]),
         # diameter
         html.Div([
-            html.P('Diameter: ',
+            html.P('Diameter (mm): ',
                    style={'display': 'inline-block', 'width': '10%'}),
             html.Div(
                 dcc.RangeSlider(
@@ -74,13 +74,13 @@ def get_layout(data):
                 style={'display': 'inline-block', 'width': '90%'})
         ]),
         # length
-        continuous_range_slider('length', lengths),
+        log_range_slider('length', 'mm', lengths),
         # impulse
-        continuous_range_slider('impulse', impulses),
+        log_range_slider('impulse', 'Ns', impulses),
         # avg_thrust
-        continuous_range_slider('thrust', avg_thrusts),
+        log_range_slider('thrust', 'N', avg_thrusts),
         # burn_time
-        continuous_range_slider('burn time', burn_times, 1),
+        log_range_slider('burn time', 's', burn_times),
         # impulse_range - Not implemented yet
         # continuous_range_slider('burn time', burn_times),
         dcc.Graph(id='thrust-curve'),
@@ -90,6 +90,41 @@ def get_layout(data):
             'margin-right': '2rem'
         }
     )
+
+
+def do_exp(i):
+    return 2 ** i
+
+
+def do_log(i):
+    return log2(i)
+
+
+# TODO: Log sliders can be refined a bit
+def log_range_slider(name: str, unit: str, range_list: list):
+    low = floor(do_log(range_list[0]))
+    high = ceil(do_log(range_list[-1]))
+    mark_dist = (high - low) // 20 if (high - low) // 20 > 0 else 1
+    return html.Div([
+        html.P(f'{name.capitalize()} ({unit}): ',
+               style={'display': 'inline-block', 'width': '10%'}),
+        html.P(range_list[0],
+               id=f'min-{name}-text'.replace(' ', '-'),
+               style={'display': 'inline-block', 'width': '3%'}),
+        html.Div(
+            dcc.RangeSlider(
+                id=f'log-{name}-slider'.replace(' ', '-'),
+                min=low,
+                max=high,
+                marks=dict([(i, str(do_exp(i)))
+                            for i in range(low, high, mark_dist)]),
+                step=0.01,
+                value=[low, high]),
+            style={'display': 'inline-block', 'width': '80%'}),
+        html.P(range_list[-1],
+               id=f'max-{name}-text'.replace(' ', '-'),
+               style={'display': 'inline-block', 'width': '7%'})
+    ])
 
 
 def continuous_range_slider(name: str, range_list: list, mark_step_size: int = None):
@@ -115,7 +150,7 @@ def continuous_range_slider(name: str, range_list: list, mark_step_size: int = N
             style={'display': 'inline-block', 'width': '84%'}),
         html.P(range_list[-1],
                id=f'max-{name}-text'.replace(' ', '-'),
-               style={'display': 'inline-block', 'width': '5%'}),
+               style={'display': 'inline-block', 'width': '5%'})
     ])
 
 
@@ -131,13 +166,18 @@ def continuous_range_slider(name: str, range_list: list, mark_step_size: int = N
     Output('max-burn-time-text', 'children'),
     Input('manufacturer-dropdown', 'value'),
     Input('diameter-slider', 'value'),
-    Input('length-slider', 'value'),
-    Input('impulse-slider', 'value'),
-    Input('thrust-slider', 'value'),
-    Input('burn-time-slider', 'value')
+    Input('log-length-slider', 'value'),
+    Input('log-impulse-slider', 'value'),
+    Input('log-thrust-slider', 'value'),
+    Input('log-burn-time-slider', 'value')
 )
 def apply_filters(manufacturer: str, diameter_vals: list, length_vals: list, impulse_vals: list, thrust_vals: list,
                   burn_time_vals: list):
+    length_vals = [do_exp(l) for l in length_vals]
+    impulse_vals = [do_exp(i) for i in impulse_vals]
+    thrust_vals = [do_exp(t) for t in thrust_vals]
+    burn_time_vals = [do_exp(b) for b in burn_time_vals]
+
     curves = [tc for tc in thrust_curves if manufacturer == '<all>' or tc.manufacturer == manufacturer]
     curves = [tc for tc in curves if diameters[diameter_vals[0]] <= tc.diameter <= diameters[diameter_vals[-1]]]
     curves = [tc for tc in curves if length_vals[0] <= tc.length <= length_vals[-1]]
@@ -145,10 +185,10 @@ def apply_filters(manufacturer: str, diameter_vals: list, length_vals: list, imp
     curves = [tc for tc in curves if thrust_vals[0] <= tc.avg_thrust <= thrust_vals[-1]]
     curves = [tc for tc in curves if burn_time_vals[0] <= tc.burn_time <= burn_time_vals[-1]]
     return [{'label': str(tc), 'value': tc.file_name} for tc in curves], \
-           length_vals[0], length_vals[-1], \
-           impulse_vals[0], impulse_vals[-1], \
-           thrust_vals[0], thrust_vals[-1], \
-           burn_time_vals[0], burn_time_vals[-1]
+           round(length_vals[0]), round(length_vals[-1]), \
+           round(impulse_vals[0], 3), round(impulse_vals[-1], 3), \
+           round(thrust_vals[0], 3), round(thrust_vals[-1], 3), \
+           round(burn_time_vals[0], 3), round(burn_time_vals[-1], 3)
 
 
 @app.callback(
