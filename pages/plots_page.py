@@ -97,7 +97,8 @@ def graphs(rocket_data, motor_data):
     x_range = [-0.025 * max(altitude.keys()), 1.025 * max(altitude.keys())]
 
     # ------------------------------ Altitude ------------------------------
-    alt_range = [min(altitude.values()) - 0.05 * max(altitude.values()), 1.05 * max(altitude.values())]
+    alt_range = [min(altitude.values()) - 0.05 * (max(altitude.values()) - min(altitude.values())),
+                 max(altitude.values()) + 0.05 * (max(altitude.values()) - min(altitude.values()))]
     # Altitude
     fig_alt = go.Figure(go.Scatter(x=list(altitude.keys()),
                                    y=list(altitude.values()),
@@ -131,7 +132,8 @@ def graphs(rocket_data, motor_data):
                           yaxis_title_text='Altitude (m)')
 
     # ------------------------------ Velocity ------------------------------
-    vel_range = [min(velocity.values()) - 0.05 * max(velocity.values()), 1.05 * max(velocity.values())]
+    vel_range = [min(velocity.values()) - 0.05 * (max(velocity.values()) - min(velocity.values())),
+                 max(velocity.values()) + 0.05 * (max(velocity.values()) - min(velocity.values()))]
     # Velocity
     fig_vel = go.Figure(go.Scatter(x=list(velocity.keys()),
                                    y=list(velocity.values()),
@@ -165,7 +167,8 @@ def graphs(rocket_data, motor_data):
                           yaxis_title_text='Velocity (m/s)')
 
     # ------------------------------ Acceleration ------------------------------
-    acc_range = [min(acceleration.values()) - 0.05 * max(acceleration.values()), 1.05 * max(acceleration.values())]
+    acc_range = [min(acceleration.values()) - 0.05 * (max(acceleration.values()) - min(acceleration.values())),
+                 max(acceleration.values()) + 0.05 * (max(acceleration.values()) - min(acceleration.values()))]
     # Acceleration
     fig_acc = go.Figure(go.Scatter(x=list(acceleration.keys()),
                                    y=list(acceleration.values()),
