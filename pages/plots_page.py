@@ -91,6 +91,9 @@ def graphs(rocket_data, motor_data):
         velocity[t] = v
         acceleration[t] = a
 
+    apogee = max(altitude.values())
+    t_apogee = list(altitude.keys())[list(altitude.values()).index(apogee)]
+
     x_range = [-0.025 * max(altitude.keys()), 1.025 * max(altitude.keys())]
 
     # ------------------------------ Altitude ------------------------------
@@ -114,6 +117,11 @@ def graphs(rocket_data, motor_data):
                                  y=alt_range,
                                  mode='lines',
                                  name='Chute deploy'))
+    # Apogee
+    fig_alt.add_trace(go.Scatter(x=[t_apogee, t_apogee],
+                                 y=alt_range,
+                                 mode='lines',
+                                 name='Apogee'))
     # Set axis ranges
     fig_alt.update_xaxes(range=x_range)
     fig_alt.update_yaxes(range=alt_range)
@@ -143,6 +151,11 @@ def graphs(rocket_data, motor_data):
                                  y=vel_range,
                                  mode='lines',
                                  name='Chute deploy'))
+    # Apogee
+    fig_vel.add_trace(go.Scatter(x=[t_apogee, t_apogee],
+                                 y=vel_range,
+                                 mode='lines',
+                                 name='Apogee'))
     # Set axis ranges
     fig_vel.update_xaxes(range=x_range)
     fig_vel.update_yaxes(range=vel_range)
@@ -172,6 +185,11 @@ def graphs(rocket_data, motor_data):
                                  y=acc_range,
                                  mode='lines',
                                  name='Chute deploy'))
+    # Apogee
+    fig_acc.add_trace(go.Scatter(x=[t_apogee, t_apogee],
+                                 y=acc_range,
+                                 mode='lines',
+                                 name='Apogee'))
     # Set axis ranges
     fig_acc.update_xaxes(range=x_range)
     fig_acc.update_yaxes(range=acc_range)
