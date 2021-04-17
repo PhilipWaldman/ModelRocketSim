@@ -64,10 +64,10 @@ def graphs(rocket_data, motor_data):
             chute_delay = rocket_data['parachute_deploy_delay']
         if 'parachute_drag_coefficient' in rocket_data.keys():
             chute_Cd = rocket_data['parachute_drag_coefficient']
-    motor_file = tc.thrust_curves[0].file_name
+    motor = tc.thrust_curves[0]
     if motor_data and 'motor_file' in motor_data.keys():
-        motor_file = motor_data['motor_file']
-    motor_tc = tc.ThrustCurve(motor_file).thrust_curve
+        motor = tc.ThrustCurve(motor_data['motor_file'])
+    motor_tc = motor.thrust_curve
 
     altitude = {}
     velocity = {}
@@ -100,11 +100,18 @@ def graphs(rocket_data, motor_data):
                                    hovertemplate='<b>%{text}</b>',
                                    text=[f't = {round(time, 3)} s<br>'
                                          f'y = {round(alt, 3)} m'
-                                         for time, alt in altitude.items()]))
+                                         for time, alt in altitude.items()],
+                                   name='Altitude'))
     fig_alt.update_layout(title_text='Altitude-time',
                           xaxis_title_text='Time (s)',
                           yaxis_title_text='Altitude (m)')
+    alt_range = [min(altitude.values()) - 0.025 * max(altitude.values()), 1.025 * max(altitude.values())]
+    fig_alt.add_trace(go.Scatter(x=[motor.burnout, motor.burnout],
+                                 y=alt_range,
+                                 mode='lines',
+                                 name='Burnout'))
     fig_alt.update_xaxes(range=x_range)
+    fig_alt.update_yaxes(range=alt_range)
 
     # ------------------------------ Velocity ------------------------------
     fig_vel = go.Figure(go.Scatter(x=list(velocity.keys()),
@@ -113,11 +120,18 @@ def graphs(rocket_data, motor_data):
                                    hovertemplate='<b>%{text}</b>',
                                    text=[f't = {round(time, 3)} s<br>'
                                          f'v = {round(vel, 3)} m/s'
-                                         for time, vel in velocity.items()]))
+                                         for time, vel in velocity.items()],
+                                   name='Velocity'))
     fig_vel.update_layout(title_text='Velocity-time',
                           xaxis_title_text='Time (s)',
                           yaxis_title_text='Velocity (m/s)')
+    vel_range = [min(velocity.values()) - 0.025 * max(velocity.values()), 1.025 * max(velocity.values())]
+    fig_vel.add_trace(go.Scatter(x=[motor.burnout, motor.burnout],
+                                 y=vel_range,
+                                 mode='lines',
+                                 name='Burnout'))
     fig_vel.update_xaxes(range=x_range)
+    fig_vel.update_yaxes(range=vel_range)
 
     # ------------------------------ Acceleration ------------------------------
     fig_acc = go.Figure(go.Scatter(x=list(acceleration.keys()),
@@ -126,11 +140,18 @@ def graphs(rocket_data, motor_data):
                                    hovertemplate='<b>%{text}</b>',
                                    text=[f't = {round(time, 3)} s<br>'
                                          f'a = {round(acc, 3)} m/s^2'
-                                         for time, acc in acceleration.items()]))
+                                         for time, acc in acceleration.items()],
+                                   name='Acceleration'))
     fig_acc.update_layout(title_text='Acceleration-time',
                           xaxis_title_text='Time (s)',
                           yaxis_title_text='Acceleration (m/s)')
+    acc_range = [min(acceleration.values()) - 0.025 * max(acceleration.values()), 1.025 * max(acceleration.values())]
+    fig_acc.add_trace(go.Scatter(x=[motor.burnout, motor.burnout],
+                                 y=acc_range,
+                                 mode='lines',
+                                 name='Burnout'))
     fig_acc.update_xaxes(range=x_range)
+    fig_acc.update_yaxes(range=acc_range)
 
     return fig_alt, fig_vel, fig_acc
 
