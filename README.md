@@ -14,7 +14,7 @@ are based off of that guide.
 2. Makes sure that you have the latest version of pip using `py -m pip install --upgrade pip`.
 3. Install virtualenv: `py -m pip install --user virtualenv`.
 4. Create a virtual environment: `py -m venv warp_env`.
-5. Activate the virtual environment: `.\coviz_env\Scripts\activate`.
+5. Activate the virtual environment: `.\warp_env\Scripts\activate`.
 6. Install the required packages: `pip install -r requirements.txt`.
 7. Run the tool: `py index.py`.
 8. Open a web browser and go to the URL that is mentioned on the first line after the tool is run.
